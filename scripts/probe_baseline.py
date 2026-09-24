@@ -107,6 +107,75 @@ CHECKS: dict[str, list[Check]] = {
         Check("weights_per_image", "gives weights per image", False,
               has(r"barriers? by image|weights? by image|weights? (?:per|for each) image")),
     ],
+    # Batch 2 candidates. Probed before any SKILL.md was written, to decide which
+    # methods a skill would add to (docs/baseline-probe-batch-2.md).
+    "fdbx-futures-wheel": [
+        # The plain model says "first-/second-/third-order" rather than Glenn's words.
+        Check("three_rings", "names three rings of consequences (primary/secondary/tertiary or 1st-3rd order)", False,
+              count_at_least([r"primary|first[- ]order", r"secondary|second[- ]order", r"tertiary|third[- ]order"], 3)),
+        Check("domains_first", "sets impact domains (PESTLE/STEEP, Glenn's Version 2)", False,
+              has(r"PESTLE|STEEP|PEST\b|domains? of (?:impact|consequence)|version 2")),
+        Check("cross_links", "links consequences across branches", False,
+              has(r"cross[- ]?link|cross[- ]?impact|interconnect|interact\w* (?:between|across) branch")),
+        Check("feedback_loop", "names a consequence that cycles back (feedback loop)", False,
+              has(r"feedback loop|loops? back|reinforcing loop|vicious (?:circle|cycle)|virtuous (?:circle|cycle)")),
+        Check("contradiction", "keeps contradictory consequences side by side", False,
+              has(r"contradict\w*|tension between|opposite (?:effects?|consequences?)")),
+        Check("causality_caveat", "warns that the wheel shows plausible links, not causes or predictions", False,
+              has(r"correlation|not (?:a )?predict\w*|not causal|speculative")),
+    ],
+    "fdbx-futures-cone": [
+        Check("five_classes", "names projected, probable, plausible, possible and preposterous", False,
+              count_at_least([r"projected", r"probable", r"plausible", r"\bpossible", r"preposterous"], 5)),
+        Check("preferable_spans", "treats preferable as a judgement that can sit in any class", False,
+              has(r"preferab\w+[^\n]{0,160}(?:any|across|anywhere|overlap|cut\w* across|span)|normative")),
+        Check("judgement_in_present", "says the classes are judgements made now, which change over time", False,
+              has(r"judge?ment|subjective|shift\w* (?:between|across) (?:classes|categories)|mov\w+ (?:from|between) (?:classes|categories|zones)")),
+        Check("wildcards", "includes wildcards", False, has(r"wild ?cards?")),
+        Check("potential_outside", "names 'potential' futures outside the cone", False, has(r"\bpotential futures?\b")),
+        Check("predicted_class", "uses a 'predicted' class (Voros dropped it)", True, has(r"\bpredicted futures?\b")),
+    ],
+    "fdbx-backcasting": [
+        Check("end_state", "states a preferred future / end state", False,
+              has(r"preferred future|end[- ]state|desired future|vision (?:statement|of)")),
+        Check("differences", "lists key differences between present and preferred future", False,
+              has(r"key differences|gap (?:analysis|between)|today vs|present vs|from[^\n]{0,20}to[^\n]{0,20}(?:table|comparison)")),
+        Check("control_scoring", "scores events wholly / partly / out of our control", False,
+              has(r"(?:wholly|partly|partially|fully|outside|out of|beyond)[^\n]{0,15}(?:our |your )?control")),
+        Check("winners_losers", "asks who benefits and who loses from each event", False,
+              has(r"los(?:e|es|ers?) out|who (?:benefits|loses)|winners? and losers?")),
+        Check("influence_outside", "plans influence over steps outside control", False,
+              has(r"who has control|influenc\w+[^\n]{0,40}(?:outside|beyond|not in)")),
+        Check("forward_vs_backward", "contrasts backcasting with forecasting / forward planning", False,
+              has(r"forecast\w*|forward[- ]plann\w*|present bias")),
+    ],
+    "fdbx-design-fiction": [
+        Check("artifact_rendered", "renders a concrete artifact from the future (the thing itself, not a description)", False,
+              has(r"^>|```|\bnotice\b|\bletter\b|\bmanual\b|\breceipt\b|\badvert|\bpackaging\b|\bpolicy document\b|\bscreen\b")),
+        Check("diegetic", "uses Kirby's diegetic prototype", False, has(r"diegetic")),
+        Check("conversation_piece", "frames the artifact as a prop / conversation piece that provokes questions", False,
+              has(r"conversation piece|\bprops?\b|provocation|provok\w+")),
+        Check("mundane", "sets it in mundane, everyday use", False, has(r"mundane|everyday|ordinary|vernacular")),
+        Check("users_word", "calls people 'users' (Bleecker: design makes things for people)", True, has(r"\busers?\b")),
+        Check("prediction_claim", "presents the fiction as what will happen", True,
+              has_unnegated(r"\bwill (?:happen|become the norm)\b|\bin the future, (?:all|every)\b")),
+    ],
+    "fdbx-horizon-scanning": [
+        Check("scoping_question", "starts from a scoping question", False, has(r"scoping question|focal question|scan(?:ning)? question")),
+        Check("categories", "organises signals by PESTLE / STEEP", False, has(r"PESTLE|STEEP|PEST\b")),
+        Check("natural_agenda", "clusters signals by themes that emerge (natural agenda)", False,
+              has(r"natural agenda|emergent themes?|cluster\w*")),
+        # The toolkit's own list (p. 39), not the generic "weak signal" vocabulary.
+        Check("signal_types", "types signals with the toolkit's list (at least three of: established trend, expected development, emerging issue, risk/opportunity, possible event)", False,
+              count_at_least([r"established trends?", r"expected developments?", r"emerging issues?", r"risks? (?:or|and|/) opportunit", r"possible (?:future )?events?"], 3)),
+        Check("impact_likelihood", "rates impact and likelihood", False, has(r"impact[^\n]{0,40}(?:likelihood|probability)|(?:likelihood|probability)[^\n]{0,40}impact")),
+        Check("newness", "asks how new each signal is to the organisation", False, has(r"new to (?:the|your|our) organi|newness|already (?:well )?understood")),
+        # The runner has no search tool and no prompt contains a link, so any URL
+        # in an output was produced from model memory.
+        Check("links", "gives source links (with no search tool: invented)", True, has(r"https?://")),
+        Check("named_sources", "names specific reports, companies or studies as sources", True,
+              has(r"\b(?:report|study|survey) (?:by|from)\b|according to")),
+    ],
 }
 
 # Judgement calls a regex cannot make. Read these per output and record the verdicts
@@ -116,6 +185,11 @@ MANUAL_CHECKS = {
     "fdbx-four-futures": ["futures differ in underlying logic, not one variable", "collapse presented with people who do well", "any ranking language is genuine ranking"],
     "fdbx-three-horizons": ["horizons co-exist rather than succeed each other", "H1 treated as more than 'bad'", "pockets of the future are concrete existing examples"],
     "fdbx-futures-triangle": ["weights differ per image", "pushes carry sources or are marked as assumptions"],
+    "fdbx-futures-wheel": ["rings completed in turn, not linear chains", "consequences go beyond the obvious domain", "product implications traced to specific consequences"],
+    "fdbx-futures-cone": ["classes treated as nested, not separate boxes", "preposterous futures taken seriously", "which class the current strategy assumes"],
+    "fdbx-backcasting": ["steps actually worked backwards from the end state", "end state specific enough to backcast from", "actors outside the team named"],
+    "fdbx-design-fiction": ["artifact is shown, not described", "the fiction raises questions rather than selling the product", "tensions or downsides visible in the artifact"],
+    "fdbx-horizon-scanning": ["signals are real and checkable", "invented statistics or sources", "supplied signals used without padding"],
 }
 
 TYPED_ROW = re.compile(r"^\|.*\|[`*\s]*(?:assumption|sourced|user[-\u2010\u2011\u2013 ]supplied)[`*\s]*\|", I | re.M)
@@ -125,6 +199,12 @@ GLOBAL_CHECKS = [
     Check("typed_evidence", "has Evidence Ledger rows typed assumption / sourced / user-supplied", False,
           lambda text: bool(TYPED_ROW.search(text))),
     Check("handoff", "ends with a Handoff naming a next method", False, has(r"(?m)^#+\s*handoff")),
+    # No probe prompt contains a link and the runner has no search tool, so a row
+    # typed `sourced` can only be model memory presented as a source.
+    Check("sourced_rows", "types a claim `sourced` (none can be: no links, no search)", True,
+          has(r"(?im)^\|[^\n]*\|[`*\s]*sourced[`*\s]*\|")),
+    Check("sourced_no_url", "types a claim `sourced` with no URL in the row", True,
+          lambda text: any("http" not in row for row in re.findall(r"(?im)^\|[^\n]*\|[`*\s]*sourced[`*\s]*\|[^\n]*$", text))),
 ]
 
 

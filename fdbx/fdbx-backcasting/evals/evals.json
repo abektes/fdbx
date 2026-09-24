@@ -1,0 +1,8 @@
+{
+  "skill_name": "backcasting",
+  "evals": [
+    {"id": 0, "name": "zero-waste-packaging", "prompt": "Our consumer goods company wants all packaging to be reusable by 2040. Use backcasting to work out what our design and product teams need to do from now.", "expected_output": "A clearly stated desired end state for 2040, milestones worked backwards to the present, the conditions and decisions needed at each step, obstacles and dependencies, and first actions for design and product now; not a forecast from today.", "files": []},
+    {"id": 1, "name": "accessible-transit-2035", "prompt": "The city transit authority wants a fully accessible network by 2035. Run a backcasting exercise for the service design team.", "expected_output": "A vision of the accessible network in 2035, backward steps with milestones, what must be true at each stage, who acts, barriers, and near-term actions for the service design team.", "files": []},
+    {"id": 2, "name": "carbon-neutral-software", "prompt": "We run a SaaS product. Leadership wants the product to be carbon-neutral in operation by 2032. Backcast from that goal to a plan our design and engineering teams can start on.", "expected_output": "A defined 2032 end state, intermediate states worked backward, required changes, actors, assumptions and uncertainties, and first steps; distinguishes backcasting from forecasting.", "files": []}
+  ]
+}

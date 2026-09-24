@@ -211,6 +211,11 @@ def validate_skill(skill_dir: Path, rep: Report) -> None:
         missing = [t for t in ("user-supplied", "sourced", "assumption") if t not in body]
         if missing:
             rep.error(name, f"must name the three evidence types for the ledger; missing: {', '.join(missing)}")
+        # Batch 2's with-skill probe (docs/baseline-probe-batch-2.md) found models
+        # typing remembered reports as `sourced`, once with invented URLs. The skill
+        # must say where a `sourced` link may come from.
+        if "in this session" not in body:
+            rep.error(name, "must say that a `sourced` link comes from the user or a search in this session")
 
 
 def validate_symlinks(rep: Report) -> None:

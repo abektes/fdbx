@@ -27,6 +27,7 @@ See `references/provenance.md`.
 ## Output Format
 ### Evidence Ledger
 Type is `user-supplied`, `sourced` or `assumption`.
+A `sourced` link comes from the user or a search in this session.
 ### Handoff
 ## Guardrails
 x
@@ -73,6 +74,11 @@ class FdbxRulesTest(unittest.TestCase):
         body = GOOD.replace("Type is `user-supplied`, `sourced` or `assumption`.\n", "")
         rep = self.run_on(make_skill(body))
         self.assertTrue(any("evidence types" in e for e in rep.errors))
+
+    def test_ledger_must_say_where_sourced_links_come_from(self) -> None:
+        body = GOOD.replace("A `sourced` link comes from the user or a search in this session.\n", "")
+        rep = self.run_on(make_skill(body))
+        self.assertTrue(any("in this session" in e for e in rep.errors))
 
     def test_missing_sources_section_warns(self) -> None:
         rep = self.run_on(make_skill(GOOD.replace("## Sources\nx\n", "")))

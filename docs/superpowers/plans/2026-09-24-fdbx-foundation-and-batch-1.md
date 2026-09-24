@@ -706,5 +706,5 @@ Tasks 1–10 were executed inline. Deviations from the plan as written:
 ## Next plan (not in scope here)
 
 - Divergence evaluation: distance from the baseline's cliché set, spread across reps, and a small blind practitioner review.
-- Batch 2 skills from the already-downloaded library: futures wheel (Glenn), futures cone (Voros), backcasting (GO-Science toolkit), design fiction (Bleecker), signal scanning (GO-Science toolkit).
+- Batch 2 skills from the already-downloaded library: futures wheel (Glenn), futures cone (Voros), backcasting (GO-Science toolkit), design fiction (Bleecker), signal scanning (GO-Science toolkit). **Done (2026-09-24):** all five probed; backcasting and horizon scanning written, the other three kept in `candidates/`. See `docs/baseline-probe-batch-2.md`.
 - Extract `scripts/` into a shared package once edbx and fdbx both need the same change.

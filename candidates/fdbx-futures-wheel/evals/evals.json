@@ -1,0 +1,8 @@
+{
+  "skill_name": "futures-wheel",
+  "evals": [
+    {"id": 0, "name": "grocery-autonomous-delivery", "prompt": "We design the app for a grocery chain. Run a futures wheel on this change: most home grocery deliveries in our city are made by autonomous sidewalk robots.", "expected_output": "The change in the centre; primary, secondary and tertiary consequences in rings, linked to what caused them; positive and negative consequences; consequences that interact across branches; implications for the app and a record of which consequences are assumptions.", "files": []},
+    {"id": 1, "name": "four-day-week-hr-tool", "prompt": "Our HR software team wants to think through a national four-day working week becoming law. Build a futures wheel and tell us what it means for our product.", "expected_output": "A futures wheel with the law in the centre, at least three rings of consequences, each linked to its cause, both desirable and undesirable impacts, and product implications derived from specific consequences.", "files": []},
+    {"id": 2, "name": "clinic-ai-triage", "prompt": "A public health clinic is introducing an AI triage assistant at reception. Use a futures wheel to explore the ripple effects before we design the patient experience.", "expected_output": "Futures wheel with the AI triage assistant in the centre, direct and indirect consequences across rings, cross-links, second- and third-order effects on patients, staff and the wider system, and design questions for the patient experience.", "files": []}
+  ]
+}

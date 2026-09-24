@@ -1,0 +1,8 @@
+{
+  "skill_name": "design-fiction",
+  "evals": [
+    {"id": 0, "name": "smart-home-insurance", "prompt": "We design products for a home insurer. Create a design fiction about home insurance in a future where every home is fully sensor-monitored.", "expected_output": "A design fiction: a concrete artifact or prop from that future (not a report about it), the everyday context it lives in, what it makes discussable, and the questions it raises for the team now.", "files": []},
+    {"id": 1, "name": "ai-tutor-school", "prompt": "Our edtech team is designing an AI tutor for secondary schools. Use design fiction to help teachers and parents discuss what it could become.", "expected_output": "One or more design fiction artifacts showing the AI tutor in ordinary use in a plausible near future, the conversations it is meant to provoke, how to use it with teachers and parents, and what it leaves open.", "files": []},
+    {"id": 2, "name": "neighbourhood-energy", "prompt": "A utility wants to explore neighbourhood energy sharing. Make a design fiction we can show in a stakeholder meeting next week.", "expected_output": "A tangible design fiction artifact (for example a product, notice, manual page, advert or interface) from a world with neighbourhood energy sharing, its backstory, how to present it, and questions it opens up.", "files": []}
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "skill_name": "horizon-scanning",
+  "evals": [
+    {"id": 0, "name": "food-delivery-scan", "prompt": "We lead design at a food delivery platform. Run a horizon scan for the next ten years so we know what changes to watch.", "expected_output": "A horizon scan organised by domain (for example STEEP), with signals of change, their sources, what each might mean for the platform, how established or emerging each is, and a way to keep scanning; claims about the present are sourced or marked as assumptions, not asserted.", "files": []},
+    {"id": 1, "name": "library-signals-supplied", "prompt": "We are a public library service. Here are signals our staff collected: a nearby library lends power tools; teenagers use our study rooms as quiet gaming spaces; a council report says footfall is down but Wi-Fi sessions are up; a publisher is testing subscription-only ebooks for libraries. Do a horizon scan with these and tell us what they add up to.", "expected_output": "The user-supplied signals clustered and interpreted, what each could indicate, possible drivers, which need more evidence, implications for the library service, and further scanning questions; no invented additional statistics presented as fact.", "files": []},
+    {"id": 2, "name": "fashion-resale-scan", "prompt": "Our fashion brand is considering a resale service. Do horizon scanning on the future of clothing ownership to inform the design.", "expected_output": "Signals of change across domains relevant to clothing ownership, each with a source or marked as an assumption, clustered into themes, with implications for the resale service design and questions for further scanning.", "files": []}
+  ]
+}

@@ -16,7 +16,7 @@ fdbx does not predict the future. Its methods widen the futures a team takes ser
 
 ```bash
 python3 scripts/fetch_sources.py       # download the papers listed in sources/manifest.json
-python3 scripts/check_provenance.py    # 151 anchors across 4 skills, 0 problems
+python3 scripts/check_provenance.py    # 251 anchors across 6 skills, 0 problems
 ```
 
 The papers are not in the repo (most are copyrighted). The fetch script rebuilds the library from the manifest. See [`SOURCES.md`](SOURCES.md) for the bibliography, sources cited but not yet checked, and discrepancies found between sources.
@@ -29,10 +29,12 @@ The papers are not in the repo (most are copyrighted). The fetch script rebuilds
 
 | Skill | Source | What it does |
 |---|---|---|
+| [`fdbx-horizon-scanning`](fdbx/fdbx-horizon-scanning/) | GO-Science 2024 | Collects signals of change from sources the user supplies or a live search finds (never from model memory), clusters them into a natural agenda, and picks the drivers worth acting on |
 | [`fdbx-causal-layered-analysis`](fdbx/fdbx-causal-layered-analysis/) | Inayatullah 1998, 2008 | Reads a brief at four depths (litany, social causes, worldview, myth/metaphor) and climbs back up to a reframed brief |
 | [`fdbx-futures-triangle`](fdbx/fdbx-futures-triangle/) | Inayatullah 2008 | Maps the images of the future that pull, the trends that push, and the weights holding each image back |
 | [`fdbx-four-futures`](fdbx/fdbx-four-futures/) | Dator 2009 | Puts the product in four fundamentally different futures (Continued Growth, Collapse, Discipline, Transformation) with no best, worst or likely case |
 | [`fdbx-three-horizons`](fdbx/fdbx-three-horizons/) | Sharpe et al. 2016; Curry & Hodgson 2008 | Maps the declining H1, emerging H3 and turbulent H2, and sorts innovations into H2+ and H2− (not the McKinsey model) |
+| [`fdbx-backcasting`](fdbx/fdbx-backcasting/) | GO-Science 2024; Inayatullah 2008 | Works back from a preferred future to today, scores each critical event by how much the team controls it, names who loses out, and ends in an action plan |
 | [`fdbx`](fdbx/fdbx/) | — | Router: which method, in what order, and when to hand off to edbx |
 
 Tutorials: [`tutorials/`](tutorials/).
@@ -40,6 +42,8 @@ Tutorials: [`tutorials/`](tutorials/).
 ## Status
 
 Version 0.1. The skills are written and pass the structural and provenance gates. A **baseline probe** (36 outputs from DeepSeek V4 Pro with no skill loaded) found that the plain model already knows these methods well, but states present-day facts without sources and invents facts about the user's own situation. It also skips each method's action structure: who acts per layer, Dator's exercise questions, per-image weights, and H2+/−. With the skills loaded, those steps appear in 8–9 of 9 outputs per skill, and every output has an Evidence Ledger with 98–100% of rows correctly typed (this took one fix to the skills; see the probe notes). The ledger labels invented claims rather than removing them, and the body can still assert what the ledger calls an assumption. In a partially blind side-by-side review of all 12 scenarios, one reviewer (the fdbx owner) preferred the with-skill output in 12 of 12 pairs. Because that reviewer commissioned the skills and the blinding was partial, an independent review is next. See [`docs/baseline-probe-batch-1.md`](docs/baseline-probe-batch-1.md).
+
+**Batch 2** probed five more methods before writing any skill. The plain model already handles the Futures Wheel, Design Fiction and the Futures Cone well, so they were set aside (`candidates/`). Two were written: **Backcasting**, where the plain model often planned forward and invented the user's current figures, and **Horizon Scanning**, where it gave no sources at all and added figures to signals the user supplied. With the skills, each method's own steps appear in 9/9 outputs. The probe also showed a skill *introducing* a failure: asked for sources, one output invented 14 URLs. Tightening what counts as `sourced` (a URL in the row, from the user or a search) cut outputs with `sourced` claims from 9/54 to 2/54 across all six skills. Horizon Scanning has not yet been tested with a live search. See [`docs/baseline-probe-batch-2.md`](docs/baseline-probe-batch-2.md).
 
 ## How to use it
 
@@ -66,6 +70,7 @@ python3 scripts/check_provenance.py         # every sourced claim is on its cite
 .
 ├── fdbx/                  one folder per skill: SKILL.md, references/ (incl. provenance.md), assets/, evals/
 ├── skills/                symlinks the plugin loader walks (/fdbx:<name>)
+├── candidates/            eval scenarios for methods probed but not yet written
 ├── tutorials/             plain-language guide per method
 ├── sources/manifest.json  where each source comes from; the files themselves are fetched locally
 ├── SOURCES.md             bibliography, cite-only list, discrepancies
@@ -76,7 +81,7 @@ python3 scripts/check_provenance.py         # every sourced claim is on its cite
 
 ## Acknowledgements
 
-The methods belong to their authors: Sohail Inayatullah (Causal Layered Analysis, the Futures Triangle), Jim Dator and the Hawaii Research Center for Futures Studies (the four generic futures), and Bill Sharpe, Anthony Hodgson, Andrew Curry and the International Futures Forum (Three Horizons). fdbx's contribution is integration: making these methods runnable by AI at the moment a design decision is made, with a trail back to the source.
+The methods belong to their authors: Sohail Inayatullah (Causal Layered Analysis, the Futures Triangle), Jim Dator and the Hawaii Research Center for Futures Studies (the four generic futures), Bill Sharpe, Anthony Hodgson, Andrew Curry and the International Futures Forum (Three Horizons), Elise Boulding (backcasting, as credited by Inayatullah), and the UK Government Office for Science, whose *Futures Toolkit* is the procedural source for horizon scanning and backcasting. fdbx's contribution is integration: making these methods runnable by AI at the moment a design decision is made, with a trail back to the source.
 
 ## License
 

@@ -1,6 +1,6 @@
 ---
 name: fdbx
-description: Futures-thinking guide for designers. Describe your brief, product, or decision and get routed to the right fdbx method — Causal Layered Analysis, Futures Triangle, Four Futures, or Three Horizons — and the order to run them in. Use when you don't know which fdbx:* skill to start with, when a roadmap assumes a single future, or when you want to widen the time horizon of a design decision before committing.
+description: Futures-thinking guide for designers. Describe your brief, product, or decision and get routed to the right fdbx method — Horizon Scanning, Causal Layered Analysis, Futures Triangle, Four Futures, Three Horizons, or Backcasting — and the order to run them in. Use when you don't know which fdbx:* skill to start with, when a roadmap assumes a single future, or when you want to widen the time horizon of a design decision before committing.
 version: "0.1"
 tags: [futures, router]
 ---
@@ -31,10 +31,12 @@ fdbx does not predict the future. Its methods widen the range of futures a team 
 
 | The user says… | They need to… |
 |---|---|
+| "What is changing out there?" / "what do these signals add up to?" | **Scan** for signals |
 | "Is this even the right brief?" / "we keep designing the same thing" | **Deepen** the problem |
 | "What forces are shaping this?" / "which future are we designing for?" | **Map** the forces |
 | "What if the future isn't what we assume?" / "our plan has one future in it" | **Experience alternatives** |
 | "How do we get from today's model to the next?" / "which of our innovations matter?" | **Plan the transition** |
+| "We have a goal for 2035; what do we do now?" / "our roadmap stops short of the vision" | **Work back** from a chosen future |
 
 If it is unclear, ask one question before routing.
 
@@ -42,17 +44,21 @@ If it is unclear, ask one question before routing.
 
 | Need | Skill |
 |---|---|
+| Scan | `/fdbx:horizon-scanning` |
 | Deepen | `/fdbx:causal-layered-analysis` |
 | Map | `/fdbx:futures-triangle` |
 | Experience alternatives | `/fdbx:four-futures` |
 | Plan the transition | `/fdbx:three-horizons` |
+| Work back | `/fdbx:backcasting` |
 
 ### 3. Chains
 
-- **Full sequence:** causal-layered-analysis → futures-triangle → four-futures → three-horizons. Deepen the problem, map the forces, experience the alternatives, then plan the transition to the preferred one.
+- **Full sequence:** horizon-scanning → causal-layered-analysis → futures-triangle → four-futures → three-horizons → backcasting. Gather real signals, deepen the problem, map the forces, experience the alternatives, plan the transition, then work back from the preferred future to today's actions.
+- **Scan first when the inputs are thin.** The other methods need claims about the present. Horizon-scanning supplies them with sources, so fewer end up as assumptions in the Evidence Ledger.
 - **Before any scenario work, run CLA.** Inayatullah recommends it before scenario building, so that scenarios differ in depth, not only in degree.
 - **Triangle → Four Futures:** the triangle's images and pushes become material for the four generic futures.
 - **Four Futures → Three Horizons:** the preferred-future sketch becomes a candidate third horizon.
+- **Four Futures → Backcasting:** the preferred-future sketch is the end state to work back from. A feared future can be backcast in avoid mode.
 
 ### 4. Cross-box handoffs to edbx
 
@@ -63,6 +69,8 @@ If it is unclear, ask one question before routing.
 | Reframed brief (CLA) | `edbx:anotherlens`, `edbx:worrystorming` | Whose view is still missing; what the new frame might harm |
 | Three Horizons dilemma | `edbx:value-dams-and-flows` | Map the stakeholder value conflict behind it |
 | Three Horizons actions | `edbx:pledge-works`, `edbx:ethical-contract` | Turn them into accountable commitments |
+| Backcasting action plan | `edbx:pledge-works`, `edbx:worrystorming` | Commit to the plan; start with the people it names as losing out |
+| A high-impact driver (horizon-scanning) | `edbx:stf-et`, `edbx:worrystorming` | Whom could this change harm? |
 
 ## Guardrails
 

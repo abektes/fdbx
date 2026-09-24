@@ -22,6 +22,8 @@ are true. The ledger makes the basis of each one visible.
 ```
 
 - **Type** is one of `user-supplied`, `sourced` (with a link the user can open) or `assumption`.
+- `sourced` means the Basis cell holds a URL, and the URL came from the user or from a search or tool result in the same session. No URL, not `sourced`. A report or regulation the model remembers is an `assumption`, even when it can name it. Batch 2's with-skill probe found models typing remembered sources as `sourced`, once with 14 invented URLs, and naming reports without links (`docs/baseline-probe-batch-2.md`).
+- The ledger records claims about the world used as input. The method's own sources belong in the skill's Sources section, not in the ledger.
 - Anything the model knows only from training is an `assumption`, however confident it sounds.
 - A trend, driver, statistic or "pocket of the future" never appears in the output without a ledger row.
 

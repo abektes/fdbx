@@ -132,7 +132,7 @@ At least one H1 feature worth carrying forward, and why.
 
 ### Evidence Ledger
 
-Type is one of `user-supplied` (stated in the brief or by the user), `sourced` (with a link the reader can open), or `assumption`. Anything that comes from model knowledge is an `assumption`, however confident it sounds. Do not use other types such as "trend" or "general knowledge".
+Type is one of `user-supplied` (stated in the brief or by the user), `sourced` (the Basis cell holds a URL the reader can open, which came from the user or from a search or tool result in this session; no URL, not `sourced`), or `assumption`. Anything that comes from model knowledge is an `assumption`, however confident it sounds, even when you can name the report or organisation it comes from. The ledger records claims about the world used as input, not this method's own sources. Do not use other types such as "trend" or "general knowledge".
 
 | Claim used as input | Type | Basis |
 |---|---|---|

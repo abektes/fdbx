@@ -1,0 +1,8 @@
+{
+  "skill_name": "futures-cone",
+  "evals": [
+    {"id": 0, "name": "museum-visitor-2040", "prompt": "We design visitor experiences for a national museum. Use the futures cone to map futures for museum visiting in 2040 before we write our strategy.", "expected_output": "Futures classes (projected, probable, plausible, possible, preposterous, preferable) for museum visiting in 2040, with examples per class, a discussion of which futures the current strategy assumes, and what the team prefers and why.", "files": []},
+    {"id": 1, "name": "urban-mobility-app", "prompt": "Our urban mobility app team keeps arguing about which futures are realistic. Apply the futures cone to city transport in 2035 so we can have a better conversation.", "expected_output": "A futures cone for city transport with each class of future illustrated, the projected future named, preposterous futures taken seriously, the preferable future treated as a normative judgement that can sit anywhere, and a way for the team to use it in discussion.", "files": []},
+    {"id": 2, "name": "pension-provider", "prompt": "A pension provider asks our studio how members will plan retirement in 2050. Use the futures cone to structure the range of futures we should consider.", "expected_output": "Futures cone classes applied to retirement planning in 2050, what makes something probable vs plausible vs possible, which futures the provider currently designs for, and preferable futures as a separate judgement.", "files": []}
+  ]
+}
