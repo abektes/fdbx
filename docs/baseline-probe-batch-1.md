@@ -150,11 +150,33 @@ The one remaining off-vocabulary cell is a valid type with a note ("user‑suppl
 
 **The fix labels invented claims; it does not remove them.** The ledgers are now honest ("School‑meal uptake is around 60% and falling | assumption | not confirmed for this city"; "Local school with 80% plant‑based menu exists | assumption | Hypothetical but plausible; user would need to validate"). But the body can still contradict its own ledger: one action item says "Visit the school that already runs a 80% plant‑based menu", presenting as real a school the ledger calls hypothetical. A reader who checks the ledger is protected; a reader who skims the body is not.
 
+## Human review (reviewer 1)
+
+**Setup.** `scripts/make_review_pack.py` paired one baseline and one with-skill output per scenario (rep 0; with-skill outputs from the fixed skills), shuffled A/B with a fixed seed, and asked five questions per pair. Reviewer 1 is the fdbx owner. All 12 pairs answered, no notes written. Answers are kept locally in `eval-framework/review/answers-2026-09-24-reviewer-1.json`.
+
+| Question | With skill | Baseline | Tie |
+|---|---|---|---|
+| Which would you rather bring into a design meeting? | **12** | 0 | 0 |
+| Which made you see the problem differently? | **11** | 0 | 1 |
+| Which is easier to trust? Can you tell fact from assumption? | **11** | 0 | 1 |
+| Which gives you clearer next steps? | **11** | 0 | 1 |
+| Is either longer than what it gives you? | neither: 11, both: 1 | | |
+
+Each skill won 3/3 on "bring into a meeting". The ties were CLA remote-team (insight), Three Horizons retail bank (trust) and Three Horizons school meals (next steps). The only length complaint was Three Horizons school meals ("both too long"). No Four Futures pair was judged too long, despite the with-skill outputs being ~50% longer.
+
+**How far this goes.** 12/12 is unlikely by chance if the reviewer had no preference (two-sided sign test p ≈ 0.0005). But chance is not the main risk:
+
+- **Partial blinding.** With-skill outputs end with an Evidence Ledger and a Handoff, so the reviewer could often tell which side was which, and the reviewer commissioned the skills. Expectation can produce a clean sweep.
+- **One reviewer, one model, one rep per scenario.**
+- No notes, so we do not yet know *what* made the difference: the method structure, the ledger, or the format.
+
 ## Next step
 
-1. Decide whether "labelled" is enough, or whether the skills should also require the body to hedge anything the ledger marks as an assumption (for example "if a school locally runs…"). The second is stricter and may make outputs harder to read.
-2. Write `conformance.json` rubrics and calibrate them with Jev, so pass rates come from code and a calibrated judge, not from regexes read by the skills' author.
-3. Judge quality, not just conformance: blind pairwise comparison of baseline vs. with-skill outputs by a model that is not DeepSeek or Claude, or a small practitioner panel.
+1. **A second, independent reviewer**: a designer who has not seen fdbx, using the same page.
+2. **A stricter blind**: rebuild the pack with the Evidence Ledger and Handoff stripped from the with-skill outputs, so only the body is compared. If preference holds, the method structure is doing the work. If it collapses, the ledger and format are.
+3. Decide whether "labelled" is enough, or whether the skills should also require the body to hedge anything the ledger marks as an assumption (for example "if a school locally runs…"). The second is stricter and may make outputs harder to read.
+4. Write `conformance.json` rubrics and calibrate them with Jev, so pass rates come from code and a calibrated judge, not from regexes read by the skills' author.
+5. Judge quality at scale: blind pairwise comparison by a model that is not DeepSeek or Claude, alongside the human reviews.
 
 ## Previously planned next step (done)
 
