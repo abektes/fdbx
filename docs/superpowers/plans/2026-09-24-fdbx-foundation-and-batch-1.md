@@ -701,6 +701,8 @@ Tasks 1–10 were executed inline. Deviations from the plan as written:
 
 **Task 11 cost estimate.** From edbx's 558 cached generations (DeepSeek V4 Pro via OpenRouter): median $0.015, p90 $0.033, max $0.070 per generation. 72 generations × $0.033 ≈ $2.40; padded 4× ≈ **$9.50**. A baseline-only probe (36 generations) is about $1.20, padded ≈ **$5**. TypeSafe scoring is extra and needs rubrics first.
 
+**Task 11 done (2026-09-24).** Baseline arm $0.39, with-skill arm $0.76, both via OpenRouter DeepSeek V4 Pro. Findings and one skill defect (ledger evidence types), with its fix and a new validator rule, are in `docs/baseline-probe-batch-1.md`. Re-run of the three changed skills done ($0.59): correctly typed ledger rows went from 0–41% to 98–100%. Total probe spend $1.74.
+
 ## Next plan (not in scope here)
 
 - Divergence evaluation: distance from the baseline's cliché set, spread across reps, and a small blind practitioner review.
