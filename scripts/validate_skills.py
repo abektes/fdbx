@@ -205,6 +205,12 @@ def validate_skill(skill_dir: Path, rep: Report) -> None:
         for block in ("Evidence Ledger", "Handoff"):
             if block not in body:
                 rep.error(name, f"output format must include a '{block}' block (see docs/conventions.md)")
+        # The with-skill probe (docs/baseline-probe-batch-1.md) found that when a
+        # skill only says "with its type", the model invents its own types
+        # ("Trend", "Empirical"). The vocabulary has to be in the skill itself.
+        missing = [t for t in ("user-supplied", "sourced", "assumption") if t not in body]
+        if missing:
+            rep.error(name, f"must name the three evidence types for the ledger; missing: {', '.join(missing)}")
 
 
 def validate_symlinks(rep: Report) -> None:

@@ -48,7 +48,7 @@ The goal is to get people to *experience* a future different enough from the pre
 
 ### Step 1 — Ground in past and present
 
-Briefly note how the subject came to be and its main problems and possibilities now. Record trends, emerging issues and continuities in the Evidence Ledger with their type. Dator treats these as components 1–3 of the visioning process, and the four futures are built from their different mixes.
+Briefly note how the subject came to be and its main problems and possibilities now. Record trends, emerging issues and continuities in the Evidence Ledger, each with its evidence type: `user-supplied`, `sourced`, or `assumption`. Whether something is a trend or an emerging issue belongs in the claim, not the Type column. Dator treats these as components 1–3 of the visioning process, and the four futures are built from their different mixes.
 
 ### Step 2 — Write the four futures
 
@@ -142,6 +142,8 @@ Each future has a distinct underlying logic, not a different level of the same v
 
 ### Evidence Ledger
 
+Type is one of `user-supplied` (stated in the brief or by the user), `sourced` (with a link the reader can open), or `assumption`. Anything that comes from model knowledge is an `assumption`, however confident it sounds. Do not use other types such as "trend" or "general knowledge".
+
 | Claim used as input | Type | Basis |
 |---|---|---|
 
@@ -160,7 +162,7 @@ Each future has a distinct underlying logic, not a different level of the same v
 - Do not omit a future. Collapse is the one most often dropped.
 - Use Dator's definitions. Transformation is technology-led in Dator; if you use Inayatullah's spiritual route, label it.
 - In workshop kit mode, keep the four futures in separate handouts. Participants should not see the other futures before the debrief.
-- Trends, emerging issues and signals go in the Evidence Ledger with their type.
+- Trends, emerging issues and signals go in the Evidence Ledger with their evidence type (`user-supplied`, `sourced`, or `assumption`).
 
 ## Deliverable Quality Bar
 
@@ -173,7 +175,7 @@ A strong Four Futures output:
 - answers A–E for each future, with five things to do now toward (D) and five against (E)
 - places the subject in each future
 - names at least three design decisions that hold in all four futures
-- records trends and signals in the Evidence Ledger with their type
+- records trends and signals in the Evidence Ledger, each typed `user-supplied`, `sourced`, or `assumption`
 - ends with a Handoff naming the next method and why
 
 ## Integration with Other Skills

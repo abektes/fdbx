@@ -35,7 +35,7 @@ CLA does not forecast. It widens the range of futures a team can imagine by show
 - The brief, problem statement, or issue, in the words the organisation uses.
 - Who wrote it and who is expected to act on it.
 - Context: users, geography, sector, and any cultures or communities whose view of the issue differs from the organisation's.
-- Evidence already in hand (research, data) — these go into the Evidence Ledger with their type.
+- Evidence already in hand (research, data) — these go into the Evidence Ledger with their evidence type (`user-supplied`, `sourced`, or `assumption`).
 
 If the cultural context is unknown, ask. CLA is sensitive to whose worldview is treated as the default; Inayatullah's cases repeatedly show the deeper layers shifting once other civilisational or community perspectives are included.
 
@@ -133,6 +133,8 @@ One per layer; they differ in kind, not intensity.
 What holds, what to question with the client, what to research next.
 
 ### Evidence Ledger
+
+Type is one of `user-supplied` (stated in the brief or by the user), `sourced` (with a link the reader can open), or `assumption`. Anything that comes from model knowledge is an `assumption`, however confident it sounds. Do not use other types such as "trend" or "general knowledge".
 
 | Claim used as input | Type | Basis |
 |---|---|---|

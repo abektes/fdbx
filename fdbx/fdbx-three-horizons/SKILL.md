@@ -37,7 +37,7 @@ The practice is deliberately simple: the framework can be explained in minutes. 
 - A horizon length. This varies by domain: long for infrastructure (Curry & Hodgson's energy example puts H3 about 50 years out), shorter for fast-moving digital services.
 - Current initiatives, projects and experiments, if the user wants the portfolio classification.
 - Who is involved: those who run today's system, those experimenting, those holding a vision.
-- Evidence of stress in H1 and of pockets of H3. These go into the Evidence Ledger with their type.
+- Evidence of stress in H1 and of pockets of H3. These go into the Evidence Ledger with their evidence type (`user-supplied`, `sourced`, or `assumption`).
 
 ## Workflow
 
@@ -132,6 +132,8 @@ At least one H1 feature worth carrying forward, and why.
 
 ### Evidence Ledger
 
+Type is one of `user-supplied` (stated in the brief or by the user), `sourced` (with a link the reader can open), or `assumption`. Anything that comes from model knowledge is an `assumption`, however confident it sounds. Do not use other types such as "trend" or "general knowledge".
+
 | Claim used as input | Type | Basis |
 |---|---|---|
 
@@ -144,8 +146,9 @@ At least one H1 feature worth carrying forward, and why.
 ## Guardrails
 
 - Do not produce McKinsey's growth horizons. No "core / adjacent / transformational" business lines and no successive curves: all three patterns exist now, at different strengths.
+- Do not turn the horizons into phases ("H1: next 12 months, H2: 1–3 years, H3: 3–5 years"). A timeline of actions is fine; the horizons themselves are patterns present today.
 - Do not treat H1 as bad and H3 as good. Name what must be kept from H1, and say what could go wrong with each H3.
-- Pockets of the future must be concrete, existing examples with an Evidence Ledger row, not predictions dressed as examples.
+- Pockets of the future must be concrete, existing examples with an Evidence Ledger row, not predictions dressed as examples. Never invent a named initiative or its figures. If you cannot name a real example, say so and describe it as something to look for.
 - Every H2 innovation gets a + or − with a reason. "Innovative" is not the same as H2+: many innovations make H1 better at being H1.
 - Offer more than one H3 unless the user has already chosen one.
 - Set the horizon length by domain and say why.

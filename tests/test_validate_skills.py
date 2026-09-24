@@ -26,6 +26,7 @@ x
 See `references/provenance.md`.
 ## Output Format
 ### Evidence Ledger
+Type is `user-supplied`, `sourced` or `assumption`.
 ### Handoff
 ## Guardrails
 x
@@ -67,6 +68,11 @@ class FdbxRulesTest(unittest.TestCase):
     def test_missing_handoff_is_an_error(self) -> None:
         rep = self.run_on(make_skill(GOOD.replace("### Handoff\n", "")))
         self.assertTrue(any("Handoff" in e for e in rep.errors))
+
+    def test_ledger_must_name_the_three_evidence_types(self) -> None:
+        body = GOOD.replace("Type is `user-supplied`, `sourced` or `assumption`.\n", "")
+        rep = self.run_on(make_skill(body))
+        self.assertTrue(any("evidence types" in e for e in rep.errors))
 
     def test_missing_sources_section_warns(self) -> None:
         rep = self.run_on(make_skill(GOOD.replace("## Sources\nx\n", "")))
