@@ -26,6 +26,7 @@ import random
 import re
 import sys
 from collections import Counter
+from pathlib import Path
 
 from box import EVAL_DIR
 from probe_baseline import load
@@ -217,9 +218,28 @@ def build(runs: list[str]) -> int:
     return 0
 
 
+def resolve_answers(answers_path: str) -> Path | None:
+    """The given file, or the newest fdbx-review-answers*.json beside it.
+    Browsers rename repeat downloads ("fdbx-review-answers (1).json")."""
+    path = Path(answers_path).expanduser()
+    if path.is_file():
+        return path
+    candidates = sorted(path.parent.glob("fdbx-review-answers*.json"), key=lambda f: f.stat().st_mtime)
+    return candidates[-1] if candidates else None
+
+
 def score(answers_path: str) -> int:
     key = json.loads((REVIEW_DIR / "key.json").read_text())["pairs"]
-    answers = json.loads(open(answers_path).read())
+    path = resolve_answers(answers_path)
+    if path is None:
+        sys.exit(
+            f"No answers file at {answers_path} (or any fdbx-review-answers*.json next to it).\n"
+            "Open eval-framework/review/review.html in Safari or Chrome (not the in-app preview,\n"
+            "which is a static snapshot), answer at least one pair, then press Export answers.\n"
+            "If the browser will not download, press Copy answers and save the clipboard as\n"
+            "~/Downloads/fdbx-review-answers.json.")
+    print(f"answers: {path}\n")
+    answers = json.loads(path.read_text())
     tally: dict[str, Counter] = {qid: Counter() for qid, _ in QUESTIONS}
     by_skill: dict[str, Counter] = {}
     for pid, meta in key.items():
@@ -281,7 +301,7 @@ PAGE = """<!doctype html>
   <p><strong>Blinding is partial:</strong> with-skill outputs end with an Evidence Ledger and a Handoff, so you may be able to tell them apart. Judge them on the questions anyway: would you use it, did it change how you see the problem, can you trust it, what would you do next, is it worth its length.</p>
   <p>Short on time? Do one pair per method (1, 4, 7, 10), then export. When done, run <code>python3 scripts/make_review_pack.py --score &lt;exported file&gt;</code> to unblind.</p>
   <ol>{toc}</ol>
-  <p><button onclick="exportAnswers()">Export answers</button></p>
+  <p><button onclick="exportAnswers()">Export answers</button> <button onclick="copyAnswers()">Copy answers</button> <span class="count"></span></p>
 </header>
 {sections}
 <footer>
@@ -299,6 +319,8 @@ PAGE = """<!doctype html>
       const n = Object.keys(saved).filter(k => k.startsWith(pid + "-") && !k.endsWith("notes")).length;
       document.querySelector(`[data-pair="${{pid}}"]`).textContent = n ? `(${{n}}/5 answered)` : "";
     }}
+    const total = Object.keys(saved).filter(k => !k.endsWith("notes")).length;
+    document.querySelectorAll(".count").forEach(el => el.textContent = `${{total}} of ${{PAIRS.length * 5}} questions answered`);
   }}
   document.querySelectorAll("input[type=radio]").forEach(el => {{
     if (saved[el.name] === el.value) el.checked = true;
@@ -308,6 +330,12 @@ PAGE = """<!doctype html>
     el.value = saved[el.name] || "";
     el.addEventListener("input", () => {{ saved[el.name] = el.value; localStorage.setItem(STORE, JSON.stringify(saved)); }});
   }});
+  function copyAnswers() {{
+    const text = JSON.stringify(saved, null, 2);
+    navigator.clipboard.writeText(text).then(
+      () => alert("Answers copied. Save them as ~/Downloads/fdbx-review-answers.json"),
+      () => prompt("Copy these answers and save them as fdbx-review-answers.json:", text));
+  }}
   function exportAnswers() {{
     const blob = new Blob([JSON.stringify(saved, null, 2)], {{type: "application/json"}});
     const a = document.createElement("a");
