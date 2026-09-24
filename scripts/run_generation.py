@@ -80,6 +80,7 @@ class Task:
     system: str
     model: str
     rep: int = 0
+    web_search: int = 0  # max results from OpenRouter's web plugin; 0 = no search
     key: str = field(default="")
 
     def __post_init__(self) -> None:
@@ -93,12 +94,16 @@ class Task:
         # Rep 0 hashes exactly as before, keeping every existing cache entry valid.
         if self.rep:
             digest.update(f"rep={self.rep}".encode())
+        # Same rule for search: runs without it keep their existing keys.
+        if self.web_search:
+            digest.update(f"web={self.web_search}".encode())
         self.key = digest.hexdigest()[:16]
 
     @property
     def label(self) -> str:
         suffix = f"#{self.rep}" if self.rep else ""
-        return f"{self.skill}/{self.scenario}/{self.arm}{suffix}"
+        web = "+web" if self.web_search else ""
+        return f"{self.skill}/{self.scenario}/{self.arm}{web}{suffix}"
 
 
 def read_skill(skill_dir: Path, ref: str | None = None) -> str:
@@ -129,7 +134,7 @@ def method_name(skill_md: str, fallback: str) -> str:
 def build_tasks(
     skills: list[str] | None, scenarios: int | None, model: str,
     reps: int = 1, arms: tuple[str, ...] = ("without_skill", "with_skill"),
-    skill_ref: str | None = None,
+    skill_ref: str | None = None, web_search: int = 0,
 ) -> list[Task]:
     tasks: list[Task] = []
     for skill_dir in sorted(d for d in SKILLS_DIR.iterdir() if d.is_dir()):
@@ -171,23 +176,28 @@ def build_tasks(
                             system=system,
                             model=model,
                             rep=rep,
+                            web_search=web_search,
                         )
                     )
     return tasks
 
 
 def call_model(task: Task, api_key: str, max_tokens: int, attempts: int = 5) -> dict:
-    payload = json.dumps(
-        {
-            "model": task.model,
-            "messages": [
-                {"role": "system", "content": task.system},
-                {"role": "user", "content": task.prompt},
-            ],
-            "max_tokens": max_tokens,
-            "provider": {"ignore": IGNORE_PROVIDERS},
-        }
-    ).encode()
+    request_body = {
+        "model": task.model,
+        "messages": [
+            {"role": "system", "content": task.system},
+            {"role": "user", "content": task.prompt},
+        ],
+        "max_tokens": max_tokens,
+        "provider": {"ignore": IGNORE_PROVIDERS},
+    }
+    if task.web_search:
+        # OpenRouter runs one Exa search on the conversation and puts the results
+        # in the model's context; they come back as url_citation annotations, which
+        # scripts/check_links.py compares against the URLs the output cites.
+        request_body["plugins"] = [{"id": "web", "engine": "exa", "max_results": task.web_search}]
+    payload = json.dumps(request_body).encode()
 
     last_error = ""
     for attempt in range(attempts):
@@ -241,6 +251,12 @@ def call_model(task: Task, api_key: str, max_tokens: int, attempts: int = 5) -> 
                     "cost_usd": usage.get("cost", 0.0),
                     "finish_reason": choice.get("finish_reason"),
                     "attempts": attempt + 1,
+                    "web_search": task.web_search,
+                    "search_results": [
+                        {k: a["url_citation"].get(k) for k in ("url", "title", "content")}
+                        for a in choice["message"].get("annotations") or []
+                        if a.get("type") == "url_citation"
+                    ],
                 }
 
         if attempt < attempts - 1:
@@ -272,12 +288,15 @@ def main() -> int:
     parser.add_argument("--reps", type=int, default=1, help="samples per scenario and arm")
     parser.add_argument("--arm", choices=["with_skill", "without_skill", "both"], default="both")
     parser.add_argument("--skill-ref", help="read SKILL.md as of this git ref (default: working tree)")
+    parser.add_argument("--web-search", type=int, default=0, metavar="N",
+                        help="give the model N Exa search results via OpenRouter (about $0.004 per result)")
     parser.add_argument("--dry-run", action="store_true", help="plan only, no API calls")
     args = parser.parse_args()
 
     skills = [s.strip() for s in args.skills.split(",")] if args.skills else None
     arms = ("without_skill", "with_skill") if args.arm == "both" else (args.arm,)
-    tasks = build_tasks(skills, args.scenarios, args.model, args.reps, arms, args.skill_ref)
+    tasks = build_tasks(skills, args.scenarios, args.model, args.reps, arms, args.skill_ref,
+                        args.web_search)
     if not tasks:
         sys.exit("no tasks matched")
 
@@ -334,6 +353,7 @@ def main() -> int:
     manifest = {
         "run_id": run_id,
         "model_requested": args.model,
+        "web_search": args.web_search,
         "served_models": sorted({r.get("served_model") for r in results if r.get("served_model")}),
         "task_count": len(tasks),
         "generated": len(pending) - len(failures),

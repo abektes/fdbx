@@ -170,7 +170,8 @@ Type is one of `user-supplied` (stated in the brief or by the user), `sourced` (
 
 - A signal is `user-supplied` or `sourced`. Nothing from model memory enters the Scans table, the clusters, the ratings or the drivers. It goes under Leads to Verify.
 - No hypothetical or illustrative signals ("City X mandates…"). A signal is something that happened or was observed, with its source.
-- Never write a URL, report title, publisher or publication date that did not come from the user or from a tool result in this session. A source you remember is a lead to verify, not a source. An invented link is worse than no link: it looks checkable.
+- Never write a URL, report title, publisher or publication date that did not come from the user or from a tool result in this session.
+- Copy each URL exactly as the search result or the user gave it; never build or guess one. Repeat the URL in every row that relies on it (no "ibid." or "same report"). A claim that is not in any search result you were given is not `sourced`, however likely it seems. A source you remember is a lead to verify, not a source. An invented link is worse than no link: it looks checkable.
 - Never add a figure, a name, a date or a source to a user's signal. "Footfall is down" stays "footfall is down".
 - Never describe a sourcing process that did not happen ("signals were drawn from patents, surveys and expert interviews"). Say exactly where each signal came from.
 - A `sourced` signal needs a link the reader can open. If a search result cannot be opened or does not say what you need, do not use it.

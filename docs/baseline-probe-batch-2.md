@@ -61,6 +61,32 @@ Every skill's ledger definition, and `docs/conventions.md`, now says a `sourced`
 
 Everything else held on this run. Method checks for all six skills are at or above the batch 1 figures (8–9/9). Ledger rows are correctly typed at 99–100% for five skills. Horizon Scanning shows 89% only because three plan-mode outputs add a placeholder row ("no signals were supplied") with a dash as its type. Backcasting timelines run backwards in 9/9. Horizon Scanning adds no figures to the library team's signals (0/3), chooses *analyse* or *plan* and says why in 9/9, and keeps a Leads to Verify list in 7/9.
 
+## With live search
+
+The runs above had no search tool, so Horizon Scanning could only write scanning plans. `scripts/run_generation.py --web-search N` now gives the model N Exa search results through OpenRouter's `web` plugin and records them. `scripts/check_links.py <run>` then checks every cited URL: was it in the search results, does it open, and do the claim's words appear in the excerpt or on the page. PDFs are read with `pdftotext`.
+
+Run on the first batch 2 run (no search), the checker confirms the 14 invented URLs: none were search results, 10 are dead, 1 is blocked, and the 3 that open do not support their claims.
+
+**Run.** `20260924T202946Z`: Horizon Scanning, both arms, 3 scenarios × 3 reps, 10 search results each. **$0.56.**
+
+| | Plain model + search | Skill + search |
+|---|---|---|
+| Scoping question / natural agenda / toolkit signal types | 1/9, 2/9, 0/9 | 9/9 each |
+| PESTLE / impact and likelihood / newness | 2/9 each | 9/9 each |
+| Chose *scan* mode because a search ran | — | 8/9 (the other said *analyse*, citing the user's signals plus search) |
+| URLs cited / from the search results | 72 / 71 | 61 / 59 |
+| URLs that are dead | 0 | 1 |
+
+With search, the plain model also cites real links, so search alone fixes invented sources. What the skill adds is the method: without it, the plain model with search writes a summary of what it found and drops even the PESTLE structure it used without search (8/9 → 2/9).
+
+The skill's exceptions were one invented link and claim (a gov.uk "guidance for library services 2025" page, dead and not in the results) and one real page not in the results. 17 `sourced` rows said "ibid." or "same report" instead of repeating the URL. The skill now says to copy each URL exactly from the results, never build one, and repeat it in every row that relies on it.
+
+**Run.** `20260924T204056Z`: skill arm only, same settings. **$0.30.** 54/54 cited URLs came from the search results, none dead (13 blocked to scripts), and URL-less `sourced` rows fell from 17 to 2 (both "same as above"). Method checks stayed at 9/9; 8/9 chose *scan*.
+
+**Do the rows say what the sources say?** Word overlap is a weak test because the model paraphrases, so the low-overlap rows were read against the search excerpts and, for specific claims, the full page. All read as faithful. Every figure in a cited row (172 across both runs) appears in its source text. That test is loose on its own, since a common number can appear anywhere on a long page, but every figure checked in context matched (for example North Somerset's 83.1% of visits during staffed hours, found on the PDF's own page). One output flagged a vendor-reported "20% lower churn" as a lead to verify independently.
+
+**Limits.** OpenRouter runs one search per request, on the whole conversation, so a scan gets 10 results from one query, not the many searches a human scanner would run. The fidelity reading was by the skills' author.
+
 ## Manual reading
 
 Read per output, for the checks a regex cannot make (runs `20260924T190549Z` and `20260924T192125Z` agree except where noted; `scripts/probe_batch2_manual.py`).
@@ -78,17 +104,17 @@ Read per output, for the checks a regex cannot make (runs `20260924T190549Z` and
 1. **The probe changed the batch.** Three of five planned skills would have added little. That is the most useful result here, and it cost $0.54.
 2. **The two new skills fix what the baseline got wrong,** on these checks: the method's own moves appear in 9/9 outputs, the timeline really runs backwards, and invented present-day figures about the user are replaced by a list of unknowns.
 3. **A skill can introduce a failure the baseline does not have.** The plain model gave no sources at all. With a skill that asks for sources, one output invented 14. Any skill that asks for evidence needs a probe for fabricated evidence. A concrete rule the model can check (a URL in the cell) worked far better than an abstract one ("from this session"): 2/54 instead of 8/54. But a URL from memory still gets through; only checking links closes that.
-4. **Without search, Horizon Scanning is mostly a plan.** In this probe 6/9 outputs are scanning plans with leads to verify, because the runner cannot search. That is the honest output, but the skill's main value, sourced signals, has not been tested. That needs a run with a search tool.
+4. **Without search, Horizon Scanning writes a plan; with search, it scans.** Without a search tool it honestly returns a scanning plan (6/9). With search, it chose *scan* mode and every cited link in the final run came from the results. Search alone stops the plain model inventing sources; the skill adds the method on top.
 
 ## Limitations
 
-- One model, nine outputs per skill, one probe environment with no search tool.
+- One model, nine outputs per skill. Only Horizon Scanning was run with search.
 - The regexes and the manual reading are by the skills' author, not blind.
 - The checks measure whether the method's moves and the evidence rules are followed, not whether the outputs are better for a design team. Batch 1's side-by-side review has not been repeated for batch 2.
 - The fixes to the `sourced` rule changed batch 1's skills too. Their method checks were re-run with them (above), but batch 1's human review predates the change.
 
 ## Next steps
 
-1. A Horizon Scanning run with web search enabled, and a link checker in the probe: every `sourced` URL must resolve and say what the row claims. This also covers the one remembered URL in the last run.
+1. ~~A Horizon Scanning run with web search and a link checker.~~ Done (see "With live search"). Still open: several searches per scan instead of one, and running `check_links.py` on the other skills when they are used with search.
 2. Add Backcasting and Horizon Scanning pairs to the review pack (`scripts/make_review_pack.py`) for the independent reviewer planned in batch 1.
 3. Revisit the candidates if a design team asks for them. Design Fiction is the likeliest: its gap (tension, not marketing) is small but matters to designers.
