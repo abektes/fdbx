@@ -1,0 +1,26 @@
+{
+  "skill_name": "futures-triangle",
+  "evals": [
+    {
+      "id": 0,
+      "name": "city-mobility-2040",
+      "prompt": "We're designing the long-term roadmap for a mobility app in a mid-size European city. Use the futures triangle to map the forces shaping urban mobility here to 2040.",
+      "expected_output": "Futures triangle with competing images of the future of city mobility mapped to archetypes, quantitative pushes with evidence types, weights per image, analysis of their interaction, a plausible future, and scenarios derived from the triangle.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "name": "public-library-digital",
+      "prompt": "A national public library network wants to redesign its digital services. Map the futures triangle for public libraries over the next 20 years so our design team understands what is pulling, pushing and weighing on them.",
+      "expected_output": "Triangle distinguishing images of the library's future (e.g., progress, back-to-the-future, Gaia/community), pushes such as digital lending and funding trends typed in an evidence ledger, weights per image, and implications for service design.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "food-delivery-platform",
+      "prompt": "We run design for a food delivery platform. Use the futures triangle to examine where food delivery is heading over 15 years and which future our current product strategy is quietly serving.",
+      "expected_output": "Futures triangle for food delivery with pulls, pushes (labour regulation, dark kitchens, automation) typed as evidence, weights, a plausible future, and an explicit statement of which image the current strategy serves.",
+      "files": []
+    }
+  ]
+}

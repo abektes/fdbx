@@ -1,0 +1,14 @@
+# Downloaded sources are copyrighted; rebuild with scripts/fetch_sources.py
+sources/*
+!sources/manifest.json
+!sources/README.md
+
+# Evaluation outputs and secrets
+eval-framework/
+.env
+*.env
+
+__pycache__/
+*.py[cod]
+.DS_Store
+.venv/

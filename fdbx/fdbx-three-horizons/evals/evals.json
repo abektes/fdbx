@@ -1,0 +1,26 @@
+{
+  "skill_name": "three-horizons",
+  "evals": [
+    {
+      "id": 0,
+      "name": "retail-bank-branches",
+      "prompt": "Our retail bank is redesigning its branch network and digital channels. Use Three Horizons to map the transition from today's model to what comes next and classify our current initiatives.",
+      "expected_output": "Three Horizons map with H1 (current branch model losing fit), H3 (emerging successor, with concrete pockets of the future), H2 innovations classified H2+ or H2-, features of H1 worth keeping, a dilemma, and horizon perspectives; not the McKinsey growth horizons.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "name": "newsroom-transition",
+      "prompt": "We lead product design at a regional newspaper. Apply Three Horizons to the future of local news so the newsroom and the commercial team can talk about the transition.",
+      "expected_output": "Three Horizons for local news: H1 advertising/print model, H3 emerging models with pockets in the present, H2 experiments classified +/-, what to maintain, manager/entrepreneur/visionary perspectives on each other, and next actions.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "school-meals-service",
+      "prompt": "A city council wants to redesign its school meals service around health and sustainability. Use Three Horizons to structure the conversation among catering managers, nutritionists and parent groups.",
+      "expected_output": "Three Horizons mapping with the five steps, H2+ and H2- initiatives, essential features to keep, a dilemma framed between H1 and H3 values, and dialogue between horizon perspectives.",
+      "files": []
+    }
+  ]
+}

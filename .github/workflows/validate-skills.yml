@@ -1,0 +1,30 @@
+name: Validate skills
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # The validator runs dependency-free, but PyYAML gives it a second
+      # opinion on frontmatter that catches parser edge cases the strict
+      # line parser does not model.
+      - run: pip install pyyaml
+
+      - name: Validate SKILL.md files
+        run: python3 scripts/validate_skills.py
+
+      - name: Unit tests
+        run: python3 -m unittest discover -s tests
+
+      # Provenance needs the copyrighted sources, which CI does not download.
+      # Run it locally: python3 scripts/fetch_sources.py && python3 scripts/check_provenance.py

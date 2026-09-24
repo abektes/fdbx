@@ -1,0 +1,26 @@
+{
+  "skill_name": "causal-layered-analysis",
+  "evals": [
+    {
+      "id": 0,
+      "name": "remote-team-connection",
+      "prompt": "We're a product team at a collaboration software company. Our brief: 'Remote employees feel disconnected from their teams; design a feature that increases team connection, measured by weekly active use of a new team space.' Run a causal layered analysis on this brief before we start designing.",
+      "expected_output": "CLA across litany, social causes, worldview and myth/metaphor for remote-work disconnection; shows what the brief assumes at each layer, who is expected to act at each layer, and a reframed brief from an alternative metaphor.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "name": "hospital-wait-times",
+      "prompt": "A regional hospital asked our service design studio to 'reduce emergency department waiting times with a better triage and queue-status app for patients'. Use causal layered analysis to examine this brief before we commit to the app.",
+      "expected_output": "CLA of ED waiting times; litany (wait-time headlines), systemic causes (capacity, staffing, primary-care access), worldview (hospital-centred care, patient as queue item), myth/metaphor; scenarios per layer and actions beyond the app.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "teen-screen-time",
+      "prompt": "We design a parental-controls product. Leadership wants a 'screen time reduction' feature for teenagers because of news coverage about teen mental health. Apply CLA to the issue and to our brief.",
+      "expected_output": "CLA moving from media litany about teen screen time through platform economics and family dynamics to worldviews about adolescence and control, with a root metaphor and an alternative one; identifies who solves the problem at each layer.",
+      "files": []
+    }
+  ]
+}

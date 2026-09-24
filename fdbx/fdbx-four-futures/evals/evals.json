@@ -1,0 +1,26 @@
+{
+  "skill_name": "four-futures",
+  "evals": [
+    {
+      "id": 0,
+      "name": "bank-branch-2050",
+      "prompt": "We're a design team at a retail bank. Run Dator's four futures exercise for everyday banking in 2050 and place our mobile banking app in each future.",
+      "expected_output": "Four generic futures (continued growth, collapse, discipline, transformation) for everyday banking, each presented positively with no best/worst/likely labels, an artifact from each future, the exercise questions answered per future, and design decisions robust across all four.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "name": "university-learning-2045",
+      "prompt": "A university asks our studio to design its learning experience strategy. Use the four generic futures to explore higher education in 2045 before we propose anything.",
+      "expected_output": "Four fundamentally different futures of higher education, each experienced from inside, with probability and preferability discussed, five moves toward and five against per future, and a preferred-future sketch.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "home-energy-app",
+      "prompt": "We design a home energy management app. Use the four futures method for household energy over the next 30 years and tell us what our product would need to be in each.",
+      "expected_output": "Four generic futures for household energy, the product placed in each, artifacts from the futures, exercise questions A-E, and a list of design choices that hold across all four; no future labelled most likely.",
+      "files": []
+    }
+  ]
+}
