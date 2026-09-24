@@ -1,0 +1,284 @@
+{
+ "_note": "Hand labels by the skills' author (Claude), 2026-09-24, from run 20260924T204056Z: every claim Jev did not mark 'supports', plus a seeded random sample of 16 it did. Label = does the passage support the claim, including its specifics. Needs a second reader. Passages are not stored (they are copied web text); check_support.py --calibrate rebuilds each from the generation's search results.",
+ "cases": [
+  {
+   "generation": "b9c45b98930732d8",
+   "urls": [
+    "https://www.foodingredientsfirst.com/news/roquette-horizons-platform-ai-food-innovation.html"
+   ],
+   "claim": "Roquette launched Horizons foresight platform in 2026",
+   "label": false,
+   "note": "flagged by Jev; read and agreed: unsupported or misattributed"
+  },
+  {
+   "generation": "a9b2e078f1f82990",
+   "urls": [
+    "https://vakbladvoedingsindustrie.nl/storage/app/media/Rapporten/rapporten%202023/juli%202023/VOE-2023-JUL-DELIVEROO.pdf"
+   ],
+   "claim": "Deliveroo published the “Snack to the Future” scenario report in 2023.",
+   "label": false,
+   "note": "flagged by Jev; read and agreed: unsupported or misattributed"
+  },
+  {
+   "generation": "3e46c9158d908065",
+   "urls": [
+    "https://www.ifla.org/news/signs-of-the-times-ifla-weak-signals-report-2026/"
+   ],
+   "claim": "Some library services are experimenting with unstaffed opening hours, enabled by smart‑access technology (IFLA weak signal 2026).",
+   "label": false,
+   "note": "flagged by Jev; read and agreed: unsupported or misattributed"
+  },
+  {
+   "generation": "9505ed20e4776dee",
+   "urls": [
+    "https://www.ifla.org/news/signs-of-the-times-ifla-weak-signals-report-2026/"
+   ],
+   "claim": "IFLA’s 2026 Weak Signals Report flags politicisation of language policies as a potential disruptor for library collections.",
+   "label": false,
+   "note": "flagged by Jev; read and agreed: unsupported or misattributed"
+  },
+  {
+   "generation": "9505ed20e4776dee",
+   "urls": [
+    "https://www.ifla.org/news/signs-of-the-times-ifla-weak-signals-report-2026/"
+   ],
+   "claim": "IFLA weak signal: politicisation of language policies may disrupt collections.",
+   "label": false,
+   "note": "flagged by Jev; read and agreed: unsupported or misattributed"
+  },
+  {
+   "generation": "cdbcbe88bd88d588",
+   "urls": [
+    "https://worcestershire.moderngov.co.uk/documents/s61204/7%20App%202%20Library%20Needs%20Assessment%202025%20FINAL.pdf"
+   ],
+   "claim": "Demand for ‘quiet, comfortable library space’ was the third‑strongest theme in Worcestershire’s 2025 Library Needs Assessment, alongside strong demand for longer opening hours.",
+   "label": false,
+   "note": "flagged by Jev; read and agreed: unsupported or misattributed"
+  },
+  {
+   "generation": "cdbcbe88bd88d588",
+   "urls": [
+    "https://www.cilip.org.uk/media/m4mb002o/horizon-scanning-report-come-rain-or-shine-final.pdf"
+   ],
+   "claim": "Libraries abroad grow visits with combined digital‑social programmes (S9)",
+   "label": false,
+   "note": "flagged by Jev; read and agreed: unsupported or misattributed"
+  },
+  {
+   "generation": "88481f0f85576fba",
+   "urls": [
+    "https://www.bcg.com/publications/2025/how-fashion-luxury-brands-can-win-secondhand-market"
+   ],
+   "claim": "Digital Product Passports (DPPs) will be required by EU regulation from 2030, providing standardised product‑level data across the full lifecycle.",
+   "label": false,
+   "note": "flagged by Jev; read and agreed: unsupported or misattributed"
+  },
+  {
+   "generation": "88481f0f85576fba",
+   "urls": [
+    "https://home.barclays/insights/2026/03/The-Growth-Of-Resale-Is-Changing-Fashion-Retail/"
+   ],
+   "claim": "Resale market growth is shifting competitive dynamics — brands now view resale platforms as both partners and competitors.",
+   "label": false,
+   "note": "flagged by Jev; read and agreed: unsupported or misattributed"
+  },
+  {
+   "generation": "88481f0f85576fba",
+   "urls": [
+    "https://commerce.fabrity.com/blog/recommerce-in-2026-the-secondary-market-is-no-longer-a-side-channel"
+   ],
+   "claim": "AI is scaling recommerce by lowering the cost of authentication, listing and discovery, making resale platforms more efficient.",
+   "label": false,
+   "note": "flagged by Jev; read and agreed: unsupported or misattributed"
+  },
+  {
+   "generation": "88481f0f85576fba",
+   "urls": [
+    "https://www.bcg.com/publications/2025/how-fashion-luxury-brands-can-win-secondhand-market"
+   ],
+   "claim": "DPPs required by EU from 2030; can unlock resale value and data loops.",
+   "label": false,
+   "note": "flagged by Jev; read and agreed: unsupported or misattributed"
+  },
+  {
+   "generation": "88481f0f85576fba",
+   "urls": [
+    "https://home.barclays/insights/2026/03/The-Growth-Of-Resale-Is-Changing-Fashion-Retail/"
+   ],
+   "claim": "Resale market growth is shifting competitive dynamics; brands see platforms as partners and competitors.",
+   "label": false,
+   "note": "flagged by Jev; read and agreed: unsupported or misattributed"
+  },
+  {
+   "generation": "88481f0f85576fba",
+   "urls": [
+    "https://commerce.fabrity.com/blog/recommerce-in-2026-the-secondary-market-is-no-longer-a-side-channel"
+   ],
+   "claim": "AI is scaling recommerce by lowering authentication and discovery costs.",
+   "label": false,
+   "note": "flagged by Jev; read and agreed: unsupported or misattributed"
+  },
+  {
+   "generation": "d1a85c98893ef584",
+   "urls": [
+    "https://www.mdpi.com/2071-1050/15/10/8213"
+   ],
+   "claim": "Gen‑Z resale continuance intention influenced significantly by perceived value",
+   "label": false,
+   "note": "flagged by Jev; read and agreed: unsupported or misattributed"
+  },
+  {
+   "generation": "d1a85c98893ef584",
+   "urls": [
+    "https://www.occstrategy.com/en/article/fashion-reincarnated/"
+   ],
+   "claim": "US online second‑hand apparel ~€68bn, ~30% CAGR; UK ~£8bn, ~9% of transacted apparel",
+   "label": false,
+   "note": "flagged by Jev; read and agreed: unsupported or misattributed"
+  },
+  {
+   "generation": "88481f0f85576fba",
+   "urls": [
+    "https://globalfashionagenda.org/news-article/from-ownership-to-access-what-the-rise-in-subscription-models-means-for-circularity/"
+   ],
+   "claim": "Fashion rental market projected to reach $2.33 billion by 2030, driven by subscription and peer‑to‑peer models.",
+   "label": true,
+   "note": "read: supported"
+  },
+  {
+   "generation": "3e46c9158d908065",
+   "urls": [
+    "https://www.cilip.org.uk/media/m4mb002o/horizon-scanning-report-come-rain-or-shine-final.pdf"
+   ],
+   "claim": "The CILIP “Come rain or shine” report identifies high‑street decline as a pressure pushing libraries to fill gaps left by closed banks, post offices, and other community services.",
+   "label": false,
+   "note": "'banks, post offices' not in excerpt"
+  },
+  {
+   "generation": "d1a85c98893ef584",
+   "urls": [
+    "https://globalfashionagenda.org/news-article/from-ownership-to-access-what-the-rise-in-subscription-models-means-for-circularity/"
+   ],
+   "claim": "27% of consumers resold clothes in 2024; 42% of Gen‑Z and Millennials traded clothing for shopping credit, treating ownership like a subscription.",
+   "label": true,
+   "note": "read: supported"
+  },
+  {
+   "generation": "b9c45b98930732d8",
+   "urls": [
+    "https://vakbladvoedingsindustrie.nl/storage/app/media/Rapporten/rapporten%202023/juli%202023/VOE-2023-JUL-DELIVEROO.pdf"
+   ],
+   "claim": "Deliveroo’s 2023 foresight report “Snack to the Future” identifies “Me‑ganism” as a key future diet direction, in which personal AIs tailor meals to an individual’s biological, physical and mental needs",
+   "label": true,
+   "note": "read: supported"
+  },
+  {
+   "generation": "b9c45b98930732d8",
+   "urls": [
+    "https://vakbladvoedingsindustrie.nl/storage/app/media/Rapporten/rapporten%202023/juli%202023/VOE-2023-JUL-DELIVEROO.pdf"
+   ],
+   "claim": "Deliveroo’s 2023 “Snack to the Future” report describes Me‑ganism, 3D food printing, wellness foods, smart devices",
+   "label": true,
+   "note": "read: supported"
+  },
+  {
+   "generation": "10a2e80116cf7efe",
+   "urls": [
+    "https://commerce.fabrity.com/blog/recommerce-in-2026-the-secondary-market-is-no-longer-a-side-channel"
+   ],
+   "claim": "Resale gives aspirational consumers access to luxury and uniqueness.",
+   "label": true,
+   "note": "read: supported"
+  },
+  {
+   "generation": "a9b2e078f1f82990",
+   "urls": [
+    "https://vakbladvoedingsindustrie.nl/storage/app/media/Rapporten/rapporten%202023/juli%202023/VOE-2023-JUL-DELIVEROO.pdf"
+   ],
+   "claim": "Rising demand is noted for functional, healthy and anti‑ageing food products, pushing meal delivery toward wellness and longevity outcomes.",
+   "label": true,
+   "note": "read: supported"
+  },
+  {
+   "generation": "88481f0f85576fba",
+   "urls": [
+    "https://janeclauss.com/wp-content/uploads/2026/04/ThredUp_Resale_Report_2026.pdf"
+   ],
+   "claim": "32% of retailers turning to third‑party RaaS partners.",
+   "label": true,
+   "note": "read: supported"
+  },
+  {
+   "generation": "b9c45b98930732d8",
+   "urls": [
+    "https://www.foodingredientsfirst.com/news/roquette-horizons-platform-ai-food-innovation.html"
+   ],
+   "claim": "Roquette, a major food ingredients company, launched “Horizons”, a foresight platform combining AI‑driven trend scanning and expert analysis to anticipate shifts across lifestyle, regulation, technology, market dynamics and resource management",
+   "label": true,
+   "note": "read: supported"
+  },
+  {
+   "generation": "10a2e80116cf7efe",
+   "urls": [
+    "https://globalfashionagenda.org/news-article/from-ownership-to-access-what-the-rise-in-subscription-models-means-for-circularity/"
+   ],
+   "claim": "By setting up brand-owned resale with a trade-in scheme, brands can capitalise on consumers’ desire for access rather than ownership.",
+   "label": false,
+   "note": "brand-owned trade-in advice is inference, not in excerpt"
+  },
+  {
+   "generation": "9505ed20e4776dee",
+   "urls": [
+    "https://rctcbc.moderngov.co.uk/mgConvert2PDF.aspx?ID=60012"
+   ],
+   "claim": "RCT Council’s Library Strategy 2026‑30 notes that remote working and social isolation are increasing, with libraries seen as free spaces to combat “physical stagnancy”.",
+   "label": true,
+   "note": "read: supported"
+  },
+  {
+   "generation": "fb365b797595a6c0",
+   "urls": [
+    "https://vakbladvoedingsindustrie.nl/storage/app/media/Rapporten/rapporten%202023/juli%202023/VOE-2023-JUL-DELIVEROO.pdf"
+   ],
+   "claim": "Food and beauty industries will become more integrated with edible beauty products",
+   "label": true,
+   "note": "read: supported"
+  },
+  {
+   "generation": "a9b2e078f1f82990",
+   "urls": [
+    "https://vakbladvoedingsindustrie.nl/storage/app/media/Rapporten/rapporten%202023/juli%202023/VOE-2023-JUL-DELIVEROO.pdf"
+   ],
+   "claim": "The report introduces the concept of “Me‑ganism”: personal AIs that gather data from wearables, homes and daily routines to tailor meal recommendations and automatically place orders.",
+   "label": false,
+   "note": "'wearables, daily routines' not in excerpt"
+  },
+  {
+   "generation": "d1a85c98893ef584",
+   "urls": [
+    "https://www.scad.edu/sites/default/files/scadask/SCADask-style-in-motion-the-evolution-of-resale-and-retail.pdf"
+   ],
+   "claim": "Resale checkout integration reshapes ownership expectations",
+   "label": true,
+   "note": "read: supported"
+  },
+  {
+   "generation": "d1a85c98893ef584",
+   "urls": [
+    "https://www.mdpi.com/2071-1050/15/10/8213"
+   ],
+   "claim": "Gen‑Z consumers’ continuance intention on fashion resale platforms is shaped significantly by perceived value, making value articulation essential for adoption.",
+   "label": false,
+   "note": "'significantly' not in excerpt"
+  },
+  {
+   "generation": "b9c45b98930732d8",
+   "urls": [
+    "https://vakbladvoedingsindustrie.nl/storage/app/media/Rapporten/rapporten%202023/juli%202023/VOE-2023-JUL-DELIVEROO.pdf"
+   ],
+   "claim": "The same report highlights the concept of “smart cooking, cleaning and food circulation devices” in homes, suggesting a future where delivery integrates with smart kitchen appliances",
+   "label": true,
+   "note": "read: supported"
+  }
+ ]
+}

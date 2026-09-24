@@ -64,6 +64,8 @@ def main() -> int:
             # with its neighbours and measures a judge that is never deployed.
             single = any(k in criterion for k in ("scope", "section"))
             batches = [[t] for t in texts] if single else [texts]
+            # `with_prompt` criteria see the brief as its own state field, as in scoring.
+            brief = {"brief": items[0]["brief"]} if criterion.get("with_prompt") else {}
             scores = []
             for batch in batches:
                 questions = {
@@ -74,7 +76,7 @@ def main() -> int:
                     }
                     for i in range(len(batch))
                 }
-                answers = ask_jev({"items": batch}, questions, api_key)["answers"]
+                answers = ask_jev({"items": batch} | brief, questions, api_key)["answers"]
                 scores += [answers[f"item_{i}"]["noul"] for i in range(len(batch))]
 
             pos = [s for s, l in zip(scores, labels) if l]

@@ -87,6 +87,44 @@ The skill's exceptions were one invented link and claim (a gov.uk "guidance for 
 
 **Limits.** OpenRouter runs one search per request, on the whole conversation, so a scan gets 10 results from one query, not the many searches a human scanner would run. The fidelity reading was by the skills' author.
 
+## Conformance scoring with Jev
+
+Batch 1 planned it (`docs/baseline-probe-batch-1.md`, next step 4), and batch 2 at first skipped it: the numbers above come from regexes and the author's reading. This section replaces that for the two new skills with edbx's method. Each quality bar becomes a check in `conformance.json` beside the `SKILL.md`. Counts, sections, year order, scores and owners are checked in code; only judgments that need reading go to [TypeSafe Jev](https://docs.typesafe.ai/introduction), and only after Jev agrees with hand labels.
+
+**Coverage.** All 19 quality bars of the two skills are checked (`python3 scripts/scaffold_conformance.py`): 30 code checks and 8 Jev criteria.
+
+**Calibration** (`scripts/calibrate.py`, cases built by `scripts/build_calibration_batch2.py`). 55 hand-labelled cases across the 8 criteria. Positives are real outputs. Negatives are real where the plain model produced one (trend statements, invented figures, conclusions with no next method) and otherwise constructed and marked. Result: **100% agreement on the 51 cases Jev decided, 7% sent to review**, and every criterion separates positives from negatives by at least 0.43. Getting there changed three things, each found by calibration or scoring rather than assumed:
+
+- *"Adds no figures or details to the user's signals"* failed calibration twice. With the brief and the item pasted into one text, Jev scored every case about 0.35 whatever the label. Sent as two state fields (`brief`, `items[i]`), it separated them. Figures are now also checked in code (`no_new_numbers`), since that was the actual baseline failure ("footfall down 12%").
+- *"Signal is observed"* was stricter than the method. It failed every forecast ("fashion rental projected to reach $2.33bn by 2030"), but the toolkit defines a scan as an article on "an external event or emerging trend" (p. 114). The criterion now asks whether a signal is attributed to a source, and Jev reads the signal with its Source cell.
+- Two parser bugs: the end-state and "Now" rows of a backcast timeline were being scored for control, and drivers were read without their indented recommendations.
+
+**Scores.** Backcasting on run `20260924T192125Z`; Horizon Scanning on the search run `20260924T204056Z`. 9 outputs each.
+
+| | Backcasting | Horizon Scanning |
+|---|---|---|
+| Check-document pairs passing | 157/162 (97%) | 168/189 (89%) |
+| Code checks failing | none | `scan_fields` 8/9: one output dropped the "Why it matters" column |
+| Jev criteria failing | none | none |
+| Jev criteria left for review | `influence_concrete` in 5/9 outputs: general advocacy mixed with concrete steps | `signal_observed` in 8/9 outputs, see below |
+| User-supplied signals | — | no added figures (code) and no added details (Jev), 3/3 library outputs |
+
+Horizon Scanning's review share is the honest weak point. Rows that report a view or forecast from a blog or report (for example "resale gives aspirational consumers access to luxury", sourced to a site name) land between 0.3 and 0.7. The calibration set had few such cases, so its 7% review share understates what happens on real scans. For this criterion Jev is triage that points a person at rows to read, not a judge.
+
+The plain model, scored with the same rubrics, passes 1% (Backcasting) and 3% (Horizon Scanning). That mostly shows it does not use the skills' sections and tables. It measures conformance to the skill's format, not quality: by manual reading, 3/9 of its backcasts do run backwards, but none has a Backward Timeline for the rubric to find.
+
+**Source support** (`scripts/check_support.py`), following TypeSafe's "Double-checking citations" cookbook. Code marks any cited URL that was not a search result. For the rest, one Jev `Choice` question reads the claim beside the search excerpt the model was given: supports, contradicts or says nothing. On the final search run's 154 cited claims: **0 not from search, 139 supports, 14 says nothing, 1 contradicts.**
+
+Read by hand, the 15 flagged claims were all real problems, for example:
+- the UK credited with a 9% share the source gives for "major markets";
+- specifics of IFLA's report that are not in the excerpt the model saw;
+- a product-passport fact cited to BCG that came from Vogue's excerpt;
+- a launch year that the source does not give.
+
+Calibrated on 31 hand-labelled claims (the 15 flagged plus a random 16 of the rest; `--calibrate`), taking Jev's top answer gives 87% agreement with nothing left for review. The cookbook's 0.8 confidence threshold sends 58% to review, which fails edbx's 25% limit. All four disagreements are the same kind: Jev said "supports" where the claim adds a detail the excerpt lacks. So its "not supported" is reliable, and its "supports" is lenient. The 15 flagged claims were labelled after seeing Jev's verdict, which favours agreement on them.
+
+**Limits.** The labels are by the skills' author and need a second reader. The calibration sets are small, 4–12 cases per criterion, and many negatives are constructed. Scores cover one run of 9 outputs per skill.
+
 ## Manual reading
 
 Read per output, for the checks a regex cannot make (runs `20260924T190549Z` and `20260924T192125Z` agree except where noted; `scripts/probe_batch2_manual.py`).
@@ -109,12 +147,13 @@ Read per output, for the checks a regex cannot make (runs `20260924T190549Z` and
 ## Limitations
 
 - One model, nine outputs per skill. Only Horizon Scanning was run with search.
-- The regexes and the manual reading are by the skills' author, not blind.
+- The regexes, the manual reading and the Jev calibration labels are by the skills' author, not blind.
 - The checks measure whether the method's moves and the evidence rules are followed, not whether the outputs are better for a design team. Batch 1's side-by-side review has not been repeated for batch 2.
 - The fixes to the `sourced` rule changed batch 1's skills too. Their method checks were re-run with them (above), but batch 1's human review predates the change.
 
 ## Next steps
 
 1. ~~A Horizon Scanning run with web search and a link checker.~~ Done (see "With live search"). Still open: several searches per scan instead of one, and running `check_links.py` on the other skills when they are used with search.
-2. Add Backcasting and Horizon Scanning pairs to the review pack (`scripts/make_review_pack.py`) for the independent reviewer planned in batch 1.
-3. Revisit the candidates if a design team asks for them. Design Fiction is the likeliest: its gap (tension, not marketing) is small but matters to designers.
+2. Conformance rubrics for the four batch 1 skills, calibrated the same way; a second reader for the calibration labels.
+3. Add Backcasting and Horizon Scanning pairs to the review pack (`scripts/make_review_pack.py`) for the independent reviewer planned in batch 1.
+4. Revisit the candidates if a design team asks for them. Design Fiction is the likeliest: its gap (tension, not marketing) is small but matters to designers.

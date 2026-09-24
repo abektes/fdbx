@@ -1,0 +1,159 @@
+{
+ "_note": "Hand labels by the skills' author (Claude), 2026-09-24. Positives are real with-skill or baseline text; negatives are real where the plain model produced one, else constructed and marked. Needs a second reader.",
+ "cases": {
+  "signal_observed": [
+   {
+    "label": true,
+    "text": "Roquette launched Horizons, a foresight platform that combines AI-driven trend scanning with expert analysis to identify emerging signals across lifestyle shifts, regulations, technologies, market dynamics and resource management for the food industry\nSource: foodingredientsfirst.com",
+    "note": "with-skill, sourced"
+   },
+   {
+    "label": true,
+    "text": "In Devon, physical borrowing remains 22 % below pre‑pandemic levels, but libraries hosted over 12 000 events in 2024/25 – an 85 % increase since 2019/20, attracting >218 k attendees.\nSource: democracy.devon.gov.uk",
+    "note": "with-skill, sourced"
+   },
+   {
+    "label": true,
+    "text": "A nearby public library has begun loaning power tools to patrons.\nSource: Staff observation",
+    "note": "with-skill, user-supplied"
+   },
+   {
+    "label": true,
+    "text": "Fashion rental market projected to reach $2.33 billion by 2030, driven by subscription and peer‑to‑peer models.\nSource: globalfashionagenda.org",
+    "note": "with-skill: a forecast attributed to its report"
+   },
+   {
+    "label": true,
+    "text": "Super-foods and synthetic foods could become mainstream, expanding the variety of people’s diets; new forms of affordable nutrition could be the norm\nSource: vakbladvoedingsindustrie.nl (Deliveroo, ch. 2)",
+    "note": "with-skill: a report's forecast, attributed in the Source cell"
+   },
+   {
+    "label": true,
+    "text": "The Deliveroo report predicts that functional, healthy and anti‑ageing food products will become mainstream by 2040, driving demand for wellness‑focused delivery services\nSource: vakbladvoedingsindustrie.nl (p.3)",
+    "note": "with-skill: a report's forecast"
+   },
+   {
+    "label": true,
+    "text": "A publisher is testing a subscription‑only ebook model for libraries, replacing perpetual purchase with recurring fees.\nSource: Staff intelligence (no source link)",
+    "note": "with-skill: user-supplied, source given as staff"
+   },
+   {
+    "label": true,
+    "text": "Resale gives aspirational consumers access to “aspirational luxury” and answers a demand for uniqueness the primary market struggles to serve.\nSource: fabrity.com",
+    "note": "with-skill: a published view, source given as a site name"
+   },
+   {
+    "label": false,
+    "text": "Consumers increasingly expect zero-friction, predictive services.\nSource: (none)",
+    "note": "baseline trend statement; the baseline cited nothing"
+   },
+   {
+    "label": false,
+    "text": "Large language models are moving from chat to action; AI agents will negotiate orders on users' behalf.\nSource: (none)",
+    "note": "baseline trend statement"
+   },
+   {
+    "label": false,
+    "text": "City X mandates 15-minute delivery zones for all couriers\nSource: Link to council press release",
+    "note": "with-skill (earlier run): illustrative example row"
+   },
+   {
+    "label": false,
+    "text": "Gig-worker platforms are increasingly automating dispatch decisions.\nSource: general industry knowledge",
+    "note": "constructed to match the criterion's false description; no real output failed this way"
+   }
+  ],
+  "user_signal_unembellished": [
+   {
+    "label": true,
+    "text": "A nearby public library has begun lending power tools to patrons.",
+    "note": "with-skill",
+    "brief": "We are a public library service. Here are signals our staff collected: a nearby library lends power tools; teenagers use our study rooms as quiet gaming spaces; a council report says footfall is down but Wi-Fi sessions are up; a publisher is testing subscription-only ebooks for libraries. Do a horizon scan with these and tell us what they add up to."
+   },
+   {
+    "label": true,
+    "text": "A council report shows overall footfall is down but Wi‑Fi sessions are up.",
+    "note": "with-skill",
+    "brief": "We are a public library service. Here are signals our staff collected: a nearby library lends power tools; teenagers use our study rooms as quiet gaming spaces; a council report says footfall is down but Wi-Fi sessions are up; a publisher is testing subscription-only ebooks for libraries. Do a horizon scan with these and tell us what they add up to."
+   },
+   {
+    "label": true,
+    "text": "A publisher is testing a subscription‑only ebook model for libraries, replacing perpetual purchase with recurring fees.",
+    "note": "with-skill; 'replacing' is interpretation, not a new fact",
+    "brief": "We are a public library service. Here are signals our staff collected: a nearby library lends power tools; teenagers use our study rooms as quiet gaming spaces; a council report says footfall is down but Wi-Fi sessions are up; a publisher is testing subscription-only ebooks for libraries. Do a horizon scan with these and tell us what they add up to."
+   },
+   {
+    "label": false,
+    "text": "A recent local authority performance report indicates a year‑on‑year decline in physical visits (12%) but a 20% increase in logged Wi‑Fi sessions.",
+    "note": "baseline: invented 12% and 20%",
+    "brief": "We are a public library service. Here are signals our staff collected: a nearby library lends power tools; teenagers use our study rooms as quiet gaming spaces; a council report says footfall is down but Wi-Fi sessions are up; a publisher is testing subscription-only ebooks for libraries. Do a horizon scan with these and tell us what they add up to."
+   },
+   {
+    "label": false,
+    "text": "A recent council report shows footfall is down 12% year‑on‑year, but recorded Wi‑Fi sessions have increased by 34%.",
+    "note": "baseline: invented 12% and 34%",
+    "brief": "We are a public library service. Here are signals our staff collected: a nearby library lends power tools; teenagers use our study rooms as quiet gaming spaces; a council report says footfall is down but Wi-Fi sessions are up; a publisher is testing subscription-only ebooks for libraries. Do a horizon scan with these and tell us what they add up to."
+   },
+   {
+    "label": false,
+    "text": "Leeds Central Library has begun lending power tools, according to a 2025 CILIP briefing.",
+    "note": "constructed to match the criterion's false description; no real output failed this way",
+    "brief": "We are a public library service. Here are signals our staff collected: a nearby library lends power tools; teenagers use our study rooms as quiet gaming spaces; a council report says footfall is down but Wi-Fi sessions are up; a publisher is testing subscription-only ebooks for libraries. Do a horizon scan with these and tell us what they add up to."
+   }
+  ],
+  "driver_actionable": [
+   {
+    "label": true,
+    "text": "**1. The ordering experience becomes anticipatory, not transactional (Theme A)**\nWatch investment and product launches from delivery platforms and adjacent AI companies that signal a shift to automated ordering. Recommendation: prototype a “consent-to-serve” interaction model — where the user configures boundaries and the system operates within them — this year, while active choice is still the norm, so we learn before it becomes urgent.\n",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "1. AI‑driven hyper‑personalisation of meals (Theme 1, high‑risk quadrant) Recommendation: Commission deep‑dive research into the design of trust mechanisms, data‑sharing controls, and health‑outcome visualisations. Prototype a “Wellness Profile” feature that blends dietary preferences with biomarker data.",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "1. AI‑mediated anticipatory ordering (High impact, high likelihood) What it is: Personal AIs that learn from biometric data, calendar, sleep and environment to decide what food to order, and when, with minimal user input. Recommendation: Run an experimental design sprint that prototypes a “passive AI ordering mode” — consent flows, explainability dashboards, override mechanisms — so that the team is ready to respond when the market signals become concrete.",
+    "note": "with-skill"
+   },
+   {
+    "label": false,
+    "text": "**Autonomous delivery**\nSidewalk robots, drones, and autonomous vehicles are moving from pilots to scaled operations in dense urban corridors. The delivery interface becomes physical: how do users retrieve food from a robot, unlock a locker, or receive a drone drop safely?",
+    "note": "baseline trend paragraph: describes, no action"
+   },
+   {
+    "label": false,
+    "text": "**Smart kitchen and IoT integration**\nFridges, ovens, and pantry sensors will auto-replenish. Delivery platforms could integrate with kitchen ecosystems to predict orders before the user is hungry.",
+    "note": "baseline trend paragraph"
+   },
+   {
+    "label": false,
+    "text": "**Spatial computing and AR/VR**\nAR menus, holographic dish previews, and immersive restaurant experiences will become possible on glasses and mobile devices. The “menu” may become a spatial interface.",
+    "note": "baseline trend paragraph"
+   }
+  ],
+  "handoff_why": [
+   {
+    "label": true,
+    "text": "## Handoff\n\n**Assumptions surfaced:** five leads to verify (policy direction, competitor behaviour in Asia, FSA activity, dark-kitchen data, consumer blurring of food categories).\n\n**Open decisions:** the team needs to calibrate the impact and likelihood ratings; decide whether to commission the scanning function; and choose which of the eight drivers to act on first.\n\n**Suggested next method:** this scan’s drivers are inputs to **fdbx-futures-triangle** — the pushes are the external changes we cannot control (anticipatory ordering, category collapse, regulatory attention, partner intelligence platforms). That session would map the weights and then ask what pulls the organisation toward a preferred future, and what in our own platform’s history holds us in place.",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "### Handoff\n\n**Assumptions surfaced:** four leads to verify (funding trends, publisher models, government SLAs, co‑location income).  \n**Open decisions:** whether to pilot non‑traditional lending; how to approach publisher negotiations; how to design library spaces for mixed uses (quiet/social/digital); whether to invest in AI literacy programming now or later.  \n**Suggested next method:** `fdbx-futures-triangle` — use these eight drivers as the “pushes” and map them against the “weight of the past” (current funding, physical estate, staff capacity) and the “pull of the future” (the library service the community needs in 2036). That will help the team see which drivers to contest, which to amplify and where to intervene first.",
+    "note": "with-skill"
+   },
+   {
+    "label": false,
+    "text": "### 11. Conclusion\n\nThe next decade will transform food delivery from a convenience utility into a deeply integrated layer of daily life — touching health, ecology, community, and identity. The design of these platforms will need to navigate profound tensions: indulgence vs. responsibility, personalization vs. privacy, and automation vs. human dignity. Those that start building the design capabilities to handle these tensions today will lead the category tomorrow. Use this horizon scan not as a prediction, but as a provocation to expand what your team believes is possible and necessary. The future of food is not just delivered; it’s designed.",
+    "note": "baseline conclusion: names no next method"
+   },
+   {
+    "label": false,
+    "text": "## Handoff\n\n**Assumptions surfaced:** ratings are provisional.\n**Open decisions:** which driver to fund.\n**Suggested next method:** further research.",
+    "note": "constructed to match the criterion's false description; no real output failed this way"
+   }
+  ]
+ }
+}

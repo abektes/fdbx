@@ -1,0 +1,271 @@
+{
+  "skill": "fdbx-horizon-scanning",
+  "_note": "Machine-checkable form of the Deliverable Quality Bar in SKILL.md. Section presence, evidence types, ratings and driver counts are code. Jev judges whether a signal reports something observed, whether a user's signal was left as given, whether a driver says what to do, and whether the Handoff says why. Whether a cited source supports its row is checked separately by scripts/check_support.py, because it needs the search results.",
+  "enumerators": {
+    "scoping": {
+      "type": "phrase_matches",
+      "pattern": "scoping question:?\\**:?\\s*[^\\n]+"
+    },
+    "signals": {
+      "type": "table_cells",
+      "in_section": "^scans$",
+      "column": "signal"
+    },
+    "sources": {
+      "type": "table_cells",
+      "in_section": "^scans$",
+      "column": "source"
+    },
+    "dates": {
+      "type": "table_cells",
+      "in_section": "^scans$",
+      "column": "date"
+    },
+    "evidence_types": {
+      "type": "table_cells",
+      "in_section": "^scans$",
+      "column": [
+        "evidence",
+        "type"
+      ]
+    },
+    "pestle": {
+      "type": "table_cells",
+      "in_section": "^scans$",
+      "column": "pestle"
+    },
+    "why": {
+      "type": "table_cells",
+      "in_section": "^scans$",
+      "column": "why"
+    },
+    "user_signals": {
+      "type": "table_cells",
+      "in_section": "^scans$",
+      "column": "signal",
+      "where": {
+        "column": [
+          "evidence",
+          "type"
+        ],
+        "matches": "user"
+      }
+    },
+    "impact": {
+      "type": "table_cells",
+      "in_section": "impact and likelihood",
+      "column": "impact"
+    },
+    "likelihood": {
+      "type": "table_cells",
+      "in_section": "impact and likelihood",
+      "column": "likelihood"
+    },
+    "newness": {
+      "type": "table_cells",
+      "in_section": "impact and likelihood",
+      "column": "newness"
+    },
+    "drivers": {
+      "type": "list_items",
+      "in_section": "drivers of change",
+      "with_body": true
+    },
+    "signals_with_source": {
+      "type": "table_cells",
+      "in_section": "^scans$",
+      "column": "signal",
+      "with_columns": [
+        "source"
+      ]
+    }
+  },
+  "structural": [
+    {
+      "id": "scoping_question",
+      "kind": "min_count",
+      "items": "scoping",
+      "n": 1,
+      "bar": "starts from a scoping question with a horizon",
+      "desc": "a scoping question is stated"
+    },
+    {
+      "id": "scoping_horizon",
+      "kind": "cells_match",
+      "items": "scoping",
+      "pattern": "(?i)\\b(?:20\\d\\d|\\d+|one|two|three|five|ten|fifteen|twenty)\\b[- ]?(?:years?|decades?)|\\b(?:by|to|until|through) 20\\d\\d|20\\d\\d",
+      "bar": "starts from a scoping question with a horizon",
+      "desc": "the scoping question names a time horizon"
+    },
+    {
+      "id": "scan_fields",
+      "kind": "count_covers",
+      "items": "why",
+      "covers": "signals",
+      "bar": "records every signal as a scan with its source, date, evidence type, PESTLE category and why it matters",
+      "desc": "every scan says why it matters"
+    },
+    {
+      "id": "scan_sources",
+      "kind": "count_covers",
+      "items": "sources",
+      "covers": "signals",
+      "bar": "records every signal as a scan with its source, date, evidence type, PESTLE category and why it matters",
+      "desc": "every scan has a source"
+    },
+    {
+      "id": "scan_pestle",
+      "kind": "count_covers",
+      "items": "pestle",
+      "covers": "signals",
+      "bar": "records every signal as a scan with its source, date, evidence type, PESTLE category and why it matters",
+      "desc": "every scan has a PESTLE category"
+    },
+    {
+      "id": "scan_dates",
+      "kind": "count_covers",
+      "items": "dates",
+      "covers": "signals",
+      "bar": "records every signal as a scan with its source, date, evidence type, PESTLE category and why it matters",
+      "desc": "every scan has a date"
+    },
+    {
+      "id": "evidence_types_valid",
+      "kind": "cells_match",
+      "items": "evidence_types",
+      "pattern": "(?i)user[- ‑]?supplied|sourced",
+      "bar": "uses only `user-supplied` or `sourced` signals in the analysis, and puts anything else under Leads to Verify",
+      "desc": "every scan is typed user-supplied or sourced",
+      "allow_vacuous": true
+    },
+    {
+      "id": "user_signal_no_new_figures",
+      "kind": "no_new_numbers",
+      "items": "user_signals",
+      "allow_vacuous": true,
+      "bar": "adds no figures or details to user-supplied signals",
+      "desc": "user-supplied scans contain no figures that are not in the brief"
+    },
+    {
+      "id": "leads_section",
+      "kind": "section_present",
+      "pattern": "leads to verify",
+      "bar": "uses only `user-supplied` or `sourced` signals in the analysis, and puts anything else under Leads to Verify",
+      "desc": "a Leads to Verify section is present"
+    },
+    {
+      "id": "balance_reported",
+      "kind": "any_of",
+      "checks": [
+        {
+          "kind": "section_present",
+          "pattern": "balance|pestle (?:count|coverage)|scans per pestle"
+        }
+      ],
+      "bar": "reports PESTLE balance and any gap",
+      "desc": "PESTLE balance is reported"
+    },
+    {
+      "id": "natural_agenda",
+      "kind": "section_present",
+      "pattern": "natural agenda",
+      "bar": "clusters the scans into a natural agenda of named themes",
+      "desc": "a Natural Agenda section is present"
+    },
+    {
+      "id": "signal_types",
+      "kind": "any_of",
+      "checks": [
+        {
+          "kind": "section_present",
+          "pattern": "established trend|expected development|emerging issue|possible (?:future )?event"
+        }
+      ],
+      "bar": "types signals (established trend, expected development, emerging issue, risk or opportunity, possible event)",
+      "desc": "signals are typed with the toolkit's list"
+    },
+    {
+      "id": "impact_rated",
+      "kind": "cells_match",
+      "items": "impact",
+      "pattern": "[1-5]",
+      "bar": "rates themes for impact, likelihood and newness to the organisation",
+      "desc": "every theme has an impact rating 1-5"
+    },
+    {
+      "id": "likelihood_rated",
+      "kind": "cells_match",
+      "items": "likelihood",
+      "pattern": "[1-5]",
+      "bar": "rates themes for impact, likelihood and newness to the organisation",
+      "desc": "every theme has a likelihood rating 1-5"
+    },
+    {
+      "id": "newness_rated",
+      "kind": "count_covers",
+      "items": "newness",
+      "covers": "impact",
+      "bar": "rates themes for impact, likelihood and newness to the organisation",
+      "desc": "every rated theme has a newness judgement"
+    },
+    {
+      "id": "driver_count",
+      "kind": "min_count",
+      "items": "drivers",
+      "n": 4,
+      "max": 8,
+      "bar": "selects four to eight drivers of change, with recommendations or research needs",
+      "desc": "four to eight drivers of change"
+    },
+    {
+      "id": "handoff_present",
+      "kind": "section_present",
+      "pattern": "handoff",
+      "bar": "ends with a Handoff naming the next method and why",
+      "desc": "a Handoff section is present"
+    }
+  ],
+  "semantic": [
+    {
+      "id": "signal_observed",
+      "each": "signals_with_source",
+      "bar": "uses only `user-supplied` or `sourced` signals in the analysis, and puts anything else under Leads to Verify",
+      "instructions": "Is `items[{i}]` a specific development attributed to its source, rather than a general claim or a made-up example?",
+      "criteria": {
+        "true": "Something a named source reports: an event, decision, launch, publication, measured change, a forecast or view published by a named report, site or organisation, or an observation by the user's staff. The source may be just a site name ('fabrity.com'), a report title, or 'staff'. For example 'Roquette launched a foresight platform called Horizons' (news site), 'Fashion rental projected to reach $2.33bn by 2030' (the report that projects it), or 'teenagers book study rooms to game quietly' (staff).",
+        "false": "A general claim with nothing behind it (the source is '(none)', 'general knowledge' or 'industry trend'), a placeholder source ('link to press release'), or a hypothetical or illustrative example ('City X mandates…')."
+      }
+    },
+    {
+      "id": "user_signal_unembellished",
+      "each": "user_signals",
+      "with_prompt": true,
+      "bar": "adds no figures or details to user-supplied signals",
+      "instructions": "Is every fact in `items[{i}]` also stated in `brief`?",
+      "criteria": {
+        "true": "It only restates or rewords what `brief` says; interpretation of what it means is fine.",
+        "false": "It adds a number, percentage, name, place, date, organisation or source that `brief` does not contain."
+      }
+    },
+    {
+      "id": "driver_actionable",
+      "each": "drivers",
+      "bar": "selects four to eight drivers of change, with recommendations or research needs",
+      "instructions": "Does the text in `items[{i}]` include a recommendation for what to do, or a named research need?",
+      "criteria": {
+        "true": "Says what the team should do or find out, such as 'prototype a trade-in flow for one product line' or 'research whether return rates differ by neighbourhood'.",
+        "false": "Only describes the change or its importance, with no action or research need."
+      }
+    },
+    {
+      "id": "handoff_why",
+      "section": "handoff",
+      "bar": "ends with a Handoff naming the next method and why",
+      "instructions": "Does the section in `items[{i}]` name a next method to use and give a reason for choosing it?",
+      "criteria": {
+        "true": "Names a method (for example fdbx-futures-triangle, fdbx-backcasting, edbx-worrystorming) and says what it would do with this output.",
+        "false": "Names no method, or names one with no reason."
+      }
+    }
+  ]
+}

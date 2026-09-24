@@ -175,7 +175,7 @@ Each skill won 3/3 on "bring into a meeting". The ties were CLA remote-team (ins
 1. **A second, independent reviewer**: a designer who has not seen fdbx, using the same page.
 2. **A stricter blind**: rebuild the pack with the Evidence Ledger and Handoff stripped from the with-skill outputs, so only the body is compared. If preference holds, the method structure is doing the work. If it collapses, the ledger and format are.
 3. Decide whether "labelled" is enough, or whether the skills should also require the body to hedge anything the ledger marks as an assumption (for example "if a school locally runs…"). The second is stricter and may make outputs harder to read.
-4. Write `conformance.json` rubrics and calibrate them with Jev, so pass rates come from code and a calibrated judge, not from regexes read by the skills' author.
+4. Write `conformance.json` rubrics and calibrate them with Jev, so pass rates come from code and a calibrated judge, not from regexes read by the skills' author. *Done for the two batch 2 skills (see `docs/baseline-probe-batch-2.md`); still open for these four.*
 5. Judge quality at scale: blind pairwise comparison by a model that is not DeepSeek or Claude, alongside the human reviews.
 
 ## Previously planned next step (done)

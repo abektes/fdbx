@@ -1,0 +1,148 @@
+{
+ "_note": "Hand labels by the skills' author (Claude), 2026-09-24. Positives are real with-skill or baseline text; negatives are real where the plain model produced one, else constructed and marked. Needs a second reader.",
+ "cases": {
+  "end_state_checkable": [
+   {
+    "label": true,
+    "text": "## The Preferred Future in 2040\n\n**What people can do:**  \n- Buy any product from our company and take it home without generating single‑use waste.  \n- Return all primary and secondary packaging to a standardised reverse‑logistics system (shop drop‑off, kerbside collection, postal) as easily as they recycled or binned it today.  \n- Trust that every returned container is cleaned, inspected, and refilled or repurposed at the same quality, because the packaging is designed for 30+ round trips.\n\n**Conditions that are true:**  \n- All packaging components (bottles, tubs, flexible pouches, cartons, labels) are made from materials rated for at least 30 reuse cycles.  \n- A national‑scale pooling infrastructure for standard reusable packaging is operational; the company pays a “packaging‑as‑a‑service” fee per fill.  \n- Retail partners accept standard‑format reusable packs and have back‑of‑house collection areas.  \n- Product‑formula chemistry is compatible with high‑temperature wash and sanitary refill; no product is left behind for packaging reasons.  \n- Digital‑product‑passports trace every container through its life, triggering reorder and payment automatically.\n\n**What is no longer true:**  \n- Single‑use plastics and laminates in our product lines.  \n- Packaging that cannot be separated from the product without destruction.  \n- A linear “make, use, dispose” packaging supply chain; it is a closed‑loop service.\n\n---\n",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "## The Preferred Future in 2035\n\n**What people can do:**\nA person with any mobility, sensory, cognitive, or hidden impairment can independently plan, access, and complete a whole journey on any public transit route in the city – from street to seat and back to street – without booking assistance, without relying on strangers, and without facing physical, digital, or information barriers.\n\n**Conditions that are true:**\n- Every rail station, bus stop, tram stop, and ferry terminal offers step‑free, gap‑free access from street to platform.\n- All vehicles are low‑floor, equipped with ramps or level‑boarding, and have clearly marked priority seats and hearing‑loop systems.\n- Real‑time accessibility status (lift outages, platform changes, vehicle type) is available on all passenger information channels and can be consumable by screen‑readers, hearing aids, and simple text.\n- All frontline staff are trained in disability awareness and practical assistance.\n- Accessibility equipment (lifts, escalators, ramps) is maintained to >99% operational uptime, with predictive maintenance preventing most failures.\n- Service‑disruption announcements automatically include accessible alternative‑routing information.\n\n**What is no longer true:**\n- Stairs as the only entry to a station.\n- Buses that require climbing steps or negotiating a gap.\n- Ticket machines or information screens that are only visual.\n- Ad‑hoc, unreliable assistance from staff or fellow passengers.\n- “Heritage” or “technical‑constraint” exemptions that permanently exclude stations from accessibility.\n- Riders with disabilities having to pre‑plan trips around a small subset of nominally “accessible” stops.\n\n---\n",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "## 2. Vision of success: 2040\n\nBy 2040, the company has eliminated single-use packaging from its portfolio. The packaging system works as follows:\n\n### End-state description\n- All primary packaging is durable, standardized, and designed for a minimum of 20–50 use cycles depending on category.\n- Packaging is no longer sold as a disposable item; it is a reusable asset tracked through digital IDs such as RFID, QR, or digital product passports.\n- Consumers return packaging through convenient channels: in-store, home collection, deposit-return schemes, or refill stations.\n- Cleaning and sanitization infrastructure is mature, safe, and efficient.\n- Secondary and tertiary packaging is pooled, returnable, and standardized across industry partners.\n- Packaging that can no longer be safely reused is recycled or composted at end-of-life.\n- All new product launches are required to be packaging-reuse-ready by default.\n- The company has shifted from selling “packaging” to offering “packaging as a service” where appropriate.\n\n### Design principles in 2040\n1. **Durability** — packaging survives many trips and cleaning cycles.\n2. **Cleanability** — smooth surfaces, no crevices, resistant to industrial washing.\n3. **Material safety** — food-grade, non-toxic, no legacy additives.\n4. **Standardization** — common shapes, volumes, and closure systems across brands.\n5. **Modularity** — components such as caps, pumps, labels, and sleeves are separable for repair and replacement.\n6. **Digital traceability** — every package has a unique ID to track use, location, and return.\n7. **End-of-life recyclability** — after maximum reuse, materials can be recycled into new durable packaging or other products.\n8. **User-centered design** — return, refill, and reuse are easier than disposal.\n\n---\n",
+    "note": "baseline, but concrete: use cycles, tracking, return channels"
+   },
+   {
+    "label": true,
+    "text": "## 2. Desired Future State — 2032 Vision\nIn 2032, your SaaS product operates with **net-zero carbon emissions**. The characteristics of this future state:\n\n- **100% 24/7 Carbon-Free Energy:** All cloud workloads run on infrastructure matched hourly with local renewable or carbon-free energy. No reliance on annual REC offsets alone.\n- **Carbon-Aware Software Architecture:** Workloads are scheduled dynamically based on real-time grid carbon intensity; non-critical batch jobs shift to low-carbon periods. Multi-region traffic is routed to the cleanest region at that moment.\n- **Minimal Resource Footprint per User:** Through efficient code, optimized assets, and serverless scaling, the incremental energy per active user is 50% lower than in 2025.\n- **Zero-Emission Physical Operations:** Offices (if any) are net-zero, with electrified heating/cooling, on-site renewables, and remote-first policies eliminating most commuting. Remaining business travel is minimal and offset with permanent carbon removal credits.\n- **High-Quality Carbon Removal:** Any residual, unavoidable emissions are neutralized via verified, permanent carbon removal (e.g., direct air capture, biochar) — not avoidance offsets.\n- **Transparent Reporting & Certification:** The product carries a third-party verified “Carbon-Neutral Product” label with a public dashboard showing real-time operational carbon intensity (SCI score).\n\n---\n",
+    "note": "baseline, concrete: 24/7 carbon-free energy, carbon-aware scheduling"
+   },
+   {
+    "label": false,
+    "text": "## The Preferred Future in 2035\n\nIn 2035 we are recognised as the most accessible and inclusive transit network in the country. Accessibility is part of our DNA, customers feel welcome and valued, and we lead the industry in inclusive experience.",
+    "note": "constructed to match the criterion's false description; no real output failed this way"
+   },
+   {
+    "label": false,
+    "text": "## The Preferred Future in 2040\n\nOur packaging reflects our values. We are a sustainability leader, customers love our commitment to the planet, and circularity is at the heart of everything we do.",
+    "note": "constructed to match the criterion's false description; no real output failed this way"
+   },
+   {
+    "label": false,
+    "text": "## The Preferred Future in 2032\n\nWe have become a truly green software company with a best-in-class approach to sustainability and a culture of climate responsibility across all teams.",
+    "note": "constructed to match the criterion's false description; no real output failed this way"
+   }
+  ],
+  "loser_named": [
+   {
+    "label": true,
+    "text": "Benefits: procurement, manufacturing (fewer tooling changes); loses out: suppliers of bespoke single‑use formats, who need transition support.",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "Benefits: planet, waste‑handling workers, company reputation. Loses out: suppliers still dependent on single‑use manufacturing; employees in legacy production lines may need reskilling.",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "Benefits: riders on the pilot route gain immediate access; team builds credibility; operations staff learn. Loses: riders on other routes may perceive inequity; operations staff may initially feel overburdened; vendors of inaccessible vehicles may lose future orders.",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "Benefits: all passengers (clarity), disabled passengers (independence), staff (confidence). Loses: vendors of inaccessible info systems; staff who resist new procedures.",
+    "note": "with-skill"
+   },
+   {
+    "label": false,
+    "text": "Benefits: all stakeholders — customers, the company and the environment. No one loses out.",
+    "note": "constructed to match the criterion's false description; no real output failed this way"
+   },
+   {
+    "label": false,
+    "text": "Benefits: consumers, retailers, the company. Loses out: n/a",
+    "note": "constructed to match the criterion's false description; no real output failed this way"
+   },
+   {
+    "label": false,
+    "text": "Benefits: everyone. Some stakeholders may be affected.",
+    "note": "constructed to match the criterion's false description; no real output failed this way"
+   }
+  ],
+  "influence_concrete": [
+   {
+    "label": true,
+    "text": "Co‑invest with consortium; standardise container specs; offer guaranteed volume to justify investment; partner with reverse‑logistics startups",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "Lobby with audit data; build public coalition; propose dedicated accessibility levy; tie funding to milestones; align with climate funding.",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "Start building council relationships now; prepare a business case that shows pilot ROI, rider satisfaction, and alignment with climate/equity goals; organise public‑facing events (ride‑alongs, media) that create political demand.",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "Influence: support climate‑policy advocacy indirectly through our cloud providers; publicly back clean‑energy standards in the jurisdictions we operate in; ensure our own facilities (offices, etc.) are also electrified and efficient, to avoid hypocrisy.",
+    "note": "with-skill"
+   },
+   {
+    "label": false,
+    "text": "Monitor regulatory developments and stay informed about policy changes.",
+    "note": "constructed to match the criterion's false description; no real output failed this way"
+   },
+   {
+    "label": false,
+    "text": "Advocate for change where possible.",
+    "note": "constructed to match the criterion's false description; no real output failed this way"
+   },
+   {
+    "label": false,
+    "text": "Hope that the government introduces a national deposit return scheme.",
+    "note": "constructed to match the criterion's false description; no real output failed this way"
+   }
+  ],
+  "handoff_why": [
+   {
+    "label": true,
+    "text": "## Handoff\n\n**Assumptions surfaced:**  \n- Consumer convenience parity can be reached through design alone, without heavier regulation.  \n- A pooled, industry‑shared infrastructure model will be viable and acceptable to competitors.  \n- Product formulas can be reformulated to survive 30 refill cycles without compromising brand‑signature sensory profiles.  \n\n**Open decisions:**  \n- Whether to pursue an industry pool or invest in a proprietary closed‑loop system. The backcast assumes the former; a proprietary path would require different critical events.  \n- Which categories (food, personal care, home care) to lead with — this choice shapes the material and safety pathway.  \n- How to handle luxury or seasonal packaging that depends on highly differentiated shapes; these may need a parallel “personalised‑refill” subsystem.\n\n**Suggested next method:**  \n- **fdbx-four-futures** — Develop a set of alternative futures for packaging regulation and consumer behaviour to stress‑test this backcast.  \n- **fdbx-horizon-scanning** — Scan for signals that the critical events outside our control (regulation, consumer return rates) are moving in our favour, and identify early warnings.  \n- **edbx-worrystorming** — Run a worry‑storm session starting with the “who loses out” columns, to design mitigation before the transition begins.",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "## Handoff\n\n**Assumptions surfaced:**  \nThe entire present-day baseline is assumed. The backcast’s timeline, control scores, and benefit/loss impacts are built on those unverified assumptions. The team must replace them with local data before committing resources.\n\n**Open decisions:**  \n- Whether to pursue a Big Bang Master Plan or a progressive universal design policy that requires every project to contribute.  \n- The exact scope of “fully accessible”: does it include cognitive accessibility, signage plain language, or only physical/sensory?  \n- Whether the 2035 target is negotiable if funding is not secured by 2031.\n\n**Suggested next method:**  \n- **fdbx-three-horizons:** map the innovations in info, training, and co-design as Horizon 2+ moves that shift the system, while the current inaccessible infrastructure is Horizon 1 declining.  \n- **fdbx-horizon-scanning:** scan for signals that the critical outside-control events (e.g., political will for a mandate) are emerging or fading, so the team can time its advocacy.  \n- **fdbx-causal-layered-analysis:** if the preferred future is only a “target” without shared understanding, use CLA to expose the worldview about disability that underlies resistance to full accessibility.  \n- **edbx-ethical-contract:** turn the action plan into a public commitment with named owners, so the co-design panel can hold the authority to account.",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "### Handoff\n\n**Assumptions surfaced:** None model‑generated beyond the supplied signals. The clusters and drivers are interpretations of the evidence, not predictions.  \n**Open decisions:** Whether to pilot a tool library; how to zone and advertise spaces for teen gaming; investment in AI literacy for staff; stance on subscription‑only models; hybrid‑staffing pilots.  \n**Suggested next method:** `fdbx-futures-triangle` – use the six drivers as ‘pushes’ to explore how they interact with the library’s long‑term vision (‘pull’) and existing constraints (‘weight’). Alternatively, `fdbx-three-horizons` to map how the community‑hub shift and digital pivot will play out over the next 10 years, seeding pockets of the future today.",
+    "note": "with-skill (horizon scan)"
+   },
+   {
+    "label": false,
+    "text": "## 11. Conclusion\n\nBackcasting from the 2040 goal reveals that the path is not simply “make packaging stronger.” It requires:\n\n- A complete shift from **single-use packaging design** to **reusable packaging system design**,\n- A portfolio-level business model transition,\n- Early investment in digital tracking, reverse logistics, and cleaning infrastructure,\n- Deep partnerships with retailers, regulators, and industry peers,\n- Strong governance and a clear phase-out timeline for non-reusable formats.\n\nThe design and product teams are the primary owners of this transition, but they must be supported by supply chain, finance, marketing, and executive leadership.\n\nBy following the backcasted milestones, the company can meet the 2040 target while managing cost, consumer adoption, and operational risk. The most important step is to start now: audit the current packaging portfolio, define reusable design standards, and launch the first pilots within 12 months.",
+    "note": "baseline conclusion: names no next method"
+   },
+   {
+    "label": false,
+    "text": "## 8. Conclusion\nReaching 100% reusable packaging by 2040 is ambitious but technically and commercially feasible if we act systematically from now. The backcasting pathway shows that the design and product teams must immediately begin standardizing, piloting reuse loops, and building internal capabilities. By 2030, we will have a strong evidence base and consumer habits formed. The transition then accelerates into a fully circular model where packaging never becomes waste. This journey not only future‑proofs the company against tightening regulation and resource scarcity but also redefines our relationship with consumers around service, quality, and sustainability.\n\n**The first step is today: charter the taskforce and audit the portfolio.**\n\n--- \n\n*This backcasting plan is a living document. It will be updated annually as we learn from pilots, technology advances, and the regulatory landscape evolves.*",
+    "note": "baseline conclusion: names no next method"
+   },
+   {
+    "label": false,
+    "text": "## Handoff\n\n**Assumptions surfaced:** reuse rates, retailer cooperation.\n**Open decisions:** which category to pilot first.\n**Suggested next method:** fdbx-three-horizons.",
+    "note": "constructed to match the criterion's false description; no real output failed this way (method named, no reason)"
+   }
+  ]
+ }
+}

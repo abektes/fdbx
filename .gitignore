@@ -3,8 +3,10 @@ sources/*
 !sources/manifest.json
 !sources/README.md
 
-# Evaluation outputs and secrets
-eval-framework/
+# Evaluation outputs and secrets. Calibration labels are tracked so a second
+# reader can review them; they hold model outputs and claims, not source text.
+eval-framework/*
+!eval-framework/calibration/
 .env
 *.env
 

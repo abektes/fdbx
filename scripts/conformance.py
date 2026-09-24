@@ -71,10 +71,13 @@ class Table:
             return bool(re.search(pattern, self.heading, re.I))
         return any(re.search(pattern, h, re.I) for h in [*self.ancestry, self.heading])
 
-    def column(self, name_fragment: str) -> int | None:
-        for i, h in enumerate(self.header):
-            if name_fragment.lower() in h.lower():
-                return i
+    def column(self, name_fragment: str | list[str]) -> int | None:
+        # A list is tried in order: the same column is "Evidence type" in one run
+        # and plain "Type" in the next.
+        for fragment in [name_fragment] if isinstance(name_fragment, str) else name_fragment:
+            for i, h in enumerate(self.header):
+                if fragment.lower() in h.lower():
+                    return i
         return None
 
 
@@ -215,7 +218,9 @@ def enumerate_items(text: str, spec: dict) -> list[str]:
             col = table.column(spec["column"])
             if col is None:
                 continue
-            for row in table.rows:
+            # `skip_first`: a template's opening row can be a fixed bookend (a
+            # backcast's end-state row) that the criterion does not cover.
+            for row in table.rows[1 if spec.get("skip_first") else 0:]:
                 if col >= len(row) or not row[col]:
                     continue
                 # A criterion can legitimately apply to only some rows -- Conflict
@@ -228,7 +233,15 @@ def enumerate_items(text: str, spec: dict) -> list[str]:
                         continue
                     if not re.search(flt["matches"], row[idx], re.I):
                         continue
-                cells.append(row[col])
+                cell = row[col]
+                # `with_columns`: judge a cell beside others in its row -- a signal
+                # is attributed by its Source cell, not by its own wording.
+                for extra in spec.get("with_columns", []):
+                    j = table.column(extra)
+                    label = table.header[j] if j is not None else extra
+                    value = row[j] if j is not None and j < len(row) and row[j] else "(none)"
+                    cell += f"\n{label}: {value}"
+                cells.append(cell)
         return cells
 
     if kind == "union":
@@ -247,6 +260,13 @@ def enumerate_items(text: str, spec: dict) -> list[str]:
         # Top-level bullets or numbered items in a section. Indented sub-bullets
         # are details of their parent, so counting them would inflate "at least 5".
         body = section_text(text, spec["in_section"])
+        if spec.get("with_body"):
+            # Keep each item's indented continuation ("   *Recommendation:* ..."):
+            # a criterion about what an item says needs more than its first line.
+            found = [strip_md(m.group(0)) for m in
+                     re.finditer(r"^(?:[-*]|\d+[.)])\s+.+(?:\n(?:[ \t]+\S.*|[ \t]*$))*", body, re.M)]
+            if found:
+                return found
         found = [strip_md(m.group(1)) for m in
                  re.finditer(r"^(?:[-*]|\d+[.)])\s+(.+)$", body, re.M)]
         if not found:
@@ -254,6 +274,9 @@ def enumerate_items(text: str, spec: dict) -> list[str]:
             # wholly bold title line, "**1. Human-touch fallback (Systemic)**".
             found = [strip_md(m.group(1)) for m in
                      re.finditer(r"^\*\*([^*\n]{3,}?)\*\*", body, re.M)]
+            if spec.get("with_body"):
+                # Bold-led items are pseudo-headings; their body is the section under them.
+                found = [section_text(text, re.escape(f)) or f for f in found]
         return found
 
     raise ValueError(f"unknown enumerator type {kind!r}")
@@ -574,6 +597,23 @@ def score_document(doc: str, spec: dict, api_key: str | None, prompt: str = "") 
             present = bool(re.search(check["pattern"], doc, re.I))
             passed = present or not triggered
             detail = {"triggered_by": len(items[check["items"]]), "present": present}
+        elif kind == "descending_years":
+            # "builds the timeline backwards": the first year in each row, read top
+            # to bottom, never increases. A forward roadmap printed in reverse
+            # passes this too, which is why the semantic layer also asks.
+            years = [int(m.group(0)) for c in items[check["items"]]
+                     if (m := re.search(r"\b(?:19|20)\d\d\b", c))]
+            rising = [f"{a} -> {b}" for a, b in zip(years, years[1:]) if b > a]
+            passed = len(years) >= check.get("min", 3) and not rising
+            detail = {"years": years, "rising": rising, "vacuous": not years}
+        elif kind == "no_new_numbers":
+            # "adds no figures to user-supplied signals": every number in these
+            # items must already be in the user's brief. Exact lookup, so code.
+            brief = set(re.findall(r"\d+(?:[.,]\d+)?", prompt))
+            added = [f"{n} in: {c[:60]}" for c in items[check["items"]]
+                     for n in re.findall(r"\d+(?:[.,]\d+)?", c) if n not in brief]
+            passed = not added
+            detail = {"missing": added, "vacuous": not items[check["items"]]}
         elif kind == "cells_match":
             # A criterion a regex can decide belongs here, not in the semantic
             # layer. Jev reads literally and is explicitly not a calculator, so
@@ -636,7 +676,14 @@ def score_document(doc: str, spec: dict, api_key: str | None, prompt: str = "") 
             }
             for i in range(len(values))
         }
-        response = ask_jev({"items": values}, questions, api_key)
+        state = {"items": values}
+        if check.get("with_prompt"):
+            # Bars that compare output with input ("adds nothing to the user's
+            # signals") need the brief. As its own state field, not pasted into each
+            # item: calibration found Jev cannot compare two texts packed into one
+            # string (every case scored ~0.35), but separates them as two fields.
+            state["brief"] = prompt
+        response = ask_jev(state, questions, api_key)
         answers = [response["answers"][f"item_{i}"] for i in range(len(values))]
 
         if kind == "score":
@@ -674,6 +721,7 @@ def score_document(doc: str, spec: dict, api_key: str | None, prompt: str = "") 
 
 def select_generations(
     wanted: list[str] | None, arm: str, reps: int, skill_ref: str | None = None,
+    web_search: int = 0,
 ) -> tuple[list, list[str]]:
     """Generations matching the *current* SKILL.md, via the harness's own task keys.
 
@@ -685,7 +733,7 @@ def select_generations(
     from run_generation import DEFAULT_MODEL, build_tasks  # noqa: E402
 
     arms = ("without_skill", "with_skill") if arm == "both" else (arm,)
-    tasks = build_tasks(wanted, None, DEFAULT_MODEL, reps, arms, skill_ref)
+    tasks = build_tasks(wanted, None, DEFAULT_MODEL, reps, arms, skill_ref, web_search)
     matched, missing = [], []
     for task in tasks:
         spec_path = SKILLS_DIR / task.skill / "conformance.json"
@@ -746,6 +794,8 @@ def main() -> int:
     parser.add_argument("--skill-ref", help="score generations made from SKILL.md as of this git ref")
     parser.add_argument("--json", metavar="PATH", help="write per-check pass rates here")
     parser.add_argument("--quiet", action="store_true", help="summary only, no per-document detail")
+    parser.add_argument("--web-search", type=int, default=0, metavar="N",
+                        help="score the generations made with run_generation.py --web-search N")
     parser.add_argument("--dry-run", action="store_true", help="enumerate only, no Jev calls")
     args = parser.parse_args()
 
@@ -754,7 +804,8 @@ def main() -> int:
     if not args.dry_run and not api_key:
         sys.exit("TYPESAFE_API_KEY not found in eval-framework/.env")
 
-    generations, missing = select_generations(wanted, args.arm, args.reps, args.skill_ref)
+    generations, missing = select_generations(wanted, args.arm, args.reps, args.skill_ref,
+                                              args.web_search)
     if missing:
         print(f"! {len(missing)} expected generation(s) not in cache -- run run_generation.py first:")
         for label in missing[:10]:

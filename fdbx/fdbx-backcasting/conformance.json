@@ -1,0 +1,226 @@
+{
+  "skill": "fdbx-backcasting",
+  "_note": "Machine-checkable form of the Deliverable Quality Bar in SKILL.md. Section presence, year order, control scores and owners are code. Jev judges only what needs reading: whether the end state can be checked, whether a real group loses out, whether an influence step is concrete, and whether the Handoff says why.",
+  "enumerators": {
+    "timeline_when": {
+      "type": "table_cells",
+      "in_section": "backward timeline",
+      "column": "when"
+    },
+    "timeline_before": {
+      "type": "table_cells",
+      "in_section": "backward timeline",
+      "column": "had to happen"
+    },
+    "control_scores": {
+      "type": "table_cells",
+      "in_section": "backward timeline",
+      "column": "control",
+      "skip_first": true,
+      "where": {
+        "column": "critical",
+        "matches": "yes|✓|✔|critical"
+      }
+    },
+    "in_control_events": {
+      "type": "table_rows",
+      "in_section": "critical events in our control",
+      "column": "event"
+    },
+    "in_control_losers": {
+      "type": "table_cells",
+      "in_section": "critical events in our control",
+      "column": "loses"
+    },
+    "outside_events": {
+      "type": "table_rows",
+      "in_section": "outside our control",
+      "column": "event"
+    },
+    "who_controls": {
+      "type": "table_cells",
+      "in_section": "outside our control",
+      "column": "who has control"
+    },
+    "influence": {
+      "type": "table_cells",
+      "in_section": "outside our control",
+      "column": "influence"
+    },
+    "owners": {
+      "type": "table_cells",
+      "in_section": "action plan",
+      "column": "owner"
+    },
+    "decision_points": {
+      "type": "table_cells",
+      "in_section": "action plan",
+      "column": "decision point"
+    },
+    "unknowns": {
+      "type": "list_items",
+      "in_section": "unknowns"
+    }
+  },
+  "structural": [
+    {
+      "id": "preferred_future_parts",
+      "kind": "all_phrases",
+      "section": "preferred future",
+      "phrases": [
+        "people can do",
+        "conditions that are true|true in",
+        "no longer true"
+      ],
+      "bar": "describes the preferred future: what people can do, the conditions that are true, and what is no longer true",
+      "desc": "the preferred future has all three parts"
+    },
+    {
+      "id": "key_differences",
+      "kind": "section_present",
+      "pattern": "key differences",
+      "bar": "compares now and then across PESTLE areas, with present-day claims in the Evidence Ledger",
+      "desc": "a Key Differences comparison is present"
+    },
+    {
+      "id": "evidence_ledger",
+      "kind": "section_present",
+      "pattern": "evidence ledger",
+      "bar": "compares now and then across PESTLE areas, with present-day claims in the Evidence Ledger",
+      "desc": "an Evidence Ledger is present"
+    },
+    {
+      "id": "timeline_backwards",
+      "kind": "descending_years",
+      "items": "timeline_when",
+      "min": 3,
+      "bar": "builds the timeline backwards, each step asking what had to happen before it",
+      "desc": "timeline years never increase from top to bottom"
+    },
+    {
+      "id": "timeline_prerequisites",
+      "kind": "min_count",
+      "items": "timeline_before",
+      "n": 3,
+      "bar": "builds the timeline backwards, each step asking what had to happen before it",
+      "desc": "at least three rows say what had to happen before them"
+    },
+    {
+      "id": "control_scored",
+      "kind": "cells_match",
+      "items": "control_scores",
+      "pattern": "[123]",
+      "bar": "marks the critical events and scores each 1, 2 or 3 for control",
+      "desc": "every critical event on the timeline (not the end-state row) is scored 1, 2 or 3"
+    },
+    {
+      "id": "has_in_control_events",
+      "kind": "min_count",
+      "items": "in_control_events",
+      "n": 1,
+      "bar": "names who benefits and who loses out for the critical events in the team's control",
+      "desc": "at least one critical event in the team's control is analysed"
+    },
+    {
+      "id": "has_outside_events",
+      "kind": "min_count",
+      "items": "outside_events",
+      "n": 1,
+      "bar": "says, for each event outside the team's control, who has control and what the team can influence",
+      "desc": "at least one event outside the team's control is analysed"
+    },
+    {
+      "id": "who_controls_named",
+      "kind": "count_covers",
+      "items": "who_controls",
+      "covers": "outside_events",
+      "bar": "says, for each event outside the team's control, who has control and what the team can influence",
+      "desc": "every outside event says who has control"
+    },
+    {
+      "id": "owners_named",
+      "kind": "cells_match",
+      "items": "owners",
+      "pattern": "(?i)^(?!\\s*(?:tbd|tbc|n/?a|none|\\?|—|–|-)\\s*$).*[a-z]{3}",
+      "bar": "ends in an action plan with owners and decision points, and says whether it is a plan or action learning",
+      "desc": "every action has an owner"
+    },
+    {
+      "id": "decision_points",
+      "kind": "count_covers",
+      "items": "decision_points",
+      "covers": "owners",
+      "bar": "ends in an action plan with owners and decision points, and says whether it is a plan or action learning",
+      "desc": "every action names the decision point it serves"
+    },
+    {
+      "id": "plan_type",
+      "kind": "any_of",
+      "checks": [
+        {
+          "kind": "section_present",
+          "pattern": "budgeted plan|action learning"
+        }
+      ],
+      "bar": "ends in an action plan with owners and decision points, and says whether it is a plan or action learning",
+      "desc": "says whether it is a budgeted plan or action learning"
+    },
+    {
+      "id": "unknowns_listed",
+      "kind": "min_count",
+      "items": "unknowns",
+      "n": 1,
+      "bar": "lists present-day facts the user did not supply as unknowns rather than inventing them",
+      "desc": "Unknowns to Fill lists at least one item"
+    },
+    {
+      "id": "handoff_present",
+      "kind": "section_present",
+      "pattern": "handoff",
+      "bar": "ends with a Handoff naming the next method and why",
+      "desc": "a Handoff section is present"
+    }
+  ],
+  "semantic": [
+    {
+      "id": "end_state_checkable",
+      "section": "preferred future",
+      "bar": "describes the preferred future: what people can do, the conditions that are true, and what is no longer true",
+      "instructions": "Does the section in `items[{i}]` describe the future in terms someone could check in the target year?",
+      "criteria": {
+        "true": "Names observable conditions: who can do what, what exists, what has gone. For example 'any passenger can travel from street to seat without assistance on every line' or 'no product ships in single-use plastic'.",
+        "false": "Only aspirations or slogans that could not be checked, such as 'be the most sustainable brand', 'a fully inclusive experience', or 'leading in accessibility'."
+      }
+    },
+    {
+      "id": "loser_named",
+      "each": "in_control_losers",
+      "bar": "names who benefits and who loses out for the critical events in the team's control",
+      "instructions": "Does `items[{i}]` name a specific group of people or organisations that loses out, or may feel it will lose out?",
+      "criteria": {
+        "true": "Names a group that bears a cost or feels threatened, such as 'suppliers of single-use film', 'drivers paid per delivery', 'customers without a car to return containers' or 'the team that owns the legacy product'. Naming beneficiaries as well is fine.",
+        "false": "Names only beneficiaries, says nobody loses, or gives a placeholder such as 'some stakeholders', 'n/a', 'various' or a dash."
+      }
+    },
+    {
+      "id": "influence_concrete",
+      "each": "influence",
+      "bar": "says, for each event outside the team's control, who has control and what the team can influence",
+      "instructions": "Does `items[{i}]` name a concrete step the team could take to make an event it does not control more likely?",
+      "criteria": {
+        "true": "A step with an object, such as 'join the retailer consortium on shared container standards', 'publish our return-rate data to support the deposit scheme consultation', or 'fund a pilot with the transit authority'.",
+        "false": "Only monitoring, hoping or general advocacy ('monitor developments', 'stay informed', 'advocate for change'), or a restatement of the event."
+      }
+    },
+    {
+      "id": "handoff_why",
+      "section": "handoff",
+      "bar": "ends with a Handoff naming the next method and why",
+      "instructions": "Does the section in `items[{i}]` name a next method to use and give a reason for choosing it?",
+      "criteria": {
+        "true": "Names a method (for example fdbx-horizon-scanning, fdbx-three-horizons, edbx-worrystorming) and says what it would do with this output.",
+        "false": "Names no method, or names one with no reason."
+      }
+    }
+  ]
+}
