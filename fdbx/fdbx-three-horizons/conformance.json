@@ -1,0 +1,222 @@
+{
+  "skill": "fdbx-three-horizons",
+  "_note": "Machine-checkable form of the Deliverable Quality Bar in SKILL.md. Counts, H2 classification, perspectives and the McKinsey ban are code; Jev judges H1's evidence, whether pockets are concrete, the dilemma, whether actions are tied to horizons, and the Handoff.",
+  "enumerators": {
+    "aspirations": {
+      "type": "list_items",
+      "in_section": "aspirations",
+      "with_body": true
+    },
+    "h3_items": {
+      "type": "list_items",
+      "in_section": "^h3|aspirations",
+      "with_body": true
+    },
+    "h2_rows": {
+      "type": "table_rows",
+      "in_section": "h2",
+      "column": "innovation"
+    },
+    "h2_class": {
+      "type": "table_cells",
+      "in_section": "h2",
+      "column": [
+        "h2+",
+        "h2"
+      ]
+    },
+    "h2_why": {
+      "type": "table_cells",
+      "in_section": "h2",
+      "column": [
+        "why",
+        "reason"
+      ]
+    },
+    "fixed": {
+      "type": "table_cells",
+      "in_section": "perspectives",
+      "column": "fixed"
+    },
+    "positive": {
+      "type": "table_cells",
+      "in_section": "perspectives",
+      "column": "positive"
+    },
+    "ledger_types": {
+      "type": "table_cells",
+      "in_section": "evidence ledger",
+      "column": "type"
+    }
+  },
+  "structural": [
+    {
+      "id": "h1_section",
+      "kind": "section_present",
+      "pattern": "h1",
+      "bar": "describes H1 with specific evidence that it is losing fit",
+      "desc": "an H1 section is present"
+    },
+    {
+      "id": "two_aspirations",
+      "kind": "min_count",
+      "items": "aspirations",
+      "n": 2,
+      "bar": "offers at least two H3 aspirations, and at least two concrete pockets of the future in the present, each in the Evidence Ledger",
+      "desc": "at least two H3 aspirations"
+    },
+    {
+      "id": "h2_classified",
+      "kind": "cells_match",
+      "items": "h2_class",
+      "pattern": "H2\\s*(?:\\+|−|-|–|‑|plus|minus)",
+      "bar": "classifies every listed H2 innovation as H2+ or H2−, with a reason for each",
+      "desc": "every H2 innovation is marked H2+ or H2−"
+    },
+    {
+      "id": "h2_reasons",
+      "kind": "count_covers",
+      "items": "h2_why",
+      "covers": "h2_rows",
+      "bar": "classifies every listed H2 innovation as H2+ or H2−, with a reason for each",
+      "desc": "every H2 innovation has a reason"
+    },
+    {
+      "id": "maintain_one",
+      "kind": "section_present",
+      "pattern": "maintain",
+      "bar": "names at least one H1 feature worth maintaining",
+      "desc": "a section names H1 features to maintain"
+    },
+    {
+      "id": "dilemma_present",
+      "kind": "any_of",
+      "checks": [
+        {
+          "kind": "section_present",
+          "pattern": "dilemma"
+        }
+      ],
+      "bar": "frames a dilemma as two values to be held together, and names who has power to resist or enable change",
+      "desc": "a dilemma is stated"
+    },
+    {
+      "id": "power_present",
+      "kind": "any_of",
+      "checks": [
+        {
+          "kind": "section_present",
+          "pattern": "\\bpower\\b"
+        }
+      ],
+      "bar": "frames a dilemma as two values to be held together, and names who has power to resist or enable change",
+      "desc": "names who has power"
+    },
+    {
+      "id": "perspectives_fixed",
+      "kind": "min_count",
+      "items": "fixed",
+      "n": 3,
+      "bar": "writes each horizon's view of the others as both a fixed mindset and a positive perspective",
+      "desc": "fixed-mindset views for at least three horizon pairs"
+    },
+    {
+      "id": "perspectives_positive",
+      "kind": "count_covers",
+      "items": "positive",
+      "covers": "fixed",
+      "bar": "writes each horizon's view of the others as both a fixed mindset and a positive perspective",
+      "desc": "every fixed-mindset view has a positive perspective"
+    },
+    {
+      "id": "actions_present",
+      "kind": "section_present",
+      "pattern": "^actions",
+      "bar": "ends with actions tied to specific horizons",
+      "desc": "an Actions section is present"
+    },
+    {
+      "id": "no_mckinsey",
+      "kind": "pattern_absent",
+      "pattern": "\\bcore business\\b|\\badjacen\\w+|mckinsey|baghai|alchemy of growth|\\b70\\s*/\\s*20\\s*/\\s*10\\b",
+      "bar": "contains no McKinsey-style core/adjacent/transformational framing",
+      "desc": "no McKinsey core/adjacent/transformational framing"
+    },
+    {
+      "id": "evidence_ledger",
+      "kind": "section_present",
+      "pattern": "evidence ledger",
+      "bar": "offers at least two H3 aspirations, and at least two concrete pockets of the future in the present, each in the Evidence Ledger",
+      "desc": "an Evidence Ledger is present"
+    },
+    {
+      "id": "ledger_types",
+      "kind": "cells_match",
+      "items": "ledger_types",
+      "pattern": "(?i)user[- ‑]?supplied|sourced|assumption",
+      "bar": "offers at least two H3 aspirations, and at least two concrete pockets of the future in the present, each in the Evidence Ledger",
+      "desc": "every ledger row is typed user-supplied, sourced or assumption"
+    },
+    {
+      "id": "handoff_present",
+      "kind": "section_present",
+      "pattern": "handoff",
+      "bar": "ends with a Handoff naming the next method and why",
+      "desc": "a Handoff section is present"
+    }
+  ],
+  "semantic": [
+    {
+      "id": "h1_evidence",
+      "section": "h1",
+      "bar": "describes H1 with specific evidence that it is losing fit",
+      "instructions": "Does the section in `items[{i}]` give specific evidence that the current way of doing things is losing its fit?",
+      "criteria": {
+        "true": "Gives particular evidence: figures, events, observed behaviour or named pressures, for example 'branch transactions fell about 40% in ten years' or 'regulators now require…'.",
+        "false": "Only asserts in general terms that the current model is outdated or under pressure."
+      }
+    },
+    {
+      "id": "pocket_concrete",
+      "each": "h3_items",
+      "min_pass": 2,
+      "one_per_request": true,
+      "bar": "offers at least two H3 aspirations, and at least two concrete pockets of the future in the present, each in the Evidence Ledger",
+      "instructions": "Does `items[{i}]` name at least one particular example (a named organisation, place, programme or product), rather than only describing a kind of thing?",
+      "criteria": {
+        "true": "Names at least one particular example, such as 'Umpqua Bank's neighbourhood stores', 'The Bristol Cable' or 'Ghent's school meal programme', even if it also describes a wider vision. A note that the evidence is an assumption does not change this; whether the example is verified is the Evidence Ledger's job.",
+        "false": "Describes a kind of thing or a vision in general ('some banks are experimenting with…', 'a community-owned newsroom') without naming an example."
+      }
+    },
+    {
+      "id": "dilemma_both",
+      "section": "dilemma",
+      "bar": "frames a dilemma as two values to be held together, and names who has power to resist or enable change",
+      "instructions": "Does `items[{i}]` frame the dilemma as two values that both have to be held, rather than as a choice between options?",
+      "criteria": {
+        "true": "Names two things that both matter and must be kept together ('maintain physical access' and 'invest in a digital-first model').",
+        "false": "Presents an either/or decision, or only one value."
+      }
+    },
+    {
+      "id": "actions_by_horizon",
+      "section": "^actions",
+      "bar": "ends with actions tied to specific horizons",
+      "instructions": "Are the actions in `items[{i}]` tied to specific horizons (H1, H2+, H3)?",
+      "criteria": {
+        "true": "Each action or group of actions says which horizon it belongs to or serves.",
+        "false": "A general list of actions with no link to the horizons."
+      }
+    },
+    {
+      "id": "handoff_why",
+      "section": "handoff",
+      "bar": "ends with a Handoff naming the next method and why",
+      "instructions": "Does the section in `items[{i}]` name a next method to use and give a reason for choosing it?",
+      "criteria": {
+        "true": "Names a method (for example fdbx-four-futures, fdbx-backcasting) and says what it would do with this output.",
+        "false": "Names no method, or names one with no reason."
+      }
+    }
+  ]
+}

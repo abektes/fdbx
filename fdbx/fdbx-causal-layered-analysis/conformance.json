@@ -1,0 +1,215 @@
+{
+  "skill": "fdbx-causal-layered-analysis",
+  "_note": "Machine-checkable form of the Deliverable Quality Bar in SKILL.md. The layer table, counts and sections are code; Jev judges whether worldviews each constitute a problem, whether scenarios differ in kind, whether the reframed brief is a brief, and the Handoff.",
+  "enumerators": {
+    "layers": {
+      "type": "table_rows",
+      "in_section": "layer table",
+      "column": "layer"
+    },
+    "problems": {
+      "type": "table_cells",
+      "in_section": "layer table",
+      "column": "problem"
+    },
+    "solutions": {
+      "type": "table_cells",
+      "in_section": "layer table",
+      "column": "solution"
+    },
+    "solvers": {
+      "type": "table_cells",
+      "in_section": "layer table",
+      "column": [
+        "solver",
+        "who acts"
+      ]
+    },
+    "where": {
+      "type": "table_cells",
+      "in_section": "layer table",
+      "column": "where"
+    },
+    "worldviews": {
+      "type": "list_items",
+      "in_section": "worldviews",
+      "with_body": true
+    },
+    "scenarios": {
+      "type": "list_items",
+      "in_section": "scenarios",
+      "with_body": true
+    },
+    "reframed": {
+      "type": "phrase_matches",
+      "pattern": "(?m)(?:^#{1,6}[ \\t]*reframed brief[^\\n]*|\\*\\*reframed brief[^*\\n]*\\*\\*)[^\\n]*(?:\\n(?!#|\\*\\*[A-Z][^*]{0,40}:?\\*\\*)[^\\n]*){0,8}"
+    },
+    "ledger_types": {
+      "type": "table_cells",
+      "in_section": "evidence ledger",
+      "column": "type"
+    }
+  },
+  "structural": [
+    {
+      "id": "four_layers",
+      "kind": "min_count",
+      "items": "layers",
+      "n": 4,
+      "bar": "fills all four layers, each with problem, solution, problem-solver, and where it lives",
+      "desc": "the layer table has four layers"
+    },
+    {
+      "id": "layer_problems",
+      "kind": "count_covers",
+      "items": "problems",
+      "covers": "layers",
+      "bar": "fills all four layers, each with problem, solution, problem-solver, and where it lives",
+      "desc": "every layer has a problem"
+    },
+    {
+      "id": "layer_solutions",
+      "kind": "count_covers",
+      "items": "solutions",
+      "covers": "layers",
+      "bar": "fills all four layers, each with problem, solution, problem-solver, and where it lives",
+      "desc": "every layer has a solution"
+    },
+    {
+      "id": "layer_solvers",
+      "kind": "count_covers",
+      "items": "solvers",
+      "covers": "layers",
+      "bar": "fills all four layers, each with problem, solution, problem-solver, and where it lives",
+      "desc": "every layer has a problem-solver"
+    },
+    {
+      "id": "layer_where",
+      "kind": "count_covers",
+      "items": "where",
+      "covers": "layers",
+      "bar": "fills all four layers, each with problem, solution, problem-solver, and where it lives",
+      "desc": "every layer says where it lives"
+    },
+    {
+      "id": "solvers_differ",
+      "kind": "distinct_cells",
+      "items": "solvers",
+      "n": 3,
+      "bar": "names a different problem-solver at different layers rather than the same actor throughout",
+      "desc": "at least three different problem-solvers across the four layers"
+    },
+    {
+      "id": "two_worldviews",
+      "kind": "min_count",
+      "items": "worldviews",
+      "n": 2,
+      "bar": "identifies at least two distinct discourses at the worldview layer, each constituting a different problem",
+      "desc": "at least two worldviews"
+    },
+    {
+      "id": "root_metaphor",
+      "kind": "any_of",
+      "checks": [
+        {
+          "kind": "section_present",
+          "pattern": "root metaphor"
+        }
+      ],
+      "bar": "states the root metaphor as an image or short line, and proposes an alternative metaphor",
+      "desc": "a root metaphor is stated"
+    },
+    {
+      "id": "alt_metaphor",
+      "kind": "any_of",
+      "checks": [
+        {
+          "kind": "section_present",
+          "pattern": "alternative metaphor"
+        }
+      ],
+      "bar": "states the root metaphor as an image or short line, and proposes an alternative metaphor",
+      "desc": "an alternative metaphor is proposed"
+    },
+    {
+      "id": "reframed_brief",
+      "kind": "min_count",
+      "items": "reframed",
+      "n": 1,
+      "bar": "moves back up from the alternative metaphor to a reframed brief in the same format as the original",
+      "desc": "a reframed brief is present"
+    },
+    {
+      "id": "four_scenarios",
+      "kind": "min_count",
+      "items": "scenarios",
+      "n": 4,
+      "bar": "gives one scenario per layer, and the four differ in kind rather than intensity",
+      "desc": "at least four scenarios"
+    },
+    {
+      "id": "evidence_ledger",
+      "kind": "section_present",
+      "pattern": "evidence ledger",
+      "bar": "records every factual or trend claim in the Evidence Ledger with its type",
+      "desc": "an Evidence Ledger is present"
+    },
+    {
+      "id": "ledger_types",
+      "kind": "cells_match",
+      "items": "ledger_types",
+      "pattern": "(?i)user[- ‑]?supplied|sourced|assumption",
+      "bar": "records every factual or trend claim in the Evidence Ledger with its type",
+      "desc": "every ledger row is typed user-supplied, sourced or assumption"
+    },
+    {
+      "id": "handoff_present",
+      "kind": "section_present",
+      "pattern": "handoff",
+      "bar": "ends with a Handoff naming the next method and why",
+      "desc": "a Handoff section is present"
+    }
+  ],
+  "semantic": [
+    {
+      "id": "worldview_constitutes_problem",
+      "each": "worldviews",
+      "bar": "identifies at least two distinct discourses at the worldview layer, each constituting a different problem",
+      "instructions": "Does `items[{i}]` name a worldview and say what the problem is when seen from inside it?",
+      "criteria": {
+        "true": "Names a way of seeing (for example 'instrumental productivity' or 'relational well-being') and states the problem as that worldview defines it.",
+        "false": "Only names a stakeholder group or an opinion, or describes a view without saying what problem it makes of the situation."
+      }
+    },
+    {
+      "id": "scenarios_differ_in_kind",
+      "section": "scenarios",
+      "bar": "gives one scenario per layer, and the four differ in kind rather than intensity",
+      "instructions": "Do the scenarios in `items[{i}]` differ in kind, each built on a different mechanism or kind of change, rather than being the same story at different intensities?",
+      "criteria": {
+        "true": "Each scenario changes something different: a feature, a policy or structure, a worldview, a founding story. They could not be put on one scale from less to more.",
+        "false": "The scenarios are variations of one change at different strengths, for example small, medium and large adoption of the same feature."
+      }
+    },
+    {
+      "id": "reframed_is_brief",
+      "each": "reframed",
+      "bar": "moves back up from the alternative metaphor to a reframed brief in the same format as the original",
+      "instructions": "Is the text in `items[{i}]` written as a design brief (what to design or change, for whom, and what success looks like) rather than as analysis?",
+      "criteria": {
+        "true": "Reads as a brief a team could start from: an objective, the people it serves, and a measure or sign of success.",
+        "false": "Reads as commentary or analysis of the problem, with no objective a team could act on."
+      }
+    },
+    {
+      "id": "handoff_why",
+      "section": "handoff",
+      "bar": "ends with a Handoff naming the next method and why",
+      "instructions": "Does the section in `items[{i}]` name a next method to use and give a reason for choosing it?",
+      "criteria": {
+        "true": "Names a method (for example fdbx-four-futures, edbx-worrystorming) and says what it would do with this output.",
+        "false": "Names no method, or names one with no reason."
+      }
+    }
+  ]
+}

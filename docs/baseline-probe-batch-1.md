@@ -178,6 +178,33 @@ Each skill won 3/3 on "bring into a meeting". The ties were CLA remote-team (ins
 4. Write `conformance.json` rubrics and calibrate them with Jev, so pass rates come from code and a calibrated judge, not from regexes read by the skills' author. *Done for the two batch 2 skills (see `docs/baseline-probe-batch-2.md`); still open for these four.*
 5. Judge quality at scale: blind pairwise comparison by a model that is not DeepSeek or Claude, alongside the human reviews.
 
+## Conformance scoring with Jev
+
+*Added 2026-09-25.* The same method as batch 2 (`docs/baseline-probe-batch-2.md`, "Conformance scoring with Jev"): each quality bar is a check in `conformance.json`, code does counts and structure, and Jev judges only what needs reading, after calibration.
+
+**Coverage.** All 34 quality bars of the four skills: 60 code checks and 15 Jev criteria. With batch 2, every quality bar of all six skills is now machine-checked (`python3 scripts/scaffold_conformance.py`).
+
+**Calibration** (`scripts/build_calibration_batch1.py`, then `scripts/calibrate.py`). 78 hand-labelled cases: **100% agreement on the 75 Jev decided, 4% sent to review.** Every criterion separated positives from negatives by at least 0.62. Real outputs supply all positives and some negatives, for example aspiration items that name no existing example. The rest of the negatives are constructed and marked, because no with-skill output failed that way. The plain model's Collapse futures and Horizon 1 sections turned out to be positives too. It writes those parts of the method well.
+
+One criterion needed two changes before it passed: "names at least two concrete pockets of the future".
+- *Batching changed the answers.* Among five items in one request, "Umpqua Bank (US)…" scored 0.23; alone it scored 0.87. The criterion now sends one item per request (`one_per_request`), the same layout calibration uses.
+- *The model marks its own pockets as assumptions.* Items such as "The Manchester Mill – … (Assumption.)" came from model memory, and the output says so. Jev read the tag as doubt about whether the example exists. Checking existence is the Evidence Ledger's job, not this criterion's, so it now asks only whether an item names at least one particular example. Code counts that at least two do, because Jev cannot count.
+
+Building the rubrics also exposed parser gaps, all fixed and tested: labels whose bold was never closed, scenarios written as sub-headings, a non-breaking hyphen in "H2‑", D and E lists that say "to prevent" rather than "against", and a reframed brief written as an inline label.
+
+**Scores** (run `20260924T192125Z`, 9 outputs per skill):
+
+| Skill | Check-document pairs passing | Real failures |
+|---|---|---|
+| Futures Triangle | 171/171 (100%) | none |
+| Four Futures | 135/135 (100%) | none |
+| Causal Layered Analysis | 155/162 (96%) | All three teen-screen outputs leave the Myth row's Solution and Problem-solver empty. One reframed brief is left for review. |
+| Three Horizons | 155/171 (91%) | One newsroom output writes the whole document without markdown headings. The content is there, but every section check fails, which is correct: the output format is not followed. The other eight pass every check. |
+
+**What this adds to the probe above.** The regex rates earlier in this doc said the method's moves appear in 8–9/9 outputs. The rubrics check far more of each quality bar, and agree: across the four skills, the only real failures are the empty Myth cells and one output's missing headings. The earlier worry that the plain model skips the action structure (who acts per layer, Dator's exercise questions, weights per image, H2+/−) stands. With the skills, all of it is present and judged, not just matched by a regex.
+
+**Limits.** The labels are the skills' author's; many negatives are constructed; one run of 9 outputs per skill.
+
 ## Previously planned next step (done)
 
 Re-run the with-skill arm for the three skills whose SKILL.md changed (CLA, Four Futures, Three Horizons: 27 generations, about $0.60 actual, ~$2.50 padded) to confirm the ledger fix. Then write `conformance.json` rubrics and calibrate them, so pass rates come from code and calibrated Jev rather than regexes read by the author.

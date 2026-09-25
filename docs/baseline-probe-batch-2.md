@@ -103,10 +103,10 @@ Batch 1 planned it (`docs/baseline-probe-batch-1.md`, next step 4), and batch 2 
 
 | | Backcasting | Horizon Scanning |
 |---|---|---|
-| Check-document pairs passing | 157/162 (97%) | 168/189 (89%) |
+| Check-document pairs passing | 158/162 (98%) | 168/189 (89%) |
 | Code checks failing | none | `scan_fields` 8/9: one output dropped the "Why it matters" column |
 | Jev criteria failing | none | none |
-| Jev criteria left for review | `influence_concrete` in 5/9 outputs: general advocacy mixed with concrete steps | `signal_observed` in 8/9 outputs, see below |
+| Jev criteria left for review | `influence_concrete` in 4/9 outputs: general advocacy mixed with concrete steps | `signal_observed` in 8/9 outputs, see below |
 | User-supplied signals | — | no added figures (code) and no added details (Jev), 3/3 library outputs |
 
 Horizon Scanning's review share is the honest weak point. Rows that report a view or forecast from a blog or report (for example "resale gives aspirational consumers access to luxury", sourced to a site name) land between 0.3 and 0.7. The calibration set had few such cases, so its 7% review share understates what happens on real scans. For this criterion Jev is triage that points a person at rows to read, not a judge.
@@ -154,6 +154,6 @@ Read per output, for the checks a regex cannot make (runs `20260924T190549Z` and
 ## Next steps
 
 1. ~~A Horizon Scanning run with web search and a link checker.~~ Done (see "With live search"). Still open: several searches per scan instead of one, and running `check_links.py` on the other skills when they are used with search.
-2. Conformance rubrics for the four batch 1 skills, calibrated the same way; a second reader for the calibration labels.
+2. ~~Conformance rubrics for the four batch 1 skills.~~ Done (`docs/baseline-probe-batch-1.md`). Still open: a second reader for the calibration labels in `eval-framework/calibration/`.
 3. Add Backcasting and Horizon Scanning pairs to the review pack (`scripts/make_review_pack.py`) for the independent reviewer planned in batch 1.
 4. Revisit the candidates if a design team asks for them. Design Fiction is the likeliest: its gap (tension, not marketing) is small but matters to designers.

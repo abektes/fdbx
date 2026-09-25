@@ -1,0 +1,113 @@
+{
+ "_note": "Hand labels by the skills' author (Claude), 2026-09-24. Positives are real with-skill or baseline text; negatives are real where the plain model produced one, else constructed and marked. Needs a second reader.",
+ "cases": {
+  "worldview_constitutes_problem": [
+   {
+    "label": true,
+    "text": "- Instrumental productivity worldview — The remote disconnect is a threat to output and retention. Connection is a KPI to be moved. The problem is that employees are less visible and therefore less “aligned,” and the future this framing points toward is one of ever‑more granular measurement of social activity as a proxy for belonging. The team’s success metric (weekly active use) is a pure expression of this worldview.",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "- Relational well‑being worldview — The remote disconnect is loneliness and the erosion of trust. Connection is an end, not a means. The problem is that over‑engineering social interaction undermines the voluntary, messy, and slow process through which genuine bonds form. The future it suggests is one where tools recede into the background and employees are trusted to shape their own social lives, with organisational support that looks more like gardening than building.",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "1. Engineering discourse — The problem is a lack of the right software artefact. Remote work is a distributed information-processing system, and disconnection is a signal loss that can be fixed with more channels, richer presence, and lower-friction interaction. The future this points toward is one of ever more immersive digital spaces, quantified connection scores, and feature-led engagement cycles. (The initial brief is a clean example.)",
+    "note": "with-skill"
+   },
+   {
+    "label": false,
+    "text": "- **Parents** — want their teenagers to spend less time on phones.",
+    "note": "constructed to match the criterion's false description; no real output failed this way"
+   },
+   {
+    "label": false,
+    "text": "- **Managers** — are concerned about engagement scores.",
+    "note": "constructed to match the criterion's false description; no real output failed this way"
+   },
+   {
+    "label": false,
+    "text": "- **A techno-optimist view** — technology is generally good and will keep improving.",
+    "note": "constructed to match the criterion's false description; no real output failed this way (a view with no problem stated)"
+   }
+  ],
+  "scenarios_differ_in_kind": [
+   {
+    "label": true,
+    "text": "## Scenarios by Layer\n\nFour futures that differ in kind, not intensity:\n\n1. **Litany scenario — The Dashboard of Togetherness**  \n   The team ships a beautifully crafted Team Space. Weekly active use climbs to target within two quarters. Managers cheer the green dashboard. Six months later, qualitative feedback surfaces: employees open the space, post a GIF, and close it. The metric looks healthy; the loneliness is unchanged. The company celebrates the feature while the underlying disconnection ossifies.\n\n2. **Social‑cause scenario — The Policy Sprint**  \n   The company redesigns its remote‑work policy: no‑meeting Wednesdays, a monthly stipend for co‑working, mandatory camera‑off hours, team budgets for offline gatherings. HR and team leads champion the changes. Connection improves in pockets where managers genuinely model the behaviours, and stalls where old habits persist. The feature becomes a lightweight supporting tool rather than the hero; usage is modest but meaningful.\n\n3. **Worldview scenario — The Autonomy Spring**  \n   A coalition of employees, citing the relational well‑being discourse, pushes back against “connection as a KPI.” The company removes engagement‑score dashboards and instead funds employee‑led guilds, meet‑ups, and interest groups with zero reporting obligation. The product team shifts from building a destination to weaving lightweight, invisible threads—presence signals that give context without surveillance, prompts that dissolve after use. Connection becomes a by‑product of doing meaningful work with people you trust. The metric is replaced by periodic, anonymous belonging surveys and voluntary exit interviews that listen for isolation.\n\n4. **Myth scenario — The Garden**  \n   *There was a company that believed if it built a digital square, the village would gather. It laid cobblestones of code, hung lanterns of notifications, and waited. Nobody came. The square was too shiny; it asked for your weekly presence like a timesheet. One day a gardener arrived, not a builder. She removed the fence, stopped measuring the footfall, and instead left a note: “Here is soil. Plant whatever you like. I’ll water it.” Conversations began in the cracks where buttons used to be. Roots found each other under the interface. The village didn’t appear. It had been there all along, waiting for a place that didn’t demand to be used.*\n\n---\n",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "### Scenarios by Layer\n\nThese are possible frames, not forecasts.\n\n1. **Litany scenario**  \n   The app ships. Patients can see their place in the queue and their triage category. Satisfaction with communication improves slightly, but the queue itself does not move faster because beds remain full and discharges remain blocked. The hospital reports “improved transparency” while wait times remain unchanged.\n\n2. **Social-cause scenario**  \n   The regional health system acts on the causes: primary care opens after hours, hospital-in-the-home expands, aged-care liaison improves, and discharge delays fall. ED waiting times fall because patients can actually leave the department. The app still exists, but it is now a minor convenience rather than the hero.\n\n3. **Worldview scenario**  \n   Hospital leadership, clinicians, and community groups co-design the ED as a community gateway. Triage becomes a conversation, not only a kiosk. Peer navigators and cultural health workers meet people at arrival. Low-acuity patients are redirected to community services with warm handoffs. Wait time is no longer the single headline; trust, equity, and safety become equally visible.\n\n4. **Myth scenario**  \n   A storm comes. Boats enter the harbour, some leaking, some already sinking. No one hands them a ticket and tells them to watch a screen. They are met, tied up, and the most damaged are seen first. The harbour is known not for how fast it pushes boats back out, but for how many come through the storm whole.\n\n---\n",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "## Scenarios by Layer\n\n1. **Litany scenario** — A parental-controls company ships an aggressive time-limiter with whitelists and cut-off hours. Uptake among concerned parents is high for six months. Teenagers respond by switching to burner phones, using school devices, and hiding app usage via splitscreen. Mental-health headlines continue; the feature becomes a new battleground in family arguments.  \n2. **Social-cause scenario** — A coalition of youth foundations, school boards, and a few conscientious platforms launches a “digital neighbourhoods” initiative: teenagers earn data- and attention-conscious design certifications, schools provide offline hangout spaces, and EU-style legislation mandates “wellbeing by design” in apps used by minors. Screen time dips not because of a single feature but because the ecosystem makes overuse harder and offline life richer.  \n3. **Worldview scenario** — A tech company adopts the relational worldview and builds a “relationship dashboard” instead of a timer. It shows teenagers (not parents) patterns of use tied to mood check-ins, offers choices (not ultimatums), and frames autonomy as a skill to practise. Over time, demand for pure restriction features plateaus because the market learns that trust-preserving tools reduce conflict and churn.  \n4. **Myth scenario** — *The girl and the bridge.* A fifteen-year-old keeps sneaking back into the city after dark. Every night her parents lock the gate; every night she finds a new ladder. One evening a bridge appears where the gate used to be, and a sign: “Come back with a story, or come back to rest.” She begins to walk the city not as a fugitive but as a visitor, noticing alleyways she used to run past, and after a while she stops counting the hours because she knows the way home. She writes the city a letter: “Thank you for the bridge.” The city writes back: “You built it.”  \n",
+    "note": "with-skill"
+   },
+   {
+    "label": false,
+    "text": "## Scenarios by Layer\n\n1. **Low adoption** — 10% of teams use the new Team Space; little changes.\n2. **Moderate adoption** — 40% use it weekly; some teams feel more connected.\n3. **High adoption** — 75% use it daily; connection scores rise.\n4. **Full adoption** — every team runs its rituals in the Team Space.",
+    "note": "constructed to match the criterion's false description; no real output failed this way"
+   },
+   {
+    "label": false,
+    "text": "## Scenarios by Layer\n\n1. **Small fix** — a screen-time dashboard reduces use slightly.\n2. **Bigger fix** — stricter limits reduce use more.\n3. **Strong fix** — lockouts after one hour.\n4. **Maximum fix** — phones are locked at school and at night.",
+    "note": "constructed to match the criterion's false description; no real output failed this way"
+   }
+  ],
+  "reframed_is_brief": [
+   {
+    "label": true,
+    "text": "### Reframed Brief > Remote employees report a diminished sense of belonging and spontaneous social life. We will investigate the rituals, relationships, and environmental conditions that already sustain connection for them, then design minimal, opt‑in support that amplifies what is working. Success will be measured by self‑reported belonging, voluntary participation in social rituals, and a reduction in the feeling of isolation—not by mandated feature usage. ---",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "Reframed brief: “Reduce avoidable emergency department distress and clinically unnecessary waiting by redesigning how people are received, triaged, and guided to the right care, in the ED and beyond; use digital queue-status tools only where they make waiting legible, humane, and safe.” ---",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "Reframed brief: “Design tools that help teenagers and their families build a healthy, self-aware relationship with digital environments — starting from teenagers’ own experiences of what supports or harms their wellbeing — so that time online is intentional and connected rather than simply reduced.” The success metric shifts from minutes blocked to proportion of sessions the teen ends feeling satisfied or in control, alongside reliable wellbeing indicators co-defined with young people.",
+    "note": "with-skill"
+   },
+   {
+    "label": false,
+    "text": "**Reframed brief:** The deeper issue is that the organisation treats connection as a metric rather than a relationship, and this worldview shapes every intervention it tries.",
+    "note": "constructed to match the criterion's false description; no real output failed this way (analysis, not a brief)"
+   },
+   {
+    "label": false,
+    "text": "### Reframed Brief\n\nScreen time is a symptom of wider cultural anxieties about adolescence and technology, which are rooted in a purity myth.",
+    "note": "constructed to match the criterion's false description; no real output failed this way (analysis, not a brief)"
+   }
+  ],
+  "handoff_why": [
+   {
+    "label": true,
+    "text": "## Handoff\n\n**Assumptions surfaced:** That connection is a problem technology can solve directly, that a feature launch can shift social behaviour, that usage frequency equals belonging, that the designer’s job is to build a destination rather than cultivate conditions.\n\n**Open decisions:** Whether to pursue the original brief as written, the reframed brief, or a hybrid. Who the client is—if the person commissioning the work holds the instrumental worldview, the deeper analysis may be rejected unless the team presents it as an expansion, not a contradiction.\n\n**Suggested next method:** Use the two dominant worldviews (instrumental productivity and relational well‑being) as seeds for a **fdbx-four‑futures** exercise, generating scenarios that differ in depth as well as content. Before that, run **edbx‑anotherlens** on the product team itself to surface the designers’ own worldview, so it does not masquerade as neutral.",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "### Handoff\n\n**Assumptions surfaced:**  \n- The core problem is waiting time.  \n- Patients are willing and able to use an app during an ED visit.  \n- Queue transparency will improve the situation.  \n- The ED has the data infrastructure to support real-time queue status.  \n- The hospital’s internal framing is neutral rather than one worldview among several.\n\n**Open decisions:**  \n- What outcome should the hospital actually optimize: time, distress, safety, access, or harm?  \n- Is the brief fixed, or can the studio challenge it?  \n- Which community and cultural contexts are missing from this analysis?  \n- What data, staffing, and capacity constraints exist behind the waiting times?\n\n**Suggested next method:**  \nUse **fdbx-futures-triangle** to map the structural weights, pushes, and pulls on ED capacity before committing to an app. That would make visible which parts of the waiting-time problem can be designed, which require policy or staffing change, and where a digital product might genuinely help.",
+    "note": "with-skill"
+   },
+   {
+    "label": false,
+    "text": "### Conclusion\n\nCausal Layered Analysis reveals that the brief to “reduce ED waiting times with a better triage and queue‑status app” is a litany‑level response trapped in a techno‑solutionist paradigm. While an app may offer marginal improvements in patient communication, it will not reduce actual clinical waiting times unless the systemic drivers (bed block, workforce, funding) and the worldview (hospital‑centric, consumerist) are shifted. Our studio recommends renegotiating the brief to work at multiple layers simultaneously, transforming the ED from a stressed queue management problem into a compassionate, community‑integrated acute care experience. We are prepared to facilitate a workshop with hospital stakeholders to co‑create this deeper vision and its implementation roadmap.",
+    "note": "baseline closing section: names no next method"
+   },
+   {
+    "label": false,
+    "text": "## Handoff\n\n**Assumptions surfaced:** the brief's framing.\n**Open decisions:** which option to pursue.\n**Suggested next method:** fdbx-four-futures.",
+    "note": "constructed to match the criterion's false description; no real output failed this way (method named, no reason)"
+   }
+  ]
+ }
+}

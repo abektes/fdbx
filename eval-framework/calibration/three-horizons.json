@@ -1,0 +1,165 @@
+{
+ "_note": "Hand labels by the skills' author (Claude), 2026-09-24. Positives are real with-skill or baseline text; negatives are real where the plain model produced one, else constructed and marked. Needs a second reader.",
+ "cases": {
+  "h1_evidence": [
+   {
+    "label": true,
+    "text": "## H1 — Losing Fit\n\nThe bank’s core model is built around a large, permanent branch estate. Customers are expected to visit for complex transactions, advice, and resolving exceptions. Underneath, the operational architecture—call centres, paper‑heavy processes, rigid appointment systems—rewards physical proximity.  \n\nEvidence the model is losing fit:\n\n- **Footfall decline:** UK branch transactions fell ~40% from 2015 to 2025; a similar trend holds in most retail banking markets.\n- **Cost pressure:** The cost‑to‑serve a branch transaction is 20–40x that of a digital equivalent; yet branch overheads remain largely fixed.\n- **Acquisition shift:** Over 70% of new current accounts in many European markets now originate digitally, bypassing the branch.\n- **Fixes that fail:** Introducing “branch‑lite” or “micro‑branches” with fewer staff still requires lease, security, and compliance overheads. Adding iPads in branches to help customers use the app does not reduce the underlying estate cost; it only makes the branch slightly more efficient at being a branch. Meanwhile, these incremental improvements consume investment that could be channelled into genuinely different delivery models.\n\nThose maintaining H1 (branch operations directors, legacy IT managers, compliance leads) see their role as protecting stability, trust, and regulatory adherence. They worry that moving too fast will alienate vulnerable customers and break a system that, while imperfect, still works for millions.\n\n---\n",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "## H1 — Losing Fit\n\n**How things are done now.** A regional newspaper publishes a daily print edition, runs a website that mirrors the paper, and sells display and classified advertising alongside subscriptions. The newsroom covers council meetings, courts, sport, and business in a defined geographic patch. Revenue still comes predominantly from print advertising and newsstand sales, with digital ads and online subscriptions growing slowly.\n\n**Evidence of loss of fit.**  \n- Print circulation has declined for 15+ years; the core audience is over 55 and not being replaced.  \n- Digital advertising revenue is captured by Google and Meta; the paper’s share has shrunk even as digital audiences grow.  \n- Trust in local journalism has eroded, partly because of cost‑cutting that hollowed out specialist beats.  \n- Younger demographics get local information from social media, community groups, and hyperlocal apps—not from the paper’s website.  \n- The “fix that fails”: paywalls. A hard paywall slows subscriber decline for a while but cuts off the general audience and accelerates irrelevance, while the underlying cost‑structure of producing a daily paper remains unchanged.\n",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "#### Horizon 1 (Current Model - Solidifying & Declining): The Transactional Fortress\nThis is the engine of today’s P&L, characterized by fixed-cost infrastructure and a product-centric culture. It’s not broken, but its relevance is steadily eroding. Competitive advantage is based on physical convenience and scale.\n\n- **Dominant Logic:** \"We are a safe place for your money. Visit us during banking hours to conduct a transaction or sit down for an hour to get a mortgage.\"\n- **Key Performance Indicators (KPIs):** Teller transaction volume, cost-per-transaction, new accounts opened per branch, branch deposit growth, Net Promoter Score (NPS) tied to in-branch service.\n- **Dominant Customer Experience:** Linearity and friction. The customer’s journey starts with a Google search, but the bank’s process starts at the branch door. The 9-to-5 model serves the bank’s operations, not the customer’s life.\n- **Assets & Capabilities:**\n    - Extensive, expensive branch network on long-term leases.\n    - Large, specialized workforce (tellers, personal bankers, branch managers).\n    - Legacy core banking systems running overnight batch processing.\n    - Rigid, paper-based compliance and KYC processes.\n- **Signals of Decline:**\n    - Branch foot traffic dropping 10-15% year-over-year.\n    - A growing segment of profitable customers who haven’t visited a branch in 2+ years.\n    - Difficulty staffing branches as the role becomes less attractive to digital natives.\n    - New digital-only competitors (neobanks) winning primary account status with zero physical footprint.\n\n---\n",
+    "note": "baseline, with 'signals of decline'"
+   },
+   {
+    "label": false,
+    "text": "## H1 — Losing Fit\n\nThe current model is outdated and under growing pressure. The world is changing fast, and the organisation needs to adapt to stay relevant.",
+    "note": "constructed to match the criterion's false description; no real output failed this way"
+   },
+   {
+    "label": false,
+    "text": "## H1 — Losing Fit\n\nToday's newsroom works the way it always has. It is increasingly out of step with the times and faces many challenges.",
+    "note": "constructed to match the criterion's false description; no real output failed this way"
+   }
+  ],
+  "pocket_concrete": [
+   {
+    "label": true,
+    "text": "- App‑native banks: Monzo, Starling, N26 have millions of customers who never visit a branch; they demonstrate that full‑service retail banking can exist without permanent physical space.",
+    "note": "with-skill: names a real example"
+   },
+   {
+    "label": true,
+    "text": "- Starling Bank (UK): full‑service bank with no branches, award‑winning mobile app, AI spend‑insights, market‑leading satisfaction. (Evidence Ledger: assumption)",
+    "note": "with-skill: names a real example"
+   },
+   {
+    "label": true,
+    "text": "- Umpqua Bank (US): “stores” with community lounges, free WiFi, local events, and full advisory services; measured by “community engagement” not just transactions. (Evidence Ledger: assumption)",
+    "note": "with-skill: names a real example"
+   },
+   {
+    "label": false,
+    "text": "1. Ambient banking: Financial services are embedded into the platforms people already use (e‑commerce, messaging, utility bills, payroll). Identity, credit decisions, and payments happen in the background. A branch visit is as rare as a visit to a travel agent is today. Human help is a premium, on‑demand service—by video, phone, or scheduled lounge visit.",
+    "note": "with-skill aspiration item: names no existing example"
+   },
+   {
+    "label": false,
+    "text": "2. Community‑anchored advisory: Physical space shrinks to a handful of “flagship” community hubs offering financial education, small‑business advice, and a place for complex life‑event conversations. These are co‑located with libraries, post offices, or cafes. The hubs are not transaction points; they are relationship and trust anchors.",
+    "note": "with-skill aspiration item: names no existing example"
+   },
+   {
+    "label": false,
+    "text": "- Some banks are experimenting with community spaces in their branches.",
+    "note": "constructed to match the criterion's false description; no real output failed this way"
+   },
+   {
+    "label": true,
+    "text": "- Berkeleyside / Cityside (California) – non‑profit local news network, funded by memberships, major donors, and foundation grants. (Assumption.)",
+    "note": "with-skill: named, tagged '(Assumption.)' by the model"
+   },
+   {
+    "label": true,
+    "text": "- The Manchester Mill – a subscription‑based local journalism startup, deep narrative reporting, no advertising, pure reader revenue. (Assumption.)",
+    "note": "with-skill: named, tagged '(Assumption.)' by the model"
+   },
+   {
+    "label": false,
+    "text": "1. Community‑ownership cooperative: The paper converts to a reader‑ and staff‑owned cooperative, with membership fees, community‑governed editorial priorities, and a mix of free civic information and subscriber‑only deep dives.",
+    "note": "with-skill aspiration item: a vision, no named example"
+   },
+   {
+    "label": true,
+    "text": "1. Member‑sustained public‑service journalism. The paper becomes a reader‑owned or membership‑funded organisation, accountable to the community, not to a distant corporate parent. Revenue comes from tiered memberships, grants, and community events. Pockets in the present: The Bristol Cable (UK), The Texas Tribune (US), and Tortoise’s “slow news” membership model. Each has a small but loyal paying base and demonstrates viability at city‑scale.",
+    "note": "with-skill: a vision with its named pockets nested inside"
+   },
+   {
+    "label": true,
+    "text": "2. AI‑augmented hyperlocal network. Professional journalists and AI tools together surface, verify and distribute granular local information—from planning applications to school sports results—on any channel the community uses. The newsroom becomes a curator and trust‑mark, not the sole originator. Pockets in the present: Automated local reporting pilots (e.g. RADAR in the UK, the BBC’s “Semi‑Automated Local News” experiments); Hyperlocal networks like Neighbourly (UK) and Nextdoor’s news‑feed, which demonstrate demand but lack journalistic editing.",
+    "note": "with-skill: a vision with its named pockets nested inside"
+   }
+  ],
+  "dilemma_both": [
+   {
+    "label": true,
+    "text": "## Dilemma and Power\n\n**Dilemma:** *Maintain widespread physical access for the customers who depend on it* and *invest radically in a digital‑first, low‑cost model to remain viable*. Closing branches too quickly harms vulnerable people and local economies; closing them too slowly starves the digital‑future investments. The dilemma is real and must be re‑solved continually through phased experiments, not one grand decision.\n\n**Power:**\n\n- Who can resist change: branch‑ops leaders who control headcount and real‑estate budgets; regulators who may impose physical‑presence mandates; older customer segments that vote with their feet.\n- Who can enable change: the Chief Digital Officer with a ring‑fenced budget; fintech partners who can absorb parts of the value chain; the Board, if it sets dual metrics—branch profit *and* digital migration rate.\n- What each can do: The branch‑ops leader can pilot shared‑branch models and shift headcount to community roles. The regulator can signal that as long as vulnerable‑customer outcomes are met, the form of delivery is flexible. The Board can tie executive compensation to H2+ migration, not just branch profitability.\n\n---\n",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "## Dilemma and Power\n\n**Dilemma:**\nWe must **optimise the declining print‑ad business to fund today’s journalism** (H1 value), *while simultaneously* **investing in experiments that will make the print‑ad business unnecessary** (H3 value). The same people and cash are needed for both, creating a permanent tension that cannot be solved once and for all—it must be re‑solved through each budget cycle and each experiment.\n\n**Power:**\n- **Who can resist change:** legacy advertisers who value print presence, the print‑production union, veteran staff whose identity is tied to the newspaper as a physical object, and board members who fear revenue disruption.\n- **Who can enable change:** a coalition of digitally native reporters, the product‑design team, community‑oriented commercial staff, local philanthropic funders, and younger readers who want participation, not just delivery.\n- **What each can realistically do:** the enablers must protect a “safe‑to‑fail” space in the budget, while the resisters can insist that any transition preserves core journalistic standards and universal service. Both perspectives are legitimate; neither should be silenced.\n\n---\n",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "## Dilemma and Power\n\n**Dilemma:** The council needs to **keep meals affordable and accessible for every family (H1)** while **shifting to higher-cost fresh, local, and sustainably produced ingredients (H3)**. This dilemma cannot be solved once; it must be re-resolved through a series of experiments that test new models of funding, procurement, and kitchen working.\n\n**Power:**\n\n- *Catering managers* — can resist or enable change. They hold the practical knowledge of what works at scale but may see H3 demands as unrealistic. What they can do: name the non-negotiable constraints that any transition must respect, and lead trials.\n- *Nutritionists* — can shift the evidence base and menu guidelines. They may be frustrated by H1’s slow pace but can use the council’s health targets as leverage.\n- *Parent groups* — can create political pressure for faster change, but well-organised parental campaigns can also push single-issue “quick fixes” (e.g., banning one ingredient without system change).\n- *Budget holders in the council* — control the spend. Their default is to manage risk and cost; they can enable the transition by ring-fencing a small percentage of the meals budget for H2+ experiments.\n- *Local farmers and food enterprises* — can become a new constituency for H3, but need stable demand and fair prices to participate.\n\n---\n",
+    "note": "with-skill"
+   },
+   {
+    "label": false,
+    "text": "**Dilemma:** Should we keep the branches or close them and go fully digital?",
+    "note": "constructed to match the criterion's false description; no real output failed this way (either/or)"
+   },
+   {
+    "label": false,
+    "text": "**Dilemma:** Cutting costs is the priority.",
+    "note": "constructed to match the criterion's false description; no real output failed this way (one value)"
+   }
+  ],
+  "actions_by_horizon": [
+   {
+    "label": true,
+    "text": "## Actions\n\n- **H2+ moves to start or strengthen:**\n  - Scale the video‑banking pilot from mortgage advice to small‑business lending and bereavement support.\n  - Build one shared‑branch hub with two other banks in a rural town, measuring customer satisfaction and cost per interaction.\n  - Commit to an in‑app marketplace beta, starting with home insurance, to learn revenue‑model change.\n\n- **H1 features to protect:**\n  - Retain face‑to‑face, expert conversation for life‑event moments, explicitly redesigning it for a scheduled, lounge‑like format, not a walk‑in transaction desk.\n  - Maintain rigorous vulnerable‑customer processes and map how they will work in a digital‑first future.\n\n- **H3 pockets to connect with:**\n  - Study DBS’s video‑advisory shift and its impact on branch estate cost and customer satisfaction.\n  - Explore partnership with an open‑banking data aggregator to prototype the “financial life platform” with a segment of app‑active customers.\n\n---\n",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "## Actions\n\n- **H2+ moves to start or strengthen:**\n  1. Launch a community‑funded reporting pilot on one local topic (e.g. housing), with a public call for support.\n  2. Turn the events programme into a regular, membership‑linked series, not an ad‑sales afterthought.\n  3. Invest in a newsletter‑first digital edition for a younger, mobile‑only audience, measuring engagement, not pageviews.\n  4. Create a “transition fund” line in the budget, protected from the print P&L, for H2+ experiments.\n\n- **H1 features to protect:**\n  - Maintain a minimum core of locally assigned reporters with sufficient time to cover council, court, and major institutions.\n  - Ring‑fence editorial independence in any new governance structure.\n  - Archive and community‑knowledge base—make it digitally accessible, not just a print‑backstory.\n\n- **H3 pockets to connect with:**\n  - Visit, study, or partner with at least two of the pockets named above (e.g. The Bristol Cable’s membership model, Berkeleyside’s non‑profit structure).\n  - Propose a regional joint‑project with a community foundation to incubate a local‑news cooperative for a nearby underserved town.\n  - Join a network like the Public Interest News Foundation or LION Publishers to learn from peers already living the third horizon.\n\n---\n",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "## Actions\n\n- **H2+ moves to start or strengthen:** Run a supported pilot with 5–10 schools on full local seasonal procurement, with a dedicated budget for kitchen training and menu redesign. Give the pilot the explicit mandate to test what must change in H1 to make it stick.\n- **H1 features to protect:** Free school meal eligibility and the central-kitchen workforce — guarantee that no staff member loses their job during the transition; instead, invest in re-skilling.\n- **H3 pockets to connect with:** Visit and study the Ghent model and a Food for Life Served Here flagship school. Invite practitioners to speak to the council and the parent panel.\n- **Dilemma experiment:** Run a “cost-of-quality” trial where one school cluster tracks the full cost of an H3-style menu (including waste, missed meal uptake, and health outcomes) against the H1 baseline, to make the true cost comparison visible.\n\n---\n",
+    "note": "with-skill"
+   },
+   {
+    "label": false,
+    "text": "## Actions\n\n- Run a customer survey.\n- Set up a working group.\n- Review the budget.\n- Pilot a new app feature.",
+    "note": "constructed to match the criterion's false description; no real output failed this way"
+   },
+   {
+    "label": false,
+    "text": "## Actions\n\n1. Hire a head of innovation.\n2. Explore partnerships.\n3. Communicate the vision to staff.",
+    "note": "constructed to match the criterion's false description; no real output failed this way"
+   }
+  ],
+  "handoff_why": [
+   {
+    "label": true,
+    "text": "## Handoff\n\n**Assumptions surfaced:** The pace of footfall decline, relative cost of digital vs. branch, and viability of specific pioneer models (e.g., Handelsbanken co‑location) are all assumptions that should be verified with your own data or third‑party research before committing investment.\n\n**Open decisions:** Which H3 vision does the leadership team most want to steer towards? Will the Board accept a dual metric that allows branch profitability to decline as digital adoption grows? What is the minimum physical presence required by regulation and vulnerable‑customer duty?\n\n**Suggested next method:** `fdbx-four-futures` to develop a richer set of H3 archetypes if you want to test which vision is most resilient under different external scenarios. Alternatively, `edbx-value-dams-and-flows` to map the stakeholder value conflicts behind the “access vs. viability” dilemma and design guardrails that let you move faster without harming the vulnerable customers H1 protects.",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "## Handoff\n\n**Assumptions surfaced:** the exact composition of your current initiatives, the local pockets of H3, your real revenue and cost split between print and digital, and which H3 vision your team leans towards.  \n**Open decisions:** whether to treat the paywall as H2− or a bridge to membership; where in the budget to carve a protected H2+ fund; which local underserved community to target first with a co‑operative pilot.  \n**Suggested next method:** `fdbx-four-futures` to develop the alternative H3 visions more richly and choose a preferred future; then return to Three Horizons with a concrete vision and a firmer list of H2+ moves. If the newsroom and commercial team keep talking past each other at the level of worldviews, `fdbx-causal-layered-analysis` will help.",
+    "note": "with-skill"
+   },
+   {
+    "label": false,
+    "text": "## 12. Conclusion\n\nLocal news is not dying. It is transitioning from an advertising-subsidized mass product to a membership-based service relationship. That transition will be uncomfortable because it asks the newsroom and commercial team to work differently, measure differently, and think differently.\n\nThe Three Horizons map does not make the future certain. It makes the choices visible:\n\n- **H1** is the legacy model that still funds the mission — but it is declining.\n- **H2** is the portfolio of experiments that builds the bridge.\n- **H3** is the regenerative local news ecosystem that can sustain accountability journalism for the next generation.\n\nThe organizations that make this transition successfully will not be the ones with the most dramatic digital strategy. They will be the ones that protect trust, convert it into sustainable relationships, and treat the community as a partner in the news.",
+    "note": "baseline closing section: names no next method"
+   },
+   {
+    "label": false,
+    "text": "## Handoff\n\n**Assumptions surfaced:** the brief's framing.\n**Open decisions:** which option to pursue.\n**Suggested next method:** fdbx-four-futures.",
+    "note": "constructed to match the criterion's false description; no real output failed this way (method named, no reason)"
+   }
+  ]
+ }
+}

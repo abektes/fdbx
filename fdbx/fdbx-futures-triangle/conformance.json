@@ -1,0 +1,237 @@
+{
+  "skill": "fdbx-futures-triangle",
+  "_note": "Machine-checkable form of the Deliverable Quality Bar in SKILL.md. Table coverage, counts and distinct weights are code; Jev judges whether the plausible future is justified from all three forces, whether each scenario rests on a named image or driver, and the Handoff.",
+  "enumerators": {
+    "images": {
+      "type": "table_rows",
+      "in_section": "pull",
+      "column": "image"
+    },
+    "archetypes": {
+      "type": "table_cells",
+      "in_section": "pull",
+      "column": "archetype"
+    },
+    "holders": {
+      "type": "table_cells",
+      "in_section": "pull",
+      "column": "held by"
+    },
+    "pushes": {
+      "type": "table_rows",
+      "in_section": "push",
+      "column": [
+        "driver",
+        "push"
+      ]
+    },
+    "push_size": {
+      "type": "table_cells",
+      "in_section": "push",
+      "column": [
+        "direction",
+        "size"
+      ]
+    },
+    "push_to": {
+      "type": "table_cells",
+      "in_section": "push",
+      "column": "toward"
+    },
+    "weights": {
+      "type": "table_cells",
+      "in_section": "weight",
+      "column": [
+        "weight",
+        "barrier"
+      ]
+    },
+    "scenarios": {
+      "type": "list_items",
+      "in_section": "^scenarios",
+      "with_body": true
+    },
+    "ledger_types": {
+      "type": "table_cells",
+      "in_section": "evidence ledger",
+      "column": "type"
+    }
+  },
+  "structural": [
+    {
+      "id": "three_images",
+      "kind": "min_count",
+      "items": "images",
+      "n": 3,
+      "bar": "maps at least three distinct images of the future, each with an archetype (or a named new one) and who holds it",
+      "desc": "at least three images"
+    },
+    {
+      "id": "image_archetypes",
+      "kind": "count_covers",
+      "items": "archetypes",
+      "covers": "images",
+      "bar": "maps at least three distinct images of the future, each with an archetype (or a named new one) and who holds it",
+      "desc": "every image has an archetype"
+    },
+    {
+      "id": "image_holders",
+      "kind": "count_covers",
+      "items": "holders",
+      "covers": "images",
+      "bar": "maps at least three distinct images of the future, each with an archetype (or a named new one) and who holds it",
+      "desc": "every image says who holds it"
+    },
+    {
+      "id": "four_pushes",
+      "kind": "min_count",
+      "items": "pushes",
+      "n": 4,
+      "bar": "lists at least four pushes, each with a direction or size, each linked to the image(s) it pushes toward",
+      "desc": "at least four pushes"
+    },
+    {
+      "id": "push_sizes",
+      "kind": "count_covers",
+      "items": "push_size",
+      "covers": "pushes",
+      "bar": "lists at least four pushes, each with a direction or size, each linked to the image(s) it pushes toward",
+      "desc": "every push has a direction or size"
+    },
+    {
+      "id": "push_links",
+      "kind": "count_covers",
+      "items": "push_to",
+      "covers": "pushes",
+      "bar": "lists at least four pushes, each with a direction or size, each linked to the image(s) it pushes toward",
+      "desc": "every push is linked to an image"
+    },
+    {
+      "id": "weights_per_image",
+      "kind": "count_covers",
+      "items": "weights",
+      "covers": "images",
+      "bar": "gives weights for every image, and the weights differ between images",
+      "desc": "every image has weights"
+    },
+    {
+      "id": "weights_differ",
+      "kind": "distinct_cells",
+      "items": "weights",
+      "n": 2,
+      "bar": "gives weights for every image, and the weights differ between images",
+      "desc": "weights differ between images"
+    },
+    {
+      "id": "plausible_named",
+      "kind": "any_of",
+      "checks": [
+        {
+          "kind": "section_present",
+          "pattern": "plausible future"
+        }
+      ],
+      "bar": "names a plausible future and justifies it from pull, push and weight together",
+      "desc": "a plausible future is named"
+    },
+    {
+      "id": "scenario_count",
+      "kind": "min_count",
+      "items": "scenarios",
+      "n": 3,
+      "max": 4,
+      "bar": "derives three or four scenarios, each built on a named image or driver",
+      "desc": "three or four scenarios"
+    },
+    {
+      "id": "strategy_image",
+      "kind": "any_of",
+      "checks": [
+        {
+          "kind": "section_present",
+          "pattern": "image (?:the|our|a|an|\\w+'s)? ?[^\\n]{0,40}current strategy serves?|current strategy serves?"
+        }
+      ],
+      "bar": "states which image the current strategy serves and whether it is chosen or used, and names a disowned future",
+      "desc": "says which image the current strategy serves"
+    },
+    {
+      "id": "used_or_chosen",
+      "kind": "any_of",
+      "checks": [
+        {
+          "kind": "section_present",
+          "pattern": "\\bused\\b|\\bchosen\\b"
+        }
+      ],
+      "bar": "states which image the current strategy serves and whether it is chosen or used, and names a disowned future",
+      "desc": "says whether that future is chosen or used"
+    },
+    {
+      "id": "disowned",
+      "kind": "any_of",
+      "checks": [
+        {
+          "kind": "section_present",
+          "pattern": "disowned"
+        }
+      ],
+      "bar": "states which image the current strategy serves and whether it is chosen or used, and names a disowned future",
+      "desc": "names a disowned future"
+    },
+    {
+      "id": "evidence_ledger",
+      "kind": "section_present",
+      "pattern": "evidence ledger",
+      "bar": "records every push and statistic in the Evidence Ledger with its type",
+      "desc": "an Evidence Ledger is present"
+    },
+    {
+      "id": "ledger_types",
+      "kind": "cells_match",
+      "items": "ledger_types",
+      "pattern": "(?i)user[- ‑]?supplied|sourced|assumption",
+      "bar": "records every push and statistic in the Evidence Ledger with its type",
+      "desc": "every ledger row is typed user-supplied, sourced or assumption"
+    },
+    {
+      "id": "handoff_present",
+      "kind": "section_present",
+      "pattern": "handoff",
+      "bar": "ends with a Handoff naming the next method and why",
+      "desc": "a Handoff section is present"
+    }
+  ],
+  "semantic": [
+    {
+      "id": "plausible_justified",
+      "section": "interaction",
+      "bar": "names a plausible future and justifies it from pull, push and weight together",
+      "instructions": "Does the section in `items[{i}]` justify its plausible future by drawing on the pull of images, the pushes and the weights together?",
+      "criteria": {
+        "true": "Explains why this future is plausible by referring to which image pulls, which trends push toward it, and which barriers hold other images back.",
+        "false": "Names a plausible future with no reasoning, or reasons from only one of pull, push and weight."
+      }
+    },
+    {
+      "id": "scenario_grounded",
+      "each": "scenarios",
+      "bar": "derives three or four scenarios, each built on a named image or driver",
+      "instructions": "Is the scenario in `items[{i}]` explicitly built on a named image of the future or a named driver?",
+      "criteria": {
+        "true": "Says which image or driver it rests on, for example '(Gaia wins through policy and habit)' or 'key driver: regulatory push'.",
+        "false": "Describes a future without saying which image or driver it is built on."
+      }
+    },
+    {
+      "id": "handoff_why",
+      "section": "handoff",
+      "bar": "ends with a Handoff naming the next method and why",
+      "instructions": "Does the section in `items[{i}]` name a next method to use and give a reason for choosing it?",
+      "criteria": {
+        "true": "Names a method (for example fdbx-four-futures, fdbx-causal-layered-analysis) and says what it would do with this output.",
+        "false": "Names no method, or names one with no reason."
+      }
+    }
+  ]
+}

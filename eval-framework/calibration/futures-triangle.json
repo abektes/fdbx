@@ -1,0 +1,81 @@
+{
+ "_note": "Hand labels by the skills' author (Claude), 2026-09-24. Positives are real with-skill or baseline text; negatives are real where the plain model produced one, else constructed and marked. Needs a second reader.",
+ "cases": {
+  "plausible_justified": [
+   {
+    "label": true,
+    "text": "## Interaction\n\n**Plausible future** (not a prediction): **Connected Gaia** — a blend of the Green Livable Neighbourhoods image with enough Evolution & Progress to make it digitally convenient.  \n*Why:* Multiple strong pushes converge on it — EU climate regulation (P1) sets the direction; remote work (P2) creates demand for local, non‑commute mobility; micro‑mobility growth (P3) provides proven alternatives. Its weights are real but surmountable: infrastructure spending can be phased via LEZ revenues and EU funds; behaviour change is accelerating among younger cohorts; battery supply chain issues are being tackled by European industrial policy. The pull is wide — polls show citizens want livable, green cities, and politicians run on 15‑minute‑city platforms. Meanwhile, the AV‑heavy “Seamless Transit” image lacks the same public pull and faces harder cost/trust barriers; “Back to the Tram” lacks strong investment push; “One Europe” is pulled by companies but resisted by local governance.\n\n**Contested images:**  \n*Seamless Transit City* has strong tech push (P4, P5) but is weighed down by regulation, cost, and trust. It will likely appear only in partial, geographically limited forms (e.g., autonomous shuttles in designated zones).  \n*One Europe, One Ticket* is promoted by the EU and industry, but local sovereignty, regulatory fragmentation, and scepticism act as powerful weights — a “roaming” mobility wallet may emerge, but a single app replacing all local systems is improbable.  \n*Back to the Tram & Bicycle* holds nostalgic pull for some, but limited capital and the absence of a digital-native push keep it niche.\n\n**Unchosen pushes:**  \nPlatform consolidation (P5) pushes toward a Globalist future that no local stakeholder actively wants — a corporate vision imported from outside. The surveillance capacity embedded in seamless digital mobility is an unchosen push toward a panopticonic city, largely disowned in public discourse.\n\n---\n",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "## Interaction\n\n**Plausible future:** *A hybrid of The Algorithmic Library and The Neighbourhood Weaver*. The strongest pushes—digital media demand, AI, civic-space decline, loneliness, digital exclusion—point toward a library that is both hyper‑relevant in the digital realm and indispensable as a physical community anchor. The weights against each image are real but surmountable: legacy IT modernization is underway in many national library programs, privacy concerns are being addressed through “privacy‑by‑design” approaches (though still a challenge), and the social‑value metrics movement is slowly shifting library funding. By 2045, the plausible library emerges as a **trusted digital platform for curated, personalised learning and discovery**, **grounded in branches that have become resilient, multi‑purpose community hubs**. This image avoids the disintermediation of pure collapse, the insularity of pure nostalgia, and the governance nightmares of full globalism.\n\n**Contested images:** *The Borderless Shelf* exerts a strong pull among open-access advocates and international bodies, but the weight of territorial copyright and funding inequality remains immense. It will likely exist in fragments (e.g., pan‑European digital library initiatives) rather than as a single global commons. *The Quiet Place* is a nostalgic anchor for many communities but has negligible pushes behind it; it persists as a valued *niche* within branches rather than a strategic direction.\n\n**Unchosen pushes:** *AI and generative search* pushes strongly toward a future where commercial platforms answer questions directly, bypassing the library entirely. No library image currently pulls for that future—it is an unchosen push, a driving force dragging libraries toward irrelevance unless they actively position themselves as the curated, trustworthy alternative.\n",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "## Interaction\n\n- **Hyper‑efficient utility** has the strongest push: market growth, dark‑kitchen expansion, ageing‑driven convenience demand, and automation investment all point toward it. Its weights are real but addressable by large incumbents who can lobby for drone corridors, buy robotic kitchens, and weather labour‑cost transitions. The pull from investors is enormous, and many users already behave as if food *is* a utility. This is the plausible future – the image with enough push behind it and weights that can be overcome step by step, even if it never reaches the fully automated, frictionless ideal.\n\n- **Collapse** is a contested image: it has strong pull from those who want platforms broken, and the push of rising labour regulation is real. But the weight of platform power, user habit, and restaurant dependency makes a full collapse unlikely. Instead, platforms will adapt – pay more for labour, pass some cost to consumers, and automate where they can. The collapse image acts more as a warning that shapes regulation than as the most likely outcome.\n\n- **Re‑localised food webs** are pulled hard by climate advocates and a subset of users, and environmental pushes support it. But the convenience habit and the investment logic that favours scale create huge weight. It remains a niche unless a radical policy break (e.g., drone bans, heavy platform taxes) forces a change.\n\n- **Global food mall** has some push from globalisation of supply chains, but the logistical and regulatory weights are heavy. It may appear as a premium “taste of Tokyo” feature on platforms, not as the default.\n\n- **Smart‑kitchen‑plus‑convenience** is pushed by demography and appliance makers, but it competes directly with the utility image. It will grow as a secondary channel, perhaps integrated into the same platform (meal kits, ready‑to‑cook, and ready‑to‑eat side by side). It doesn’t replace delivery; it complements it.\n\n**Unchosen pushes:** The automation push is largely driving toward the utility future which no user expressly chose – it’s an industry‑led trajectory. Similarly, the ageing‑driven convenience demand is pushing platforms into “healthcare logistics” territory, a future none of the food‑delivery pull images currently describe. That could become a new image: “care‑delivery platform.”\n\n---\n",
+    "note": "with-skill"
+   },
+   {
+    "label": false,
+    "text": "## Interaction\n\n**Plausible future:** Green Livable Neighbourhoods.\n**Contested images:** Seamless Transit City and Gaia.\n**Unchosen pushes:** ageing population.",
+    "note": "constructed to match the criterion's false description; no real output failed this way (named, not justified)"
+   },
+   {
+    "label": false,
+    "text": "## Interaction\n\n**Plausible future:** Hyper-efficient utility, because the market for delivery keeps growing quickly.\n**Contested images:** ...",
+    "note": "constructed to match the criterion's false description; no real output failed this way (push only)"
+   }
+  ],
+  "scenario_grounded": [
+   {
+    "label": true,
+    "text": "1. “The Green App Cooperative” (Gaia wins through policy and habit) By 2040, the city operates as a federation of 15‑minute neighbourhoods. The mobility app is a city‑governed cooperative integrating public transit, shared e‑cars, e‑bikes, delivery pooling, and community ride‑sharing. It rewards low‑carbon choices, ensures privacy, and public trust owns the data. Car ownership is niche; streets are green. (Key driver: regulatory push + behaviour change overcoming infrastructure weights.)",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "2. Platform Lock‑in – built on the pure Progress image if it overcomes governance weights through a single global operator. One private MaaS provider captures the city’s data and routing, sidelining public transport. Efficiency is high but the city loses control over service design, pricing, and access; the digital divide deepens.",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "2. “Autonomous Zones” (Progress, tempered) – Geofenced autonomous shuttles replace bus lines on fixed routes by 2040. The mobility app becomes the booking and routing layer for these robo‑shuttles, integrated with ride‑hail and micromobility. The city remains car‑friendly on the periphery, creating a two‑tier access pattern. The platform that aggregates these modes wins; data‑driven pricing determines who gets a seat.",
+    "note": "with-skill"
+   },
+   {
+    "label": false,
+    "text": "1. **The Quiet City** — By 2040 most people work near home, streets are calmer and the mobility app is used mainly for weekend trips.",
+    "note": "constructed to match the criterion's false description; no real output failed this way"
+   },
+   {
+    "label": false,
+    "text": "2. **Fast Lane** — Deliveries arrive within ten minutes everywhere and customers expect instant everything.",
+    "note": "constructed to match the criterion's false description; no real output failed this way"
+   }
+  ],
+  "handoff_why": [
+   {
+    "label": true,
+    "text": "## Handoff\n\n**Assumptions surfaced:**  \n- The analysis relies on generic European trends; the specific city’s size, economic base, political culture, topography, and existing transit network will significantly alter pushes and weights.  \n- We assumed the team’s current strategy is a typical multi‑modal app, which may not be accurate.  \n- All push claims are model‑recalled assumptions; local statistics should replace them.\n\n**Open decisions:**  \n- Which mid‑size city? What is the current roadmap’s vision?  \n- Who are the priority user segments?  \n- Should the app be a commercial platform or a public‑private utility?  \n- What is the team’s preferred image, and how do they handle the disowned future?\n\n**Suggested next method:**  \n- *fdbx‑causal‑layered‑analysis* — to explore the worldview and myth layers behind the weights (e.g., why is car ownership so deeply held? what stories underpin the “Seamless” image?).  \n- *fdbx‑three‑horizons* — to map how the present system (Horizon 1) can transition to Connected Gaia (Horizon 3) and what innovations are Horizon 2.  \n- *edbx‑value‑dams‑and‑flows* — to quantify the stakeholder value conflicts behind the weights (e.g., value lost by car dealers in a Gaia future vs. value gained by public health).",
+    "note": "with-skill"
+   },
+   {
+    "label": true,
+    "text": "## Handoff\n\n**Assumptions surfaced:** The entire push list consists of unverified assumptions. The design team should prioritise gathering national‑level data on library funding trends, digital‑divide metrics, and actual community‑held images of the library (e.g., through visioning workshops or surveys) before finalising the triangle.\n\n**Open decisions:**  \n- Whether to actively campaign for the *Community Anchor* plausible future or to hedge across multiple images with a portfolio of service prototypes.  \n- How to quantify the “weights” so that the product roadmap can be stress‑tested against the most powerful barriers.\n\n**Suggested next method:** **Causal Layered Analysis** — to explore why certain weights (e.g., the licensing quagmire or the political resistance to funding social value) persist, by examining the deep worldviews and myths that hold them in place. Alternatively, **Three Horizons** can map how the current system’s first‑horizon investments might give way to the Community Anchor third horizon.",
+    "note": "with-skill"
+   },
+   {
+    "label": false,
+    "text": "## 7. Conclusion\n\nThe Futures Triangle reveals that urban mobility in a mid-size European city by 2040 will not follow a single linear path. Strong pushes from climate imperatives and digital maturity are pulling toward integrated, clean, and seamless mobility. However, the weight of legacy infrastructure, cultural car attachment, and fragmented governance will slow and scatter this vision. The most successful mobility app will be one that respects these weights while harnessing the pushes and articulating a credible, desirable pull—whether that is the City-as-a-Service commons, a convenient mosaic solution, or a trusted niche service in a splintered landscape. The roadmap must balance flexibility with principled no-regret investments, especially around accessibility, privacy, and low-carbon integration. Continuous environmental scanning of key triggers will be essential to pivot the strategy as one future solidifies over the others.",
+    "note": "baseline closing section: names no next method"
+   },
+   {
+    "label": false,
+    "text": "## Handoff\n\n**Assumptions surfaced:** the brief's framing.\n**Open decisions:** which option to pursue.\n**Suggested next method:** fdbx-four-futures.",
+    "note": "constructed to match the criterion's false description; no real output failed this way (method named, no reason)"
+   }
+  ]
+ }
+}

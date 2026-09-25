@@ -62,7 +62,7 @@ def main() -> int:
             # document-scoped criteria send one text per request in production;
             # batching their calibration cases together contaminates each answer
             # with its neighbours and measures a judge that is never deployed.
-            single = any(k in criterion for k in ("scope", "section"))
+            single = any(k in criterion for k in ("scope", "section", "one_per_request"))
             batches = [[t] for t in texts] if single else [texts]
             # `with_prompt` criteria see the brief as its own state field, as in scoring.
             brief = {"brief": items[0]["brief"]} if criterion.get("with_prompt") else {}

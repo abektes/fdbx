@@ -152,7 +152,24 @@ def _dividers(text: str) -> list[tuple[int, int, str]]:
         elif m := re.match(r"^\*\*(.+?)\*\*:?\s*$", stripped):
             # Weaker than any real heading, so a following `#` still closes it.
             out.append((i, 7, strip_md(m.group(1))))
+        elif m := re.match(r"^\*\*([^*]{3,}?):\s*$", stripped):
+            # A label whose bold was never closed ("**D. Five things ...:"). The
+            # rubric judges content, not markdown hygiene.
+            out.append((i, 7, strip_md(m.group(1))))
     return out
+
+
+def section_texts(text: str, heading_pattern: str) -> list[str]:
+    """Every section whose heading matches, each to its next same-or-higher heading."""
+    lines = text.splitlines()
+    dividers = _dividers(text)
+    bodies = []
+    for n, (idx, level, title) in enumerate(dividers):
+        if not re.search(heading_pattern, title, re.I):
+            continue
+        end = next((i for i, lv, _ in dividers[n + 1:] if lv <= level), len(lines))
+        bodies.append("\n".join(lines[idx:end]))
+    return bodies
 
 
 def section_text(text: str, heading_pattern: str, pick: str = "first") -> str:
@@ -259,6 +276,12 @@ def enumerate_items(text: str, spec: dict) -> list[str]:
     if kind == "list_items":
         # Top-level bullets or numbered items in a section. Indented sub-bullets
         # are details of their parent, so counting them would inflate "at least 5".
+        if spec.get("all_sections"):
+            # A template can repeat a section per part (Four Futures has a D and an
+            # E list for each future); collect the items from every match.
+            one = {k: v for k, v in spec.items() if k != "all_sections"}
+            return [item for body in section_texts(text, spec["in_section"])
+                    for item in enumerate_items(body, one)]
         body = section_text(text, spec["in_section"])
         if spec.get("with_body"):
             # Keep each item's indented continuation ("   *Recommendation:* ..."):
@@ -277,6 +300,28 @@ def enumerate_items(text: str, spec: dict) -> list[str]:
             if spec.get("with_body"):
                 # Bold-led items are pseudo-headings; their body is the section under them.
                 found = [section_text(text, re.escape(f)) or f for f in found]
+        if not found:
+            # Last resort: items written as sub-headings ("### 1. Digital Accelerator").
+            subs = [title for _, level, title in _dividers(body)[1:] if level < 7]
+            found = [section_text(body, re.escape(s)) if spec.get("with_body") else s for s in subs]
+        return found
+
+    if kind == "list_after":
+        # Bullets that follow an inline label ("**Robust design decisions:** These
+        # hold in all four futures." then a list). The label is not a heading, so
+        # section lookups cannot find it; stop at the first line that is neither
+        # a bullet, an indented continuation nor blank.
+        m = re.search(spec["label"], text, re.I)
+        if not m:
+            return []
+        rest = text[text.find("\n", m.end()) + 1:] if "\n" in text[m.end():] else ""
+        found: list[str] = []
+        for line in rest.splitlines():
+            if re.match(r"^(?:[-*]|\d+[.)])\s+", line):
+                found.append(strip_md(re.sub(r"^(?:[-*]|\d+[.)])\s+", "", line)))
+            elif line.strip() and not line.startswith((" ", "\t")):
+                if found:
+                    break
         return found
 
     raise ValueError(f"unknown enumerator type {kind!r}")
@@ -614,6 +659,21 @@ def score_document(doc: str, spec: dict, api_key: str | None, prompt: str = "") 
                      for n in re.findall(r"\d+(?:[.,]\d+)?", c) if n not in brief]
             passed = not added
             detail = {"missing": added, "vacuous": not items[check["items"]]}
+        elif kind == "distinct_cells":
+            # "a different problem-solver at different layers", "weights differ
+            # between images": count distinct values after normalising.
+            cells = items[check["items"]]
+            distinct = {norm(c) for c in cells if norm(c)}
+            passed = len(distinct) >= check["n"]
+            detail = {"found": len(distinct), "required": check["n"], "vacuous": not cells}
+        elif kind == "pattern_absent":
+            # "calls no future best, worst or most likely". A line that states the
+            # rule ("no future is ranked most likely") is not a breach of it.
+            negated = re.compile(r"\b(?:no|not|never|none|neither|nor|without|avoid\w*|isn't|aren't|don't|do not)\b", re.I)
+            hits = [m.group(0).strip()[:90] for m in re.finditer(r"[^\n]*(?:" + check["pattern"] + r")[^\n]*", doc, re.I)
+                    if not negated.search(m.group(0))]
+            passed = not hits
+            detail = {"missing": [f"breach: {h}" for h in hits]}
         elif kind == "cells_match":
             # A criterion a regex can decide belongs here, not in the semantic
             # layer. Jev reads literally and is explicitly not a calculator, so
@@ -683,8 +743,17 @@ def score_document(doc: str, spec: dict, api_key: str | None, prompt: str = "") 
             # item: calibration found Jev cannot compare two texts packed into one
             # string (every case scored ~0.35), but separates them as two fields.
             state["brief"] = prompt
-        response = ask_jev(state, questions, api_key)
-        answers = [response["answers"][f"item_{i}"] for i in range(len(values))]
+        if check.get("one_per_request"):
+            # Some criteria shift with their neighbours in a batch (calibration found
+            # a named bank scoring 0.23 among five items and 0.87 alone); send each
+            # item alone, as calibrate.py does for them.
+            q0 = {"item_0": questions["item_0"]}
+            singles = [ask_jev(state | {"items": [v]}, q0, api_key) for v in values]
+            answers = [r["answers"]["item_0"] for r in singles]
+            response = {"usage": {"input_tokens": sum(r["usage"]["input_tokens"] for r in singles)}}
+        else:
+            response = ask_jev(state, questions, api_key)
+            answers = [response["answers"][f"item_{i}"] for i in range(len(values))]
 
         if kind == "score":
             # Jev cannot reconstruct an exact number by interpolating between
@@ -710,7 +779,10 @@ def score_document(doc: str, spec: dict, api_key: str | None, prompt: str = "") 
                      "verdict": "pass" if s >= YES else "fail" if s < NO else "review"}
                     for v, s in zip(values, scores)
                 ],
-                "passed": all(s >= YES for s in scores),
+                # `min_pass`: "at least two concrete pockets" -- Jev judges each item,
+                # code counts, because Jev cannot count.
+                "passed": (sum(s >= YES for s in scores) >= check["min_pass"]) if check.get("min_pass")
+                          else all(s >= YES for s in scores),
                 "needs_review": [round(s, 3) for s in scores if NO <= s < YES],
             }
         entry["input_tokens"] = response["usage"]["input_tokens"]

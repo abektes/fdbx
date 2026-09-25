@@ -1,0 +1,178 @@
+{
+  "skill": "fdbx-four-futures",
+  "_note": "Machine-checkable form of the Deliverable Quality Bar in SKILL.md. The four types, the A-E answers, the five-and-five lists, artifacts, placement and robust decisions are code; so is the ban on ranking futures. Jev judges whether the logics differ in kind, whether Collapse shows people doing well, and the Handoff.",
+  "enumerators": {
+    "futures": {
+      "type": "headings",
+      "pattern": "^future\\s*\\d"
+    },
+    "artifacts": {
+      "type": "phrase_matches",
+      "pattern": "artifact from this future"
+    },
+    "a_answers": {
+      "type": "phrase_matches",
+      "pattern": "\\bA\\.\\s*Life in this future"
+    },
+    "c_answers": {
+      "type": "phrase_matches",
+      "pattern": "\\bC\\.\\s*Preferability"
+    },
+    "toward": {
+      "type": "list_items",
+      "in_section": "^D\\.\\s*five things",
+      "all_sections": true
+    },
+    "against": {
+      "type": "list_items",
+      "in_section": "^E\\.\\s*five things",
+      "all_sections": true
+    },
+    "placements": {
+      "type": "phrase_matches",
+      "pattern": "\\*\\*(?!A\\. )[^*\\n]{0,70} in this future[:.]?\\*\\*"
+    },
+    "robust": {
+      "type": "list_after",
+      "label": "robust design decisions"
+    },
+    "ledger_types": {
+      "type": "table_cells",
+      "in_section": "evidence ledger",
+      "column": "type"
+    }
+  },
+  "structural": [
+    {
+      "id": "four_types",
+      "kind": "distinct_coverage",
+      "items": "futures",
+      "n": 4,
+      "vocabulary": [
+        "growth",
+        "collapse",
+        "discipline",
+        "transformation"
+      ],
+      "bar": "includes all four generic futures (Continued Growth, Collapse, Discipline, Transformation), each labelled with its type",
+      "desc": "the four futures are labelled Growth, Collapse, Discipline and Transformation"
+    },
+    {
+      "id": "no_ranking",
+      "kind": "pattern_absent",
+      "pattern": "\\bmost (?:likely|probable|plausible)\\b|\\blikeliest\\b|\\bbest[- ]case\\b|\\bworst[- ]case\\b|\\bbest future\\b|\\bworst future\\b",
+      "bar": "calls no future best, worst, or most likely, and describes Collapse with people who do well in it",
+      "desc": "no future is called best, worst or most likely"
+    },
+    {
+      "id": "artifacts",
+      "kind": "min_count",
+      "items": "artifacts",
+      "n": 4,
+      "bar": "writes each future from inside, positively, with an artifact from that future",
+      "desc": "an artifact from each future"
+    },
+    {
+      "id": "a_answers",
+      "kind": "min_count",
+      "items": "a_answers",
+      "n": 4,
+      "bar": "answers A–E for each future, with five things to do now toward (D) and five against (E)",
+      "desc": "A answered for each future"
+    },
+    {
+      "id": "c_answers",
+      "kind": "min_count",
+      "items": "c_answers",
+      "n": 4,
+      "bar": "answers A–E for each future, with five things to do now toward (D) and five against (E)",
+      "desc": "C answered for each future"
+    },
+    {
+      "id": "five_toward",
+      "kind": "min_count",
+      "items": "toward",
+      "n": 20,
+      "bar": "answers A–E for each future, with five things to do now toward (D) and five against (E)",
+      "desc": "five things toward (D) for each of four futures"
+    },
+    {
+      "id": "five_against",
+      "kind": "min_count",
+      "items": "against",
+      "n": 20,
+      "bar": "answers A–E for each future, with five things to do now toward (D) and five against (E)",
+      "desc": "five things against (E) for each of four futures"
+    },
+    {
+      "id": "subject_placed",
+      "kind": "min_count",
+      "items": "placements",
+      "n": 4,
+      "bar": "places the subject in each future",
+      "desc": "the subject is placed in each future"
+    },
+    {
+      "id": "robust_decisions",
+      "kind": "min_count",
+      "items": "robust",
+      "n": 3,
+      "bar": "names at least three design decisions that hold in all four futures",
+      "desc": "at least three robust design decisions"
+    },
+    {
+      "id": "evidence_ledger",
+      "kind": "section_present",
+      "pattern": "evidence ledger",
+      "bar": "records trends and signals in the Evidence Ledger, each typed `user-supplied`, `sourced`, or `assumption`",
+      "desc": "an Evidence Ledger is present"
+    },
+    {
+      "id": "ledger_types",
+      "kind": "cells_match",
+      "items": "ledger_types",
+      "pattern": "(?i)user[- ‑]?supplied|sourced|assumption",
+      "bar": "records trends and signals in the Evidence Ledger, each typed `user-supplied`, `sourced`, or `assumption`",
+      "desc": "every ledger row is typed user-supplied, sourced or assumption"
+    },
+    {
+      "id": "handoff_present",
+      "kind": "section_present",
+      "pattern": "handoff",
+      "bar": "ends with a Handoff naming the next method and why",
+      "desc": "a Handoff section is present"
+    }
+  ],
+  "semantic": [
+    {
+      "id": "distinct_logics",
+      "section": "at a glance",
+      "bar": "gives each future a distinct underlying logic rather than a different level of the same variable",
+      "instructions": "In `items[{i}]`, does each future rest on a different underlying logic, rather than being a different level of the same variable?",
+      "criteria": {
+        "true": "The futures differ in how the world works: for example growth through markets, a breakdown and local rebuilding, a deliberate limit on consumption, a technological change in what people are.",
+        "false": "The futures are high, medium, low and very low settings of one thing, such as more or less adoption of the same technology."
+      }
+    },
+    {
+      "id": "collapse_positive",
+      "section": "collapse",
+      "bar": "calls no future best, worst, or most likely, and describes Collapse with people who do well in it",
+      "instructions": "Does the section in `items[{i}]` describe people who do well or find something good in this future?",
+      "criteria": {
+        "true": "Names people or groups who thrive, gain or find meaning in this future, even if others suffer.",
+        "false": "Describes only loss, suffering or failure, with nobody doing well."
+      }
+    },
+    {
+      "id": "handoff_why",
+      "section": "handoff",
+      "bar": "ends with a Handoff naming the next method and why",
+      "instructions": "Does the section in `items[{i}]` name a next method to use and give a reason for choosing it?",
+      "criteria": {
+        "true": "Names a method (for example fdbx-three-horizons, fdbx-causal-layered-analysis) and says what it would do with this output.",
+        "false": "Names no method, or names one with no reason."
+      }
+    }
+  ]
+}

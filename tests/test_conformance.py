@@ -48,6 +48,36 @@ class StructuralKindsTest(unittest.TestCase):
         self.assertTrue(score_document(doc, s, None, prompt="footfall is down 12%")["structural"][0]["passed"])
 
 
+class BatchOneKindsTest(unittest.TestCase):
+    def test_distinct_cells_counts_different_values(self) -> None:
+        doc = "## Layer Table\n\n| Layer | Problem-solver |\n|---|---|\n| A | Team |\n| B | Team |\n| C | Council |\n"
+        e = {"s": {"type": "table_cells", "in_section": "layer table", "column": "solver"}}
+        three = spec(e, [{"id": "d", "kind": "distinct_cells", "items": "s", "n": 3, "desc": "", "bar": ""}])
+        two = spec(e, [{"id": "d", "kind": "distinct_cells", "items": "s", "n": 2, "desc": "", "bar": ""}])
+        self.assertFalse(score_document(doc, three, None)["structural"][0]["passed"])
+        self.assertTrue(score_document(doc, two, None)["structural"][0]["passed"])
+
+    def test_pattern_absent_ignores_a_line_that_states_the_rule(self) -> None:
+        s = spec({}, [{"id": "r", "kind": "pattern_absent", "pattern": "most likely", "desc": "", "bar": ""}])
+        self.assertTrue(score_document("No future is called most likely.", s, None)["structural"][0]["passed"])
+        self.assertFalse(score_document("Growth is the most likely future.", s, None)["structural"][0]["passed"])
+
+    def test_all_sections_collects_every_repeated_list(self) -> None:
+        doc = ("## Future 1\n**D. Five things to do now toward:**\n1. a\n2. b\n"
+               "## Future 2\n**D. Five things to do now toward (x, y):\n1. c\n")  # second label left unclosed
+        e = {"type": "list_items", "in_section": "^D\\.\\s*five things", "all_sections": True}
+        self.assertEqual(enumerate_items(doc, e), ["a", "b", "c"])
+
+    def test_list_after_reads_bullets_under_an_inline_label(self) -> None:
+        doc = "**Robust design decisions:** These hold everywhere.\n\n- Offline ledger\n- Portable identity\n\n**Single-future bets:**\n- X\n"
+        self.assertEqual(enumerate_items(doc, {"type": "list_after", "label": "robust design decisions"}),
+                         ["Offline ledger", "Portable identity"])
+
+    def test_list_items_fall_back_to_sub_headings(self) -> None:
+        doc = "## Scenarios\n\n### 1. Digital Accelerator\nText.\n\n### 2. Community Anchor\nText.\n\n## Next\n"
+        self.assertEqual(len(enumerate_items(doc, {"type": "list_items", "in_section": "^scenarios"})), 2)
+
+
 class EnumeratorOptionsTest(unittest.TestCase):
     def test_column_list_falls_back_to_second_name(self) -> None:
         doc = "## Scans\n\n| Signal | Type |\n|---|---|\n| A | sourced |\n"
