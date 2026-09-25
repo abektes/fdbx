@@ -153,6 +153,7 @@ Type is one of `user-supplied` (stated in the brief or by the user), `sourced` (
 - Offer more than one H3 unless the user has already chosen one.
 - Set the horizon length by domain and say why.
 - Say what the practice is: a framework for dialogue, which its authors present as practice propositions, not a validated predictor.
+- Write the section titles as markdown headings (`##`), as in the Output Format. Plain-text titles hide the Evidence Ledger and the Handoff from readers who scan.
 
 ## Deliverable Quality Bar
 

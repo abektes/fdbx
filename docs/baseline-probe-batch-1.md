@@ -198,8 +198,21 @@ Building the rubrics also exposed parser gaps, all fixed and tested: labels whos
 |---|---|---|
 | Futures Triangle | 171/171 (100%) | none |
 | Four Futures | 135/135 (100%) | none |
-| Causal Layered Analysis | 155/162 (96%) | All three teen-screen outputs leave the Myth row's Solution and Problem-solver empty. One reframed brief is left for review. |
+| Causal Layered Analysis | 156/162 (96%) | All three teen-screen outputs leave the Myth row's Solution and Problem-solver empty. |
 | Three Horizons | 155/171 (91%) | One newsroom output writes the whole document without markdown headings. The content is there, but every section check fails, which is correct: the output format is not followed. The other eight pass every check. |
+
+### Fixing the two findings
+
+Both were fixed in the skills and measured the edbx way: the same scenarios, before (the committed SKILL.md) and after, scored with the same rubric, with a Fisher exact test.
+
+- **CLA: empty Myth cells.** Step 4 said the myth layer's actors are leaders and artists and that change comes through new stories, but never said those go in the table. It now says the Myth row's Solution is the new story and its Problem-solver is whoever can tell it (Inayatullah: "at the myth/metaphor it is leaders or artists", provenance row 14), and a guardrail forbids empty Layer Table cells. At 18 outputs per side the change looked like noise (p = 0.10), so both sides were doubled. **At 36 outputs per side: Solution filled 29/36 → 36/36 and Problem-solver 29/36 → 36/36, p = 0.01 each.** Overall 100% of CLA checks pass after the fix (646/648).
+- **Three Horizons: plain-text headings.** A guardrail now asks for markdown headings. 1/18 → 0/18 outputs without them. That is too rare to measure (p = 1.0); the guardrail is cheap and the failure is serious when it happens, so it stays. Overall 96% of checks pass after the fix (330/342, 18 outputs).
+
+The larger samples also corrected the rubrics. None of the corrections changed a skill:
+
+- "Each worldview constitutes a problem" and "the reframed brief is a brief" are now judged on the whole section. Outputs split a worldview into sub-labels ("Whom it privileges:") and write the brief as a heading, a label, a quote, an arrow chain or a table, and the item parsers picked up fragments and passing mentions. Recalibrated: 75/75 decided cases agree, 5% review.
+- "No McKinsey framing" flagged a Ledger row that cited McKinsey as a source. The check now looks for the framing itself (core business, adjacent markets, McKinsey's horizons, Baghai, 70/20/10), not the name.
+- With 18 outputs, "H1 has specific evidence" leaves a third of Three Horizons outputs for review. They name general pressures ("cost-to-serve has risen") without figures or events: a borderline that a person should read, on both sides of the fix.
 
 **What this adds to the probe above.** The regex rates earlier in this doc said the method's moves appear in 8–9/9 outputs. The rubrics check far more of each quality bar, and agree: across the four skills, the only real failures are the empty Myth cells and one output's missing headings. The earlier worry that the plain model skips the action structure (who acts per layer, Dator's exercise questions, weights per image, H2+/−) stands. With the skills, all of it is present and judged, not just matched by a regex.
 

@@ -42,7 +42,7 @@
     },
     "reframed": {
       "type": "phrase_matches",
-      "pattern": "(?m)(?:^#{1,6}[ \\t]*reframed brief[^\\n]*|\\*\\*reframed brief[^*\\n]*\\*\\*)[^\\n]*(?:\\n(?!#|\\*\\*[A-Z][^*]{0,40}:?\\*\\*)[^\\n]*){0,8}"
+      "pattern": "(?m)(?:^#{1,6}[ \\t]*reframed brief[^\\n]*|\\*\\*[^*\\n]{0,30}reframed brief[^*\\n]*\\*\\*)[^\\n]*(?:\\n(?!#|\\*\\*[A-Z][^*]{0,40}:?\\*\\*)[^\\n]*){0,8}"
     },
     "ledger_types": {
       "type": "table_cells",
@@ -173,12 +173,12 @@
   "semantic": [
     {
       "id": "worldview_constitutes_problem",
-      "each": "worldviews",
+      "section": "worldviews",
       "bar": "identifies at least two distinct discourses at the worldview layer, each constituting a different problem",
-      "instructions": "Does `items[{i}]` name a worldview and say what the problem is when seen from inside it?",
+      "instructions": "In `items[{i}]`, does each worldview described state what the problem is when seen from inside it?",
       "criteria": {
-        "true": "Names a way of seeing (for example 'instrumental productivity' or 'relational well-being') and states the problem as that worldview defines it.",
-        "false": "Only names a stakeholder group or an opinion, or describes a view without saying what problem it makes of the situation."
+        "true": "Each named way of seeing (for example 'instrumental productivity' or 'relational well-being') comes with the problem as that worldview defines it.",
+        "false": "The worldviews are stakeholder groups or opinions, or are described without saying what problem each makes of the situation."
       }
     },
     {
@@ -193,12 +193,12 @@
     },
     {
       "id": "reframed_is_brief",
-      "each": "reframed",
+      "section": "moving back up|reframed brief",
       "bar": "moves back up from the alternative metaphor to a reframed brief in the same format as the original",
-      "instructions": "Is the text in `items[{i}]` written as a design brief (what to design or change, for whom, and what success looks like) rather than as analysis?",
+      "instructions": "Does `items[{i}]` end in a reframed brief written as a design brief (what to design or change, for whom, and what success looks like) rather than only as analysis?",
       "criteria": {
-        "true": "Reads as a brief a team could start from: an objective, the people it serves, and a measure or sign of success.",
-        "false": "Reads as commentary or analysis of the problem, with no objective a team could act on."
+        "true": "Contains a brief a team could start from: an objective, the people it serves, and a measure or sign of success.",
+        "false": "Offers only commentary or analysis of the problem, with no brief a team could act on."
       }
     },
     {

@@ -70,6 +70,8 @@ Change at this layer is slower and harder. The actors are typically people and v
 
 Name the deep story underneath: an archetype, a proverb, a cultural image. Write it as an image or a short line, not an abstract noun — "the doctor knows best", "bigger is better", "the university as a prison". This layer is felt rather than argued; write it so a reader feels it. Here the actors are leaders and artists, and change comes through new stories.
 
+In the Layer Table, fill the myth row like the others. Its **Solution** is the new story or image, often the alternative metaphor below. Its **Problem-solver** is whoever can tell that story: leaders, artists, the community itself.
+
 Then propose **an alternative metaphor** that would make a different future possible.
 
 ### Step 5 — Move back up
@@ -150,6 +152,7 @@ Type is one of `user-supplied` (stated in the brief or by the user), `sourced` (
 - Do not stop at social causes. That is where conventional analysis stays; CLA's value is in the two layers below.
 - Do not argue over which layer an idea belongs in. The layers overlap by design; they are there to open thinking, not to be filed correctly. If something fits nowhere, make a new category.
 - Do not write the myth layer as an abstract noun ("capitalism", "individualism"). Write the story people carry.
+- Do not leave any cell of the Layer Table empty, the myth row included. A myth has a solution (a new story) and a problem-solver (who tells it).
 - Do not end at the bottom. Without moving back up, CLA produces insight and no action. Inayatullah names paralysis as the method's main risk.
 - Do not present CLA as a forecast. It maps framings, not probabilities.
 - Do not treat the organisation's worldview as neutral. Name it as one discourse among the others.
