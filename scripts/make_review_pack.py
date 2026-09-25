@@ -13,8 +13,15 @@ Blinding is partial: with-skill outputs end with an Evidence Ledger and a Handof
 so a careful reader can often tell them apart. The questions ask about qualities
 that matter either way.
 
-    python3 scripts/make_review_pack.py --run 20260924T115310Z --run 20260924T121528Z
+    python3 scripts/make_review_pack.py                  # every skill, current SKILL.md
     python3 scripts/make_review_pack.py --score ~/Downloads/fdbx-review-answers.json
+    python3 scripts/make_review_pack.py --score <answers> --key eval-framework/review/2026-09-24/key.json
+
+By default both arms come from the current SKILL.md via the generation harness's
+own task keys, so an old version of a skill cannot slip into the pack. Horizon
+Scanning uses its live-search runs on both sides (WEB_SEARCH), because without a
+search tool its honest output is only a scanning plan. Earlier packs are archived
+under eval-framework/review/<date>/ with their keys.
 """
 
 from __future__ import annotations
@@ -32,7 +39,9 @@ from box import EVAL_DIR
 from probe_baseline import load
 
 REVIEW_DIR = EVAL_DIR / "review"
-SEED = 20260924
+SEED = 20260925
+VERSION = "2026-09-25"  # names the browser's answer store, so old answers do not load into new pairs
+WEB_SEARCH = {"fdbx-horizon-scanning": 10}
 
 QUESTIONS = [
     ("meeting", "Which would you rather bring into a design meeting?"),
@@ -45,15 +54,19 @@ LENGTH_CHOICES = ["A too long", "B too long", "both", "neither"]
 
 # Passages behind claims in docs/baseline-probe-batch-1.md, so the reader can
 # check the findings against the outputs themselves.
-FINDINGS = [
-    ("Baseline invents a 'pocket of the future' with figures", "Millfield Pilot"),
-    ("Baseline invents a fact about the user's own city", "uptake has dropped by 8%"),
-    ("Baseline invents a health statistic for the user's city", "2% above national average"),
-    ("Baseline states an unsourced present-day figure", "foot traffic dropping 10-15%"),
-    ("Baseline McKinsey-flavoured Three Horizons", "run the core"),
-    ("Baseline frames Collapse positively", "Resilient Localism"),
-    ("With skill: ledger admits an example is hypothetical", "Hypothetical but plausible"),
-    ("With skill: body still presents that example as real", "Visit the school that already runs"),
+FINDINGS = [  # (label, phrase, skill, arm); skill and arm narrow where the quote is looked for
+    ("Baseline invents a 'pocket of the future' with figures", "Millfield Pilot", "fdbx-three-horizons", "without_skill"),
+    ("Baseline invents a fact about the user's own city", "uptake has dropped by 8%", "fdbx-three-horizons", "without_skill"),
+    ("Baseline invents a health statistic for the user's city", "2% above national average", "fdbx-three-horizons", "without_skill"),
+    ("Baseline states an unsourced present-day figure", "foot traffic dropping 10-15%", "fdbx-three-horizons", "without_skill"),
+    ("Baseline McKinsey-flavoured Three Horizons", "run the core", "fdbx-three-horizons", "without_skill"),
+    ("Baseline frames Collapse positively", "Resilient Localism", "fdbx-four-futures", "without_skill"),
+    ("With skill: ledger admits an example is hypothetical", "Hypothetical but plausible", "fdbx-three-horizons", "with_skill"),
+    ("With skill: body still presents that example as real", "Visit the school that already runs", "fdbx-three-horizons", "with_skill"),
+    ("Batch 2: baseline invents the user's own baseline figure", "60% of buses", "fdbx-backcasting", "without_skill"),
+    ("Batch 2: baseline adds a figure to the library team's signal", "decline in physical visits (12%)", "fdbx-horizon-scanning", "without_skill"),
+    ("Batch 2: first skill version invented a source link (since fixed)", "mckinsey.com/industries/technology-media-and-telecommunications/our-insights/the-next-course-for-food-delivery", "fdbx-horizon-scanning", "with_skill"),
+    ("Batch 2: Jev flagged a figure credited to the wrong market (UK vs major markets)", "~£8bn, ~9% of transacted apparel", "fdbx-horizon-scanning", "with_skill"),
 ]
 
 
@@ -147,9 +160,11 @@ def prompt_for(skill: str, scenario: str) -> str:
 
 def findings_html(all_docs: list[dict]) -> str:
     parts = []
-    for label, phrase in FINDINGS:
+    for label, phrase, skill, arm in FINDINGS:
         hit = None
         for d in all_docs:
+            if d["skill"] != skill or d["arm"] != arm:
+                continue
             j = d["output"].lower().find(phrase.lower())
             if j >= 0:
                 hit = (d, j)
@@ -166,11 +181,31 @@ def findings_html(all_docs: list[dict]) -> str:
     return "<ul class='findings'>" + "\n".join(parts) + "</ul>"
 
 
+def current_docs(arm: str) -> dict[str, list[dict]]:
+    """Rep 0 of every scenario, generated from the current SKILL.md."""
+    from run_generation import CACHE_DIR, DEFAULT_MODEL, build_tasks
+    docs: dict[str, list[dict]] = {}
+    for task in build_tasks(None, None, DEFAULT_MODEL, 1, (arm,)):
+        if task.skill not in WEB_SEARCH:
+            path = CACHE_DIR / f"{task.key}.json"
+        else:
+            web = build_tasks([task.skill], None, DEFAULT_MODEL, 1, (arm,), web_search=WEB_SEARCH[task.skill])
+            path = CACHE_DIR / f"{next(w.key for w in web if w.scenario == task.scenario)}.json"
+        if not path.is_file():
+            sys.exit(f"missing generation for {task.label}: run scripts/run_generation.py first")
+        docs.setdefault(task.skill, []).append(json.loads(path.read_text()))
+    return docs
+
+
 def build(runs: list[str]) -> int:
-    base = pick(load("without_skill"))
-    skill_docs: dict[str, list[dict]] = {}
-    for run in runs:
-        skill_docs.update(load("with_skill", run))
+    if runs:  # the batch 1 pack: named with-skill runs, baselines from the cache
+        base = pick(load("without_skill"))
+        skill_docs: dict[str, list[dict]] = {}
+        for run in runs:
+            skill_docs.update(load("with_skill", run))
+    else:
+        base = pick(current_docs("without_skill"))
+        skill_docs = current_docs("with_skill")
     withs = pick(skill_docs)
     pairs = sorted(set(base) & set(withs))
     if not pairs:
@@ -206,13 +241,18 @@ def build(runs: list[str]) -> int:
   </div>
 </section>""")
 
-    all_docs = [d for items in load("without_skill").values() for d in items] + \
-               [d for items in skill_docs.values() for d in items]
+    # Findings quote the runs the probe notes cite, old versions included.
+    all_docs = [d for arm in ("without_skill", "with_skill") for items in load(arm).values() for d in items]
+    firsts: dict[str, int] = {}
+    for n, (skill, _) in enumerate(pairs, start=1):
+        firsts.setdefault(skill, n)
     page = PAGE.format(toc="\n".join(toc), sections="\n".join(sections), n=len(pairs),
-                       findings=findings_html(all_docs), pairs_json=json.dumps(list(key)))
+                       findings=findings_html(all_docs), pairs_json=json.dumps(list(key)),
+                       firsts=", ".join(str(v) for v in firsts.values()), store=f"fdbx-review-{VERSION}")
     REVIEW_DIR.mkdir(parents=True, exist_ok=True)
     (REVIEW_DIR / "review.html").write_text(page)
-    (REVIEW_DIR / "key.json").write_text(json.dumps({"seed": SEED, "runs": runs, "pairs": key}, indent=2))
+    (REVIEW_DIR / "key.json").write_text(json.dumps({"seed": SEED, "version": VERSION, "runs": runs or "current SKILL.md",
+                                                     "web_search": WEB_SEARCH, "pairs": key}, indent=2))
     print(f"wrote {REVIEW_DIR / 'review.html'} ({len(pairs)} pairs)")
     print(f"wrote {REVIEW_DIR / 'key.json'} (do not open until you have reviewed)")
     return 0
@@ -228,8 +268,8 @@ def resolve_answers(answers_path: str) -> Path | None:
     return candidates[-1] if candidates else None
 
 
-def score(answers_path: str) -> int:
-    key = json.loads((REVIEW_DIR / "key.json").read_text())["pairs"]
+def score(answers_path: str, key_path: str | None = None) -> int:
+    key = json.loads(Path(key_path or REVIEW_DIR / "key.json").expanduser().read_text())["pairs"]
     path = resolve_answers(answers_path)
     if path is None:
         sys.exit(
@@ -299,20 +339,21 @@ PAGE = """<!doctype html>
   <h1>fdbx review: which output would you use?</h1>
   <p>Each pair shows two outputs for the same prompt from the same model (DeepSeek V4 Pro). One had the fdbx skill loaded; one only had the method's name. Which is which is shuffled. Read both, answer the five questions, then press <strong>Export answers</strong>. Answers save in this browser as you go.</p>
   <p><strong>Blinding is partial:</strong> with-skill outputs end with an Evidence Ledger and a Handoff, so you may be able to tell them apart. Judge them on the questions anyway: would you use it, did it change how you see the problem, can you trust it, what would you do next, is it worth its length.</p>
-  <p>Short on time? Do one pair per method (1, 4, 7, 10), then export. When done, run <code>python3 scripts/make_review_pack.py --score &lt;exported file&gt;</code> to unblind.</p>
+  <p><strong>Horizon Scanning pairs:</strong> both outputs were given the same 10 live web search results, so both could cite real sources.</p>
+  <p>Short on time? Do one pair per method ({firsts}), then export. When done, run <code>python3 scripts/make_review_pack.py --score &lt;exported file&gt;</code> to unblind.</p>
   <ol>{toc}</ol>
   <p><button onclick="exportAnswers()">Export answers</button> <button onclick="copyAnswers()">Copy answers</button> <span class="count"></span></p>
 </header>
 {sections}
 <footer>
   <h2>Check the probe findings yourself</h2>
-  <p>Each claim in <code>docs/baseline-probe-batch-1.md</code> with the passage it comes from:</p>
+  <p>Claims from <code>docs/baseline-probe-batch-1.md</code> and <code>docs/baseline-probe-batch-2.md</code>, with the passage each comes from (some from earlier runs):</p>
   {findings}
   <p><button onclick="exportAnswers()">Export answers</button></p>
 </footer>
 <script>
   const PAIRS = {pairs_json};
-  const STORE = "fdbx-review";
+  const STORE = "{store}";
   const saved = JSON.parse(localStorage.getItem(STORE) || "{{}}");
   function refreshDone() {{
     for (const pid of PAIRS) {{
@@ -351,9 +392,10 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run", action="append", default=[], help="with_skill run id(s); later runs override earlier ones per skill")
     parser.add_argument("--score", metavar="ANSWERS_JSON", help="unblind and tally an exported answers file")
+    parser.add_argument("--key", help="key.json to unblind against (default: the current pack's)")
     args = parser.parse_args()
     if args.score:
-        return score(args.score)
+        return score(args.score, args.key)
     return build(args.run)
 
 
