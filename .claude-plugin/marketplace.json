@@ -1,0 +1,21 @@
+{
+  "name": "fdbx",
+  "owner": {
+    "name": "Ahmet Bektes"
+  },
+  "metadata": {
+    "description": "fdbx: futures-thinking methods for designers, from the published sources they come from."
+  },
+  "plugins": [
+    {
+      "name": "fdbx",
+      "source": "./",
+      "description": "Six futures-studies methods for design work — Horizon Scanning, Causal Layered Analysis, Futures Triangle, Four Futures, Three Horizons, Backcasting — plus a Futures Design Specialist agent that routes to them.",
+      "version": "0.2.0",
+      "author": {
+        "name": "Ahmet Bektes"
+      },
+      "category": "design"
+    }
+  ]
+}

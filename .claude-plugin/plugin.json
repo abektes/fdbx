@@ -1,8 +1,12 @@
 {
   "name": "fdbx",
   "description": "Futures-thinking methods for designers — scan for signals, deepen the frame, map the forces, experience alternative futures, plan the transition, and work back from a chosen future. Every method cites the page it comes from.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "Ahmet Bektes"
-  }
+  },
+  "homepage": "https://github.com/abektes/fdbx",
+  "repository": "https://github.com/abektes/fdbx",
+  "license": "MIT",
+  "keywords": ["futures", "foresight", "design", "scenarios", "horizon-scanning", "backcasting", "causal-layered-analysis", "three-horizons"]
 }

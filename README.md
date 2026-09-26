@@ -47,13 +47,34 @@ Version 0.1. The skills are written and pass the structural and provenance gates
 
 All six skills are also scored against their own quality bars with `conformance.json` rubrics: code for counts and structure, and TypeSafe Jev for judgments, calibrated against hand labels (100% agreement on decided cases in both batches). Every quality bar is covered. Pass rates: Futures Triangle and Four Futures 100%, Backcasting 98%, Causal Layered Analysis 96%, Three Horizons 91%, Horizon Scanning 89%. The real failures are few and named in the probe notes. One was fixed and measured: CLA left the Myth row's solution and problem-solver empty in 7 of 36 outputs, and in none after the fix (p = 0.01). A Jev citation check found 15 of 154 cited claims unsupported by their search excerpt. The calibration labels are by the skills' author and are tracked in `eval-framework/calibration/` for a second reader.
 
-## How to use it
+## Install
 
-```bash
-./install-skills.sh          # links the plugin; skills become /fdbx:<name>
+fdbx is a Claude Code plugin and its own plugin marketplace. In Claude Code:
+
+```
+/plugin marketplace add abektes/fdbx
+/plugin install fdbx@fdbx
 ```
 
-Or load a skill's `SKILL.md` into any AI assistant as a system prompt. Start with `/fdbx:help` if you don't know which method you need.
+Or from a terminal, the same two steps:
+
+```bash
+claude plugin marketplace add abektes/fdbx && claude plugin install fdbx@fdbx
+```
+
+From a clone, `./install-skills.sh` does this for you (`--local` installs from the checkout). To try it for one session without installing: `claude --plugin-dir /path/to/fdbx`.
+
+The plugin adds seven skills and one agent:
+
+| | How to call it |
+|---|---|
+| The six methods | `/fdbx:horizon-scanning`, `/fdbx:causal-layered-analysis`, `/fdbx:futures-triangle`, `/fdbx:four-futures`, `/fdbx:three-horizons`, `/fdbx:backcasting` |
+| The router | `/fdbx:help`: describe your situation, get the method and the order to run them in |
+| The Futures Design Specialist agent | `claude --agent fdbx:futures-design-specialist`, or pick it in `/agents`. It asks what kind of futures work you are doing, routes to a method, runs it, and redirects requests for predictions or remembered figures. Defined in [`AGENT.md`](AGENT.md). |
+
+Update with `claude plugin marketplace update fdbx && claude plugin update fdbx@fdbx`; remove with `claude plugin uninstall fdbx@fdbx`.
+
+Without Claude Code, point any AI assistant at this repo so it reads `AGENT.md`, or load one skill's `SKILL.md` as a system prompt.
 
 ## Checks
 
@@ -62,6 +83,9 @@ python3 -m unittest discover -s tests       # harness tests
 python3 scripts/validate_skills.py          # frontmatter, links, house style, fdbx rules
 python3 scripts/lint_template_gaps.py       # every quality-bar item has an output slot
 python3 scripts/check_provenance.py         # every sourced claim is on its cited page
+claude plugin validate .claude-plugin/plugin.json       # plugin manifest
+claude plugin validate .claude-plugin/marketplace.json  # marketplace manifest
+python3 scripts/check_agent_routing.py      # the agent routes 10 situations (uses your Claude login)
 ```
 
 `validate_skills.py` reports five warnings about `skills/` symlink names. They are the same as edbx's: the plugin invokes skills by short name on purpose.
@@ -71,6 +95,9 @@ python3 scripts/check_provenance.py         # every sourced claim is on its cite
 ```
 .
 ├── fdbx/                  one folder per skill: SKILL.md, references/ (incl. provenance.md), assets/, evals/
+├── AGENT.md               the Futures Design Specialist agent (any AI tool)
+├── agents/                the same agent, as a Claude Code plugin subagent
+├── .claude-plugin/        plugin.json and marketplace.json
 ├── skills/                symlinks the plugin loader walks (/fdbx:<name>)
 ├── candidates/            eval scenarios for methods probed but not yet written
 ├── tutorials/             plain-language guide per method
