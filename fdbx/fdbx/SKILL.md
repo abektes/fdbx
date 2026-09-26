@@ -1,7 +1,7 @@
 ---
 name: fdbx
 description: Futures-thinking guide for designers. Describe your brief, product, or decision and get routed to the right fdbx method — Horizon Scanning, Causal Layered Analysis, Futures Triangle, Four Futures, Three Horizons, or Backcasting — and the order to run them in. Use when you don't know which fdbx:* skill to start with, when a roadmap assumes a single future, or when you want to widen the time horizon of a design decision before committing.
-version: "0.1"
+version: "0.2"
 tags: [futures, router]
 ---
 

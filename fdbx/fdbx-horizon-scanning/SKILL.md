@@ -1,7 +1,7 @@
 ---
 name: fdbx-horizon-scanning
 description: Use when a team needs to know what is changing around a product, service or policy area — run horizon scanning as set out in the UK Government Office for Science Futures Toolkit — a scoping question, signals of change gathered from sources the user supplies or a live search finds (never from model memory), tagged by PESTLE and type, clustered into a natural agenda, rated for impact, likelihood and newness, and written up as the drivers worth acting on. Trigger for "horizon scan", "horizon scanning", "signals of change", "weak signals", "what should we be watching", "trend scan", "environmental scan", "STEEP / PESTLE scan", "what do these signals add up to", or when a futures method needs real inputs about the present.
-version: "0.1"
+version: "0.2"
 tags: [futures, evidence]
 ---
 

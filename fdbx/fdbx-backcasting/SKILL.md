@@ -1,7 +1,7 @@
 ---
 name: fdbx-backcasting
 description: Use when a team has a preferred future or a hard goal (a target year, a commitment, a vision) and needs the path back to today — apply backcasting as set out in the UK Government Office for Science Futures Toolkit, with Elise Boulding's "remember the future" move from Inayatullah — to work backwards from the end state, find the critical events, score each as wholly, partly or not in our control, name who gains and who loses, and turn it into an action plan. Trigger for "backcasting", "backcast", "work backwards from", "how do we get to 2035", "roadmap to a goal", "net zero by", "we have a vision but no plan", "present bias", or when a four-futures or three-horizons output needs a path to now.
-version: "0.1"
+version: "0.2"
 tags: [futures, action]
 ---
 

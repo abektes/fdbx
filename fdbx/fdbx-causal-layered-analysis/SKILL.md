@@ -1,7 +1,7 @@
 ---
 name: fdbx-causal-layered-analysis
 description: Use when a design brief, product problem, or strategic issue feels obvious, shallow, or already solved before anyone has looked at it — apply Causal Layered Analysis (Inayatullah) to move from the headline version of the problem down through systemic causes, worldviews, and the underlying myth or metaphor, then back up to a reframed brief. Trigger for "CLA", "causal layered analysis", "go deeper on this problem", "what's really behind this", "is this the right brief", "reframe the problem", "what are we assuming", "litany", "worldview", "root metaphor", or before any scenario or futures exercise.
-version: "0.1"
+version: "0.2"
 tags: [futures, deepening]
 ---
 

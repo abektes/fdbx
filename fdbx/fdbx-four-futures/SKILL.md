@@ -1,7 +1,7 @@
 ---
 name: fdbx-four-futures
 description: Use when a team is designing as if there is one future — apply Jim Dator's four generic alternative futures (Manoa School) — Continued Growth, Collapse, Discipline, Transformation — to experience four fundamentally different futures of a product, service, sector or place, each taken seriously and presented positively, then find what to do now and which design decisions hold in all four. Trigger for "four futures", "Dator", "Manoa", "alternative futures", "generic futures", "what if the future isn't what we think", "we only plan for growth", "futures workshop", "scenario archetypes", or when a roadmap has only one future in it.
-version: "0.1"
+version: "0.2"
 tags: [futures, alternatives]
 ---
 

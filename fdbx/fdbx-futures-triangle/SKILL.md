@@ -1,7 +1,7 @@
 ---
 name: fdbx-futures-triangle
 description: Use when a team needs to see the forces shaping the future of a product, service, sector, or place before deciding what to design for — apply Inayatullah's Futures Triangle to map the images of the future that pull, the trends and drivers that push, and the barriers that weigh each image down, then derive a plausible future and scenarios. Trigger for "futures triangle", "pull push weight", "what forces shape this", "which future are we designing for", "images of the future", "drivers and trends", "what's holding this back", "used future", or when a roadmap assumes one direction without saying why.
-version: "0.1"
+version: "0.2"
 tags: [futures, mapping]
 ---
 

@@ -1,7 +1,7 @@
 ---
 name: fdbx-three-horizons
 description: Use when a team needs to plan a transition from how things work today to what comes next — apply the Three Horizons practice (Sharpe, Hodgson and the International Futures Forum) to map the declining first horizon, the emerging third horizon and its pockets in the present, and the turbulent second horizon where innovations either prop up the old system (H2−) or open the way to the new (H2+). Trigger for "three horizons", "H1 H2 H3", "transition", "what do we keep, what do we let go", "pockets of the future", "innovation portfolio", "business as usual is losing fit", or when a managerial team and a visionary team are talking past each other. This is the futures practice, not McKinsey's growth horizons.
-version: "0.1"
+version: "0.2"
 tags: [futures, transition]
 ---
 

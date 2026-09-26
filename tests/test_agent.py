@@ -25,6 +25,17 @@ class AgentTest(unittest.TestCase):
         for name in skills:
             self.assertIn(f"/fdbx:{name}", agent, name)
 
+    def test_skill_versions_match_the_plugin(self) -> None:
+        # One release number: every SKILL.md and AGENT.md carry the plugin's
+        # major.minor, as edbx does, so a reader can tell which release a file is from.
+        plugin = json.loads((REPO / ".claude-plugin" / "plugin.json").read_text())["version"]
+        want = ".".join(plugin.split(".")[:2])
+        files = sorted((REPO / "fdbx").glob("*/SKILL.md")) + [REPO / "AGENT.md"]
+        for f in files:
+            m = re.search(r'^version:\s*"?([^"\n]+)"?', f.read_text(), re.M)
+            self.assertIsNotNone(m, f)
+            self.assertEqual(m.group(1), want, f)
+
     def test_marketplace_and_plugin_agree(self) -> None:
         plugin = json.loads((REPO / ".claude-plugin" / "plugin.json").read_text())
         market = json.loads((REPO / ".claude-plugin" / "marketplace.json").read_text())
