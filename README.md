@@ -2,6 +2,11 @@
 
 **Futures-thinking methods for designers. Every claim traces to a page you can open.**
 
+
+
+https://github.com/user-attachments/assets/8242a7bc-0958-4901-9842-e3e856b044df
+
+
 ---
 
 ## What this is
